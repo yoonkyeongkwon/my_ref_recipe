@@ -20,6 +20,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('ref/', include('ref.urls'))
 
-
-    
 ]

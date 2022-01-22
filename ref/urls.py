@@ -4,6 +4,6 @@ from django.urls import path
 app_name = 'ref'
 urlpatterns = [
 
-    path('main/', main_views.main,name='main'),
+    path('main/', main_views.main, name='main'),
 
 ]
