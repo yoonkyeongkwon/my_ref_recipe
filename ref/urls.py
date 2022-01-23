@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 from .views import *
+from ref import views as main_views
+
 app_name = 'ref'
 urlpatterns = [
 
