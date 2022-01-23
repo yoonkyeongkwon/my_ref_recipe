@@ -3,6 +3,6 @@ from . import views
 
 app_name = 'community'
 urlpatterns = [
-    path('community_list/', views.community_list),
+    path('community_insert/', views.community_insert),
   
 ]

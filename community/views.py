@@ -6,8 +6,7 @@ from django.utils import timezone
 from django.http import HttpResponse
 from datetime import date
 
-
-def community_list(request):
+def community_insert(request):
     if request.method == 'POST':
          title = request.POST.get('title')
          write_id = request.POST.get('write_id')
@@ -24,12 +23,12 @@ def community_list(request):
          m.write_id=write_id
          m.contents=contents
          m.views=views
-         m.regdate=regdate
+         m.regdate=date.today().isoformat()
          m.like=like
          m.post_like_id=post_like_id
          m.save()
     #     return HttpResponse(
     #     '입력완료<br>%s %s %s' % (title, write_id, contents))
-         return render(request, 'community/community_list.html',context={'text': title})
+         return render(request, 'community/community_insert.html',context={'text': title})
     else:
-        return render(request, 'community/community_list.html',context={'text':'GET method!!!'})
+        return render(request, 'community/community_insert.html',context={'text':'GET method!!!'})

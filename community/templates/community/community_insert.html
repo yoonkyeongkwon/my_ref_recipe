@@ -1,0 +1,19 @@
+<form action="/community/community_insert/" method="post">
+    {% csrf_token %}
+    <div>
+    제목 :<input type="text" name="title"><br>
+    ID :<input type="text" name="write_id"><br>
+    내용 : <input type="text" name="contents"><br>
+    뷰 : <input type="text" name="views"><br>
+    날짜 : <input type="text" name="regdate"><br>
+    라이크수 : <input type="text" name="like"><br>
+    좋아요한사람이름 : <input type="text" name="post_like_id"><br>
+
+    <input type="submit" value='전송'>
+    </div>
+    {% if m %}
+    <h1>
+        {{m.text}} {{m.write_id}} {{m.contents}} 
+    </h1>
+    {%endif%}
+</form>
