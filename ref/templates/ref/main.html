@@ -58,8 +58,12 @@
     </form>
 
     <h1>
-        {% if new_temp %}
-            {{new_temp.ingredients}}
+        {% if temp %}
+            {% comment %} {% for new_temp in new_temp_output%} {% endcomment %}
+            <h4>    
+                {{temp}}
+            </h4>
+            {% comment %} {% endfor %} {% endcomment %}
         {% endif %}
 
     </h1>

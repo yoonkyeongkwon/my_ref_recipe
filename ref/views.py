@@ -24,10 +24,14 @@ from django.views import View
 #     else:
 #         return render(request, 'ref/main.html', context={'text':'GET METHOD!!!'})
         
-        
 class main_view(View):
+    def __init__(self) -> None:
+        super().__init__()
+        self.array = []
+        
+        
     def get(self, request, *args, **kwargs):
-        # recipe_list = Recipe.objects.all()  ---> 에러남 DB문제
+        # recipe_list = Recipe.objects.all()[0]
         userref_list = UserRef.objects.all()
         recipe_list = '00'
         request.session['recipe_list'] = recipe_list
@@ -35,8 +39,16 @@ class main_view(View):
     
     def post(self, request, *args, **kwargs):   
         recipe_list = request.session['recipe_list']
-        temp = request.POST.get('material_name')
+        self.array.append(request.POST.get('material_name'))
+        temp = self.array
         new_temp = UserRef()
         new_temp.ingredients = temp
         new_temp.save()
-        return render(request, 'ref/main.html', context={'recipe_list': recipe_list, 'new_temp_output': new_temp})
+
+        # new_temp_output = new_temp.objects.all()
+        
+        return render(request, 'ref/main.html', context={'temp' : temp ,'recipe_list': recipe_list, 'new_temp_output': new_temp})
+
+    def init_var(self):
+        self.array = []
+        
