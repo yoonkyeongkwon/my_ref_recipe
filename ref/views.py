@@ -1,5 +1,4 @@
 from django.shortcuts import render
-<<<<<<< HEAD
 from .models import Recipe, UserRef
 from django.views import View
 
@@ -53,7 +52,6 @@ class main_view(View):
     def init_var(self):
         self.array = []
         
-=======
 from .models import Recipe, UserRef, UserCheck, Board
 from django.views.decorators.csrf import csrf_exempt
 
@@ -91,4 +89,4 @@ def moreNeed(request):
 
 
     return render(request,'ref/moreNeed.html',{})
->>>>>>> ingre_ui
+
