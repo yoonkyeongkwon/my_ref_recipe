@@ -26,6 +26,7 @@ class Community_Board(models.Model):
 
     #게시글 좋아요한 사람의 아이디
     post_like_id= models.CharField(max_length=45)
+ 
 
     class Meta:
         db_table = 'community_board'

@@ -11,10 +11,6 @@ def community_insert(request):
          title = request.POST.get('title')
          write_id = request.POST.get('write_id')
          contents = request.POST.get('contents')
-         views = request.POST.get('views')
-         regdate = request.POST.get('regdate')
-         like = request.POST.get('like')
-         post_like_id = request.POST.get('post_like_id')
 
          m = Community_Board()
     #     title=title, write_id=write_id, contents=contents)
@@ -22,13 +18,11 @@ def community_insert(request):
          m.title=title
          m.write_id=write_id
          m.contents=contents
-         m.views=views
          m.regdate=date.today().isoformat()
-         m.like=like
-         m.post_like_id=post_like_id
+
          m.save()
-    #     return HttpResponse(
-    #     '입력완료<br>%s %s %s' % (title, write_id, contents))
-         return render(request, 'community/community_insert.html',context={'text': title})
+         #return HttpResponse(
+         #'입력완료<br>%s %s %s' % (title, write_id, contents))
+         return render(request, 'community/community_insert.html')
     else:
         return render(request, 'community/community_insert.html',context={'text':'GET method!!!'})
