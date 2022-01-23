@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+    <style>
+        .testing{
+            background-color:white;
+            height:3rem;
+            width:3rem;
+            margin:1rem;
+        }
+
+        .box{
+            top: 380px;
+            left: 81px;
+            margin:1rem;
+            width: 600px;
+            height: 334px;
+            background: #EEEDED 0% 0% no-repeat padding-box;
+            border-radius: 80px;
+            opacity: 1;
+        }
+
+        .searchlist{
+            top: 320px;
+            left: 720px;
+            width: 270px;
+            height: 43px;
+            
+        }
+        .searchlist, a{
+            font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 32px/43px var(--unnamed-font-family-y-universe);
+            letter-spacing: var(--unnamed-character-spacing-0);
+            color: var(--unnamed-color-515151);
+            text-align: center;
+            font: normal normal normal 32px/43px Y Universe;
+            letter-spacing: 0px;
+            color: #515151;
+            opacity: 1;
+            text-decoration:none;
+        }
+        .photo{
+            top: 410px;
+            left: 109px;
+            width: 270px;
+            height: 270px;
+            background: transparent url('../../../static/img/sample.jpg') 0% 0% no-repeat padding-box;
+            background-size: cover;
+            opacity: 1;
+        }
+        .title{
+            top: 484px;
+            left: 419px;
+            width: 507px;
+            height: 49px;
+            font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 37px/49px Y Spotlight;
+            letter-spacing: var(--unnamed-character-spacing-0);
+            text-align: right;
+            font: normal normal normal 37px/49px Y Spotlight;
+            letter-spacing: 0px;
+            color: #707070;
+            opacity: 1;
+            background-color:#EEEDED;
+        }
+        .detail{
+            top: 550px;
+            left: 420px;
+            width: 366px;
+            height: 40px;
+            font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 30px/40px var(--unnamed-font-family-y-universe);
+            letter-spacing: var(--unnamed-character-spacing-0);
+            text-align: right;
+            font: normal normal normal 30px/40px Y Universe;
+            letter-spacing: 0px;
+            color: #707070;
+            opacity: 1;
+            background-color:#EEEDED;
+        }
+        .like{
+            top: 498px;
+            left: 1341px;
+            width: 52px;
+            height: 49px;
+            background: transparent url('../../../static/img/heart.jpg') 0% 0% no-repeat padding-box;
+            background-size: cover;
+            background-color:#EEEDED;
+            opacity: 1;
+        }
+
+    </style>
+
+    <div class = "container">
+        <div class ="row">
+            <div class = "col-sm">    
+                <div class = 'searchlist' style="display: inline-block;">
+                <a href=''>재료가 더 필요한 레시피</a>
+                </div>
+            </div>
+            <div class = "col-sm">
+                <div class = 'searchlist' style="display: inline-block; text-align:right">
+                    <a href='/ref/main/searchRecipe/'>돌아가기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class = "container">
+        <div class ="row">
+            
+            {% comment %} for 돌릴 곳 {% endcomment %}
+            <div class = "col-lg-6 col-md-6 col-sm-12 bg-info">
+                <div class = 'box' style="display: inline-block;">
+                    <div class = 'photo' style="display: inline-block;">
+                        <div class = 'title' style="display: inline-block;">{{item.ckg_nm}} 
+
+                        </div>
+                        <div class = 'detail' style="display: inline-block;">{{item.ckg_mtrl_cn}}</div>
+                    </div>
+                </div>  
+            </div>
+           
+        </div>
+    </div> 
+
+    <div class = "container">
+        <div class ="row">
+
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+
+
+
