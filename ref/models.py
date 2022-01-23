@@ -44,3 +44,29 @@ class UserRef(models.Model):
         db_table = 'user_ref'
         app_label = 'ref'
         managed = False
+
+class UserCheck(models.Model):
+    # 유저 닉네임
+    username = models.ForeignKey(Userinfo, on_delete=models.CASCADE)
+    # 찜한 게시판 아이디
+    board_id = models.IntegerField()
+
+    class Meta:
+        db_table = 'check'
+        app_label = 'ref'
+        managed = False
+
+class Board(models.Model):
+    # 보드 아이디
+    board_id = models.IntegerField()
+    # rcp_sno
+    rcp_sno = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    # title
+    board_title = models.CharField(max_length=50)
+    # contents
+    board_contents = models.TextField()
+
+    class Meta:
+        db_table = 'board'
+        app_label = 'ref'
+        managed = False
