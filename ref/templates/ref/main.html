@@ -40,7 +40,7 @@
 <div class = "testing" style="text-align: center; margin : 1rem">
     <span style="font-family : 'YUniverse-B';">
     {% for item in recipe_list%}
-    {{ item.rcp_sno}}
+    {{ item}}
     {% endfor%}
     님</span>의 냉장고
 </div>
@@ -50,11 +50,21 @@
     <span class = "testing" style="left: -12rem;">재료 이름</span>
     <span class = "testing" style="left: -1.5rem;">유통 기한(선택)</span>
     <br>
-    <form id="form">
-        <input class = "testing" style= "width: 15rem; height: 2.5rem;" type="text" placeholder=" 🔎 Search..."/>
-        <input class = "testing" style="width: 15rem; height: 2.5rem;" type="text" placeholder=" 🔎 Search..."/>
-        <button class = "testing" style= "width: 5rem; height: 2.5rem;" type="button">입력</button>
+    <form action="/ref/main/", method = "post">
+        {% csrf_token %}
+        <input class = "testing" style= "width: 15rem; height: 2.5rem;" type="text" name ="material_name"/>
+        <input class = "testing" style="width: 15rem; height: 2.5rem;" type="text" name="expire_date"/>
+        <input class = "testing" style= "width: 5rem; height: 2.5rem;" type="submit", value="입력">
     </form>
+
+    <h1>
+        {% if new_temp %}
+            {{new_temp.ingredients}}
+        {% endif %}
+
+    </h1>
+
+    
     <br>
     <br>
 </div>
