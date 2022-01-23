@@ -1,23 +1,48 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 
-    <style>
-        .testing{
-            background-color:white;
-            height:3rem;
-            width:3rem;
-            margin:1rem;
+<style>
+    .testing{
+        font-family: "YUniverse-L";
+        position: relative;
+        font-size: 20px;
+
+    }
+    .cookmaterial{
+        height:2rem;
+        background: #BFB5B5 0% 0% no-repeat padding-box;
+        border-radius: 90px;display: inline-block; text-align : center;
+    }
+    input {
+        font-family: "YUniverse-B";
+        font-size: 15px;
+        border: 0;
+        border-radius: 15px;
+        outline: none;
+        padding-left: 10px;
+        background-color: rgb(233, 233, 233);
         }
+    .feedback {
+        display: none;
+        color: red;
+    }
+    .show {
+        display: block;
+    }
 
-    </style>
+    
+</style>
 
-<div style="height: 20rem; background-color: #38df81; border-radius : 1rem; margin: 2rem;">
-    <h1>testing</h1>
-    <ul>
+    <!-- <div style="height: 20rem; background-color: #38df81; border-radius : 1rem; margin: 2rem;"> -->
+
+<!-- 냉장고 재료 입력 칸 -->
+<div class = "testing" style="text-align: center; margin : 1rem">
+    <span style="font-family : 'YUniverse-B';">
     {% for item in recipe_list%}
     {{ item.rcp_sno}}
     {% endfor%}
+<<<<<<< HEAD
     </ul>
     <div class = "testing" style="display: inline-block; width: 48px; height: 48px;">inline-block</div>
     <div class = "testing" style="display: inline-block; width: 3rem; height: 3rem;">inline-block</div>
@@ -29,10 +54,36 @@
     <div class = "testing" style="display: inline">inline</div>
     <div class = "testing" style="display: None">None</div>
     <div class = "testing" >default</div> -->
+=======
+    님</span>의 냉장고
+</div>
 
+<!-- 재료 이름, 유통기한 -->
+<div style="text-align: center;">
+    <span class = "testing" style="left: -12rem;">재료 이름</span>
+    <span class = "testing" style="left: -1.5rem;">유통 기한(선택)</span>
+    <br>
+    <form id="form">
+        <input class = "testing" style= "width: 15rem; height: 2.5rem;" type="text" placeholder=" 🔎 Search..."/>
+        <input class = "testing" style="width: 15rem; height: 2.5rem;" type="text" placeholder=" 🔎 Search..."/>
+        <button class = "testing" style= "width: 5rem; height: 2.5rem;" type="button">입력</button>
+    </form>
+    <br>
+    <br>
+</div>
+>>>>>>> develop
 
+<div  style="text-align: center;">
+    <!--  현재 재료 목록 -->
+    <span class = "testing">현재 재료 목록</span>
 
 </div>
+
+<hr>
+<div style="text-align: center;">
+    <span class = "testing">🔥인기 레시피🔥</span>
+</div>
+
 
 {% endblock %}
 
