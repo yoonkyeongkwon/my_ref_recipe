@@ -6,4 +6,5 @@ urlpatterns = [
 
     path('main/', main_views.main, name='main'),
 
+
 ]
