@@ -1,4 +1,5 @@
 from distutils.command.check import check
+from django.http import HttpResponse
 from django.shortcuts import render
 from .models import *
 from django.views import View
