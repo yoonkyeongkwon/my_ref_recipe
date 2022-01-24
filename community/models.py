@@ -32,4 +32,3 @@ class Community_Board(models.Model):
         db_table = 'community_board'
         managed = False
         app_label = 'community'
-

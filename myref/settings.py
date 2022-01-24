@@ -109,7 +109,7 @@ DATABASES = {
     'NAME': 'busan01',
     'USER': 'busan01',
     'PASSWORD': 'busanaivle2022',
-    'HOST': '15.164.153.191',
+    'HOST': '13.125.52.234',
     'PORT': '3306',
     }
 }
@@ -213,3 +213,8 @@ LOGGING = {
         },
     }
 }
+
+
+# MEDIA
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

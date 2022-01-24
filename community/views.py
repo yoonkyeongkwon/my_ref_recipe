@@ -11,7 +11,6 @@ def community_insert(request):
          title = request.POST.get('title')
          write_id = request.POST.get('write_id')
          contents = request.POST.get('contents')
-
          m = Community_Board()
          m.title=title
          m.write_id=write_id
