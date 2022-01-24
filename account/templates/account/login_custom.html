@@ -1,0 +1,16 @@
+<form method="post" action="{% url 'account:login_custom' %}">
+    {% csrf_token %}
+    아이디 : <input type="text" name="id"><br>
+    비밀번호 : <input type="text" name="password"><br>
+    <input type="submit" value="로그인">
+</form>
+
+{% if request.session.id %}
+    <a href="{% url 'account:logout_custom' %}">
+    {{ request.session.name }} 님 반갑습니다. (로그아웃)
+    </a>
+{% else %}
+    <p>현재 상태 : Guest</p>
+{% endif %}
+
+    
