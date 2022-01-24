@@ -27,8 +27,12 @@ def community_insert(request):
          return HttpResponse('%s<br>%s' % (name, size))
          return render(request, 'community/community_insert.html')
     else:
+<<<<<<< HEAD
         return render(request, 'community/community_insert.html',context={'text':'GET method!!!'})
 
 def community_list(request):
      return render(request, 'community/community_list.html')
      console.log('yesyes')
+=======
+        return render(request, 'community/community_insert.html',context={'text':'GET method!!!'})
+>>>>>>> comm
