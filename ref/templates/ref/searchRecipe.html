@@ -152,14 +152,14 @@
             {% for item in recipe_list%}
             <div class = "col-lg-6 col-md-6 col-sm-12">
                 <div class = 'box'>
-                    <div style="visibility:hidden;">줄맞추기...</div>
-                    <span style="display:inline-block;visibility:hidden;">줄맞.</span>
+                    <div>asdfasdf</div>
+                    <span style="display:inline-b">sdfsdf</span>
                     <span class = 'photo' style="display: inline-block;">
                     </span>
+                    <span class = 'detail' style="display: inline-block;">{{item.ckg_mtrl_cn}}</span>
                     <span class = 'title' >
                         <div class="item">
                             <a href="#" onclick="openzlog();" style="width:auto">{{item.ckg_nm}}</a>
-                            <span class = 'detail'>{{item.ckg_mtrl_cn}}</span>
 
                             {% if user_check.board_id == board_info.board_id %}
                             <button class = "button" method="post" action="" name="user_check" onclick="javascript:clicked();">
@@ -177,10 +177,7 @@
                             </button>
                             {%endif%}
                         </div>
-                       
                     </span>
-                    
-
 
                 </div>  
             </div>
