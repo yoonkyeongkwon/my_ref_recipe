@@ -15,3 +15,9 @@
     text-align: center; 
     margin: .8rem 0;
 }
+
+.main_header_menu{
+    margin: 0rem 2rem; 
+    text-decoration-line : none;
+    color: black; 
+}

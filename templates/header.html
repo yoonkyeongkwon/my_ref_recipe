@@ -1,12 +1,12 @@
 {% load static%}
 <div class="main_header">
-    <div style="font-family: 'YUniverse-B';">
+    <div>
         <a href="/ref/main">
             <img src="{% static '/image/logo.png' %}" title="메인 로고" style="width:200px; margin: 0rem 2rem;"/>
         </a>    
         <br>
     </div>
-    <div style="font-family: 'YUniverse-B';">
+    <div style="font-family: GongGothicMedium;">
         <a href="/ref/main/mypage">
             <img src="{% static '/image/user.png' %}" title="회원 계정 이미지" style="display: inline-block; width:40px; float : right; margin: 0rem 2rem;"/>
         </a>
@@ -15,19 +15,10 @@
     </div>
     </div>
     <hr>
-    <div style = "text-align: center; font-family: YUniverse-L; color : #707070; font-size : 1.5rem;">
-        <a href="/ref/main"style = "margin: 0rem 2rem;">
-            <span>재료</span>
-        </a> 
-        <a href="/ref/main/searchRecipe"style = "margin: 0rem 2rem;">
-            <span>레시피검색</span>
-        </a> 
-        <a href=""style = "margin: 0rem 2rem;">
-            <span>요리커뮤니티</span>
-        </a> 
-        <a href="/ref/main/mypage"style = "margin: 0rem 2rem;">
-            <span>마이페이지</span>
-        </a>
-
+    <div style = "text-align: center; font-family: GongGothicMedium; font-size : 1.5rem;">
+        <a href="/ref/main" class="main_header_menu">재료</a> 
+        <a href="/ref/main/searchRecipe" class="main_header_menu">레시피검색</a> 
+        <a href="" class="main_header_menu">요리커뮤니티</a> 
+        <a href="/ref/main/mypage" class="main_header_menu">마이페이지</a>
     </div>
 </div>
