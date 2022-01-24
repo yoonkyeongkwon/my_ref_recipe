@@ -33,7 +33,7 @@ class main_view(View):
         
     def get(self, request, *args, **kwargs):
         # recipe_list = Recipe.objects.all()[0]
-        userref_list = UserRef.objects.all()
+        userref_list = Mine.objects.all()
         recipe_list = '00'
         request.session['recipe_list'] = recipe_list
         return render(request,'ref/main.html',{'recipe_list':recipe_list,'userref_list':userref_list})
@@ -42,7 +42,7 @@ class main_view(View):
         recipe_list = request.session['recipe_list']
         self.array.append(request.POST.get('material_name'))
         temp = self.array
-        new_temp = UserRef()
+        new_temp = Mine()
         new_temp.ingredients = temp
         new_temp.save()
         # new_temp_output = new_temp.objects.all()
@@ -59,7 +59,7 @@ def myPage(request):
 
 
         
-from .models import Recipe, UserRef, UserCheck, Board
+from .models import *
 from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
@@ -67,7 +67,7 @@ from django.views.decorators.csrf import csrf_exempt
 def main(request):
 
     recipe_list = Recipe.objects.order_by('rcp_sno')[0:5]
-    userref_list = UserRef.objects.all()
+    userref_list = Mine.objects.all()
 
     return render(request,'ref/main.html',{'recipe_list':recipe_list,
                                             'userref_list':userref_list,})
@@ -80,6 +80,21 @@ def searchRecipe(request):
     recipe_list = Recipe.objects.all()[0:5]
     
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     return render(request,'ref/searchRecipe.html',{'recipe_list':recipe_list,
                                                     'user_check':user_check,
                                                     'board_info':board_info,})
@@ -87,6 +102,11 @@ def searchRecipe(request):
 @csrf_exempt
 def moreNeed(request):
     if request.method == 'POST':
+
+
+
+
+
 
 
         return 

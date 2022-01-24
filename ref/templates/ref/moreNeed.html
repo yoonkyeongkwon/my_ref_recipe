@@ -73,7 +73,6 @@
             letter-spacing: 0px;
             color: #707070;
             opacity: 1;
-            background-color:#EEEDED;
         }
         .like{
             top: 498px;
@@ -86,16 +85,24 @@
             opacity: 1;
         }
 
+        .button{
+            outline:0;
+            border:0;
+            background-color:transparent
+        }
+
     </style>
 
     <div class = "container">
         <div class ="row">
-            <div class = "col-sm">    
-                <div class = 'searchlist' style="display: inline-block;">
-                <a href=''>재료가 더 필요한 레시피</a>
-                </div>
+            <div class ="col-4">
             </div>
-            <div class = "col-sm">
+            <div class = "col-5">    
+                    <a href='' class = 'searchlist'>재료가 더 필요한 레시피</a>
+            </div>
+            <div class ="col-1">
+            </div>
+            <div class = "col-2">
                 <div class = 'searchlist' style="display: inline-block; text-align:right">
                     <a href='/ref/main/searchRecipe/'>돌아가기</a>
                 </div>
@@ -103,33 +110,46 @@
         </div>
     </div>
 
-    <hr>
 
     <div class = "container">
         <div class ="row">
-            
-            {% comment %} for 돌릴 곳 {% endcomment %}
             <div class = "col-lg-6 col-md-6 col-sm-12">
-                <div class = 'box' style="display: inline-block;">
-                    <div class = 'photo' style="display: inline-block;">
-                        <div class = 'title' style="display: inline-block;">{{item.ckg_nm}} 
-
+                <div class = 'box'>
+                    <div class="container">
+                        <div class ="row">
+                            <div class ="col-12" style="visibility:hidden;height:32px">a</div>
+                            <div class ="col-6">
+                                <span class = 'photo' style="display: inline-block;">
+                                </span>
+                            </div>
+                            <div class ="col-6">
+                                <div class="item" style="inline-block">
+                                    <a href="#" onclick="openzlog();" style="width:auto">{{item.ckg_nm}}</a>
+                                
+                                    {% if user_check.board_id == board_info.board_id %}
+                                    <button class = "button" method="post" action="" name="user_check" onclick="javascript:clicked();">
+                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="32" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                                        </svg>
+                                    </button>
+                                    {%endif%}
+                                
+                                    {% if user_check.board_id != board_info.board_id %}
+                                    <button class = "button" method="post" action="" name="user_check" onclick="javascript:clicked();">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                                        </svg>
+                                    </button>
+                                    {%endif%}
+                                </div>
+                                <span class = 'detail' style="display: inline-block;">{{item.ckg_mtrl_cn}}</span>
+                            </div>
                         </div>
-                        <div class = 'detail' style="display: inline-block;">{{item.ckg_mtrl_cn}}</div>
                     </div>
                 </div>  
             </div>
-           
-        </div>
-    </div> 
-
-    <div class = "container">
-        <div class ="row">
-
         </div>
     </div>
-
-
 {% endblock %}
 
 
