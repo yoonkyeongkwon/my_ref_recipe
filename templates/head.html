@@ -18,7 +18,6 @@
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
 
-
     <style>
         @font-face {
             font-family: 'Y_Spotlight';
@@ -39,5 +38,50 @@
             font-style: normal;
         }
     </style>
+
+
+    <!-- 이미지 슬라이드 -->
+    <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <style>
+      .slick-arrow{width: 45px;height: 45px; border: None; text-indent: -9999px; overflow: hidden; position : absolute; top:50%;
+      transform: translateY(-50%);}
+      .slick-prev{z-index: 100; left: 0%;
+        background: url(https://blog.kakaocdn.net/dn/er4OgA/btrruohEMSP/5mcV2A2oHZ05XdhMxoIgM1/img.png) no-repeat 0 0;}
+      .slick-next{right: -2%;
+        background: url(https://blog.kakaocdn.net/dn/CUoFu/btrrAdl9SnC/l8uBlXu6HBV0JMaK3nr2q1/img.png) no-repeat 0 0;}
+      .slider img{
+        width: 100%;
+        height: 100%;
+      }
+      .myslide .items{
+        width : 200px;
+        height : 250px;
+        margin : 50px
+      }
+  
+      .myslide .items img{
+        width : 350px;
+        height : 250px;
+      }
+  
+      .slick-slider .slick-list .slick-track{
+        position: relative;
+        width : 100rem
+      }
+    </style>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+      $(function(){
+        $('.myslide').slick({
+          infinite: true,
+          slidesToShow: 3,
+          slidesToScroll: 3
+        });
+      })
+    </script>
+
+
 
 </head>

@@ -6,12 +6,17 @@
         <span style ="text-align: center; font-size : 2rem;">끼룩끼룩씨의 냉장고</span>
         <img src="../../static/image/user.png" title="회원 계정 이미지" style="width:40px; heigth:40px; float : right; margin: 0rem 2rem;"/>
          -->
-        <img src="{% static '/image/logo.png' %}" title="메인 로고" style="width:200px; margin: 0rem 2rem;"/><br>
+        <a href="/ref/main">
+            <img src="{% static '/image/logo.png' %}" title="메인 로고" style="width:200px; margin: 0rem 2rem;"/>
+        </a>    
+        <br>
     </div>
     <div style="font-family: 'YUniverse-B';">
-        <img src="{% static '/image/user.png' %}" title="회원 계정 이미지" style="visibility: hidden; width:40px; float : left; margin: 0rem 2rem;"/>
+        <a href="/ref/main/mypage">
+            <img src="{% static '/image/user.png' %}" title="회원 계정 이미지" style="display: inline-block; width:40px; float : right; margin: 0rem 2rem;"/>
+        </a>
         <div style = "font-size : 2rem; display: inline-block; width: 500px;">끼룩끼룩씨의 냉장고</div>
-        <img src="{% static '/image/user.png' %}" title="회원 계정 이미지" style="display: inline-block; width:40px; float : right; margin: 0rem 2rem;"/>
+        <img src="{% static '/image/user.png' %}" title="회원 계정 이미지" style="visibility: hidden; width:40px; float : left; margin: 0rem 2rem;"/>
     </div>
     </div>
     <hr>
@@ -23,9 +28,9 @@
             <span>레시피검색</span>
         </a> 
         <a href=""style = "margin: 0rem 2rem;">
-            <span>관심레시피</span>
+            <span>요리커뮤니티</span>
         </a> 
-        <a href=""style = "margin: 0rem 2rem;">
+        <a href="/ref/main/mypage"style = "margin: 0rem 2rem;">
             <span>마이페이지</span>
         </a>
 

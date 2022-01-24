@@ -1,0 +1,63 @@
+<!-- 
+<!DOCTYPE html>
+<html lang="en"> -->
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>슬릭슬라이더</title>
+  <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <style>
+    .slick-arrow{width: 45px;height: 45px; border: None; text-indent: -9999px; overflow: hidden; position : absolute; top:50%;
+    transform: translateY(-50%);}
+    .slick-prev{z-index: 100;left: 0%;
+      background: url(image/left_btn.png) no-repeat 0 0;}
+    .slick-next{right: -2%;
+      background: url(image/right_btn.png) no-repeat 0 0;}
+    .slider img{
+      width: 100%;
+      height: 100%;
+    }
+    .myslide .items{
+      width : 200px;
+      height : 250px;
+      margin : 50px
+    }
+
+    .myslide .items img{
+      width : 350px;
+      height : 250px;
+    }
+
+    .slick-slider .slick-list .slick-track{
+      position: relative;
+      width : 100rem
+    }
+
+  </style>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script>
+    $(function(){
+      $('.myslide').slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3
+      });
+    })
+  </script>
+
+
+
+</head>
+<body>
+<div class="myslide" style="width: 80rem; margin :auto">
+  <div class="items"><img src="image/128671.jpg" alt=""></div>
+  <div class="items"><img src="image/logo.png" alt=""></div>
+  <div class="items"><img src="image/logo.png" alt=""></div>
+  <div class="items"><img src="image/logo.png" alt=""></div>
+  <div class="items"><img src="image/logo.png" alt=""></div>  
+</div>
+</body>
+<!-- </html> -->
