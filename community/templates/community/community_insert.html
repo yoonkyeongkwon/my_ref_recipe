@@ -22,15 +22,17 @@
         <span onclick="closezlog();" class="close">&times;</span>
         {% csrf_token %}
         <hr class="linebr2">
-        <div style="text-align: center;"><span id="comm_mainfont">레시피 등록</span><br><br><div>
+        <div style="text-align: center;"><span id="comm_mainfont">내 레시피 자랑</span><br><br><div>
         <div>
-            <div class="comm_insert">레시피 이름  <input type="text" name="title" class="text_input"></div>
-            <div class="comm_insert">
-                <div style="float: left;">만드는 방법</div><div style="float: center;"><textarea cols="50" rows="10" name="contents" class="text_input"></textarea></div>
-            </div>
-            <div style="float: left;" class="comm_insert">
+            
+            <div style="float: left;" class="container">
                 사진
-                <input type="file" name="file">
+                <input type="file" name="file" class="hidden_input" id="imageSelector"  accept="image/jpeg, image/jpg, image/png" multiple required/>
+                <img class="thumb" required/>        
+                 
+            </div>
+            <div class="comm_insert">
+                <div style="float: center;"><textarea cols="50" rows="5" name="contents" class="text_input" required></textarea></div> 
             </div>
             <div style="float: right;">
                 <input type="submit" value='등록' class="comm_insert" id="btn_insert">
@@ -42,7 +44,9 @@
 
 
 
-<script>
+<script type="text/javascript">
+
+
     var zlog = document.getElementById('zlog');
     function openzlog() {
         zlog.style.display = 'block';
@@ -56,4 +60,50 @@
             zlog.style.display='none';
         }
     }
+    
+    document.addEventListener('DOMContentLoaded', function(){
+        //이미지 객체 타입으로 이미지 확장자 밸리데이션
+        var validateType = function(img){
+            return (['image/jpeg','image/jpg','image/png'].indexOf(img.type) > -1);
+        }
+    
+        var validateName = function(fname){
+            let extensions = ['jpeg','jpg','png'];
+            let fparts = fname.split('.');
+            let fext = '';
+        
+            if(fparts.length > 1){
+                fext = fparts[fparts.length-1];
+            }
+        
+            let validated = false;
+            
+            if(fext != ''){
+                extensions.forEach(function(ext){
+                    if(ext == fext){
+                        validated = true;
+                    }
+                });
+            }
+        
+            return validated;
+        }
+    
+        // 파일 선택 필드에 이벤트 리스너 등록
+        document.getElementById('imageSelector').addEventListener('change', function(e){
+            let elem = e.target;
+            if(validateType(elem.files[0])){
+                let preview = document.querySelector('.thumb');
+                preview.src = URL.createObjectURL(elem.files[0]); //파일 객체에서 이미지 데이터 가져옴.
+                document.querySelector('.dellink').style.display = 'block'; // 이미지 삭제 링크 표시
+                preview.onload = function() {
+                    URL.revokeObjectURL(preview.src); //URL 객체 해제
+                }
+            }else{
+            console.log('이미지 파일이 아닙니다.');
+            }
+        });
+    
+    
+    });
 </script>
