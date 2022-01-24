@@ -71,13 +71,8 @@ def main(request):
 
 @csrf_exempt
 def searchRecipe(request):
-
-    # 처리 필요
-    # 내 냉장고 레시피의 재료들과
-    # 레시피 테이블에서의 검색 결과를 조합
-    # 내가 가지고 있는 재료들과 완벽히 일치하는 리스트
-    # 더보기 에는 추가 재료 필요한 것
-
+    
+    
     recipe_list = Recipe.objects.all()[0:5]
     userref_list = UserRef.objects.all()
 
@@ -85,8 +80,12 @@ def searchRecipe(request):
 
 @csrf_exempt
 def moreNeed(request):
+    if request.method == 'POST':
 
 
+        return 
 
-    return render(request,'ref/moreNeed.html',{})
+    else:
+        
+        return render(request,'ref/moreNeed.html',{})
 
