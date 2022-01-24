@@ -8,7 +8,9 @@
     <head>
         <meta charset="UTF-8" name="viewport" content="width=device-width">
         <title>Refrigerator</title>
-        <script type="text/javascript" src="http://127.0.0.1:8000/static/magicgrid.js%20fileram.pstparam.js"></script>
+        {% comment %} <script type="text/javascript" src="http://127.0.0.1:8000/static/magicgrid.js%20fileram.pstparam.js"></script> {% endcomment %}
+        {% comment %} <script type="text/javascript" src="http://127.0.0.1:8000/static/magicgrid.js"></script> {% endcomment %}
+        <script type="text/javascript" src="{% static 'magicgrid.js' %}"></script>
     </head>
 
     <style>
@@ -25,7 +27,7 @@
         width: 100%;
         }
     </style>
-
+    
     <body>
         <div class="container">
             <div>
@@ -70,4 +72,5 @@
         </div>
 
     </body>
-</html>
+</html> 
+{% endblock %}
