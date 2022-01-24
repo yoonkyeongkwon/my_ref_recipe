@@ -36,8 +36,10 @@ class Recipe(models.Model):
 
 # 유저 냉장고 테이블
 class UserRef(models.Model):
+    # id
+    id = models.IntegerField(primary_key=True)
     # 유저 닉네임
-    username = models.ForeignKey(Userinfo, on_delete=models.CASCADE)
+    username = models.ForeignKey(Userinfo, on_delete=models.CASCADE ,db_column='username')
     # 보유한 재료
     ingredients = models.CharField(max_length=50)
     # 유통기한
