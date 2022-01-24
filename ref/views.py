@@ -30,7 +30,6 @@ class main_view(View):
         super().__init__()
         self.array = []
         
-        
     def get(self, request, *args, **kwargs):
         # recipe_list = Recipe.objects.all()[0]
         userref_list = UserRef.objects.all()
@@ -45,13 +44,19 @@ class main_view(View):
         new_temp = UserRef()
         new_temp.ingredients = temp
         new_temp.save()
-
         # new_temp_output = new_temp.objects.all()
         
         return render(request, 'ref/main.html', context={'temp' : temp ,'recipe_list': recipe_list, 'new_temp_output': new_temp})
 
-    def init_var(self):
-        self.array = []
+
+def myPage(request):
+    return render(request, 'ref/mypage.html', {})
+
+
+
+
+
+
         
 from .models import Recipe, UserRef, UserCheck, Board
 from django.views.decorators.csrf import csrf_exempt
