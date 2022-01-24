@@ -70,3 +70,4 @@ class Board(models.Model):
         db_table = 'board'
         app_label = 'ref'
         managed = False
+

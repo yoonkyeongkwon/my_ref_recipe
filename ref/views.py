@@ -1,5 +1,6 @@
+from distutils.command.check import check
 from django.shortcuts import render
-from .models import Recipe, UserRef
+from .models import *
 from django.views import View
 
 # Create your views here.
@@ -61,22 +62,21 @@ def main(request):
 
     recipe_list = Recipe.objects.order_by('rcp_sno')[0:5]
     userref_list = UserRef.objects.all()
-    user_check = UserCheck.objects.all()
-    board_info = Board.objects.all()
 
     return render(request,'ref/main.html',{'recipe_list':recipe_list,
-                                            'userref_list':userref_list,
-                                            'user_check':user_check,
-                                            'board_info':board_info})
+                                            'userref_list':userref_list,})
 
 @csrf_exempt
 def searchRecipe(request):
     
     
     recipe_list = Recipe.objects.all()[0:5]
-    userref_list = UserRef.objects.all()
+    user_check = UserCheck.objects.all()
+    board_info = Board.objects.all()
 
-    return render(request,'ref/searchRecipe.html',{'recipe_list':recipe_list})
+    return render(request,'ref/searchRecipe.html',{'recipe_list':recipe_list,
+                                                    'user_check':user_check,
+                                                    'board_info':board_info,})
 
 @csrf_exempt
 def moreNeed(request):
