@@ -6,9 +6,6 @@ class Board(models.Model):
     #커뮤니티 게시판의 게시글 번호
     id = models.IntegerField(primary_key=True)
 
-    #요리 제목
-    title = models.CharField(max_length=45)
-
     #요리 만드는 법 내용
     contents = models.TextField()
 
@@ -26,3 +23,5 @@ class Board(models.Model):
 
     #게시글 좋아요한 사람의 아이디
     post_like_id= models.CharField(max_length=45)
+
+    file =models.ImageField(null=True)
