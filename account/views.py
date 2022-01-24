@@ -36,3 +36,28 @@ def signup_custom(request):
     else:
         return render(request, 'account/signup_custom.html')
 
+
+def login_custom(request):
+    if request.method == 'POST':
+        id = request.POST.get('id')
+        password = request.POST.get('password')
+        m = Userinfo(id=id, password=password)
+
+        try:
+            m = Userinfo.objects.get(id=id, password=password)
+        except Userinfo.DoesNotExist as e:
+            return HttpResponse('로그인 실패')
+        else:
+            request.session['user_id'] = m.user_id
+            request.session['user_name'] = m.user_name 
+        return redirect('account:login')
+
+    else:
+        return render(request, 'account/login_custom.html')
+
+def logout_custom(request):
+    del request.session['id'] # 개별 삭제
+    del request.session['name'] # 개별 삭제
+    request.session.flush() # 전체 삭제
+    return redirect('index')
+

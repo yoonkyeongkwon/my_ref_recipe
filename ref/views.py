@@ -1,4 +1,5 @@
 from distutils.command.check import check
+from django.http import HttpResponse
 from django.shortcuts import render
 from .models import *
 from django.views import View
@@ -30,7 +31,6 @@ class main_view(View):
         super().__init__()
         self.array = []
         
-        
     def get(self, request, *args, **kwargs):
         # recipe_list = Recipe.objects.all()[0]
         userref_list = UserRef.objects.all()
@@ -45,13 +45,19 @@ class main_view(View):
         new_temp = UserRef()
         new_temp.ingredients = temp
         new_temp.save()
-
         # new_temp_output = new_temp.objects.all()
         
         return render(request, 'ref/main.html', context={'temp' : temp ,'recipe_list': recipe_list, 'new_temp_output': new_temp})
 
-    def init_var(self):
-        self.array = []
+
+def myPage(request):
+    return render(request, 'ref/mypage.html', {})
+
+
+
+
+
+
         
 from .models import Recipe, UserRef, UserCheck, Board
 from django.views.decorators.csrf import csrf_exempt
@@ -68,11 +74,11 @@ def main(request):
 
 @csrf_exempt
 def searchRecipe(request):
-    
-    
-    recipe_list = Recipe.objects.all()[0:5]
-    user_check = UserCheck.objects.all()
+
+    user_check = request.POST.get('user_like') 
     board_info = Board.objects.all()
+    recipe_list = Recipe.objects.all()[0:5]
+    
 
     return render(request,'ref/searchRecipe.html',{'recipe_list':recipe_list,
                                                     'user_check':user_check,
