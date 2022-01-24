@@ -26,3 +26,7 @@ def community_insert(request):
          return render(request, 'community/community_insert.html')
     else:
         return render(request, 'community/community_insert.html',context={'text':'GET method!!!'})
+
+def community_list(request):
+     return render(request, 'community/community_list.html')
+     console.log('yesyes')
