@@ -80,6 +80,21 @@ def searchRecipe(request):
     recipe_list = Recipe.objects.all()[0:5]
     
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     return render(request,'ref/searchRecipe.html',{'recipe_list':recipe_list,
                                                     'user_check':user_check,
                                                     'board_info':board_info,})
@@ -87,6 +102,11 @@ def searchRecipe(request):
 @csrf_exempt
 def moreNeed(request):
     if request.method == 'POST':
+
+
+
+
+
 
 
         return 
