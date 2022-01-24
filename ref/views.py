@@ -1,4 +1,5 @@
 from distutils.command.check import check
+from django.http import HttpResponse
 from django.shortcuts import render
 from .models import *
 from django.views import View
@@ -73,11 +74,11 @@ def main(request):
 
 @csrf_exempt
 def searchRecipe(request):
-    
-    
-    recipe_list = Recipe.objects.all()[0:5]
-    user_check = UserCheck.objects.all()
+
+    user_check = request.POST.get('user_like') 
     board_info = Board.objects.all()
+    recipe_list = Recipe.objects.all()[0:5]
+    
 
     return render(request,'ref/searchRecipe.html',{'recipe_list':recipe_list,
                                                     'user_check':user_check,

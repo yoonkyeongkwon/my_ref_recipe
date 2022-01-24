@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.utils import timezone
 from django.http import HttpResponse
-from .models import Community_Board
+from .models import Board
 from django.utils import timezone
 from django.http import HttpResponse
 from datetime import date
@@ -12,7 +12,7 @@ def community_insert(request):
          write_id = request.POST.get('write_id')
          contents = request.POST.get('contents')
 
-         m = Community_Board()
+         m = Board()
          m.title=title
          m.write_id=write_id
          m.contents=contents

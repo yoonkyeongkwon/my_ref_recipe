@@ -2,9 +2,9 @@ from django.db import models
 from django.db.models.fields import CharField, IntegerField, FloatField, DateField
 
 
-class Community_Board(models.Model):
+class Board(models.Model):
     #커뮤니티 게시판의 게시글 번호
-    community_board_id = models.IntegerField()
+    id = models.IntegerField(primary_key=True)
 
     #요리 제목
     title = models.CharField(max_length=45)
@@ -26,10 +26,3 @@ class Community_Board(models.Model):
 
     #게시글 좋아요한 사람의 아이디
     post_like_id= models.CharField(max_length=45)
- 
-
-    class Meta:
-        db_table = 'community_board'
-        managed = False
-        app_label = 'community'
-
