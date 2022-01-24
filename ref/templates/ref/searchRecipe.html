@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
-
-
-
+{% load static %}
 {% block content %}
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'community.css' %}">
+
     <script>
 
         const data = axios({
@@ -76,13 +77,12 @@
             left: 109px;
             width: 270px;
             height: 270px;
-            background: transparent url('../../../static/img/sample.jpg') 0% 0% no-repeat padding-box;
+            background: transparent url({% static 'img/sample.jpg' %}) 0% 0% no-repeat padding-box;
             background-size: cover;
+            border-radius:50%;
             opacity: 1;
         }
         .title{
-            top: 484px;
-            left: 419px;
             width: 507px;
             height: 49px;
             font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 37px/49px Y Spotlight;
@@ -92,12 +92,9 @@
             letter-spacing: 0px;
             color: #707070;
             opacity: 1;
-            background-color:#EEEDED;
         }
         .detail{
-            top: 550px;
-            left: 420px;
-            width: 366px;
+            width: 200px;
             height: 40px;
             font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 30px/40px var(--unnamed-font-family-y-universe);
             letter-spacing: var(--unnamed-character-spacing-0);
@@ -106,7 +103,7 @@
             letter-spacing: 0px;
             color: #707070;
             opacity: 1;
-            background-color:#EEEDED;
+            font-size: 17px;
         }
         
         .button{
@@ -114,7 +111,16 @@
             border:0;
         }
 
+        .inphoto{
+            top: 23px;
+            left: 289px;
+            height: 100px;
+            background: transparent url({% static 'img/sample.jpg' %}) 0% 0% no-repeat padding-box;
+            border: 1px solid #707070;
+            border-radius: 1.5rem 1.5rem 0px 0px;
+            opacity: 1;
 
+        }
 
     </style>
 
@@ -133,51 +139,74 @@
         </div>
     </div>
 
-    <hr>
-    
-
-
-
 <form action="" method="post">
     {% csrf_token %}
     <div class = "container">
         <div class ="row">
             {% for item in recipe_list%}
-            <div class = "col-lg-6 col-md-6 col-sm-12 bg-info">
-                <div class = 'box' style="display: inline-block;">
-                    <div class = 'photo' style="display: inline-block;">
-                        <div class = 'title' style="display: inline-block;">{{item.ckg_nm}} 
+            <div class = "col-lg-6 col-md-6 col-sm-12">
+                <div class = 'box'>
+                    <span class = 'photo' style="display: inline-block;">
+                    </span>
+                    <span class = 'title' >
+                        <div class="item">
+                            <a href="#" onclick="openzlog();" style="width:auto">{{item.ckg_nm}}</a>
 
-                            {% comment %} 
-                            if 문으로 눌렀을시 가득찬 하트 / 아닐시 빈 하트 
-                            비동기 
-                            {% endcomment %}
-                            
                             {% if user_check.board_id == board_info.board_id %}
-                            <button class = "button" action="">
+                            <button class = "button" method="post" action="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                                     <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
                                 </svg>
-                           </button>
+                            </button>
                             {%endif%}
 
                             {% if user_check.board_id != board_info.board_id %}
-                            <button class = "button" action="">
+                            <button class = "button" method="post" action="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
                                 </svg>
                             </button>
                             {%endif%}
-
                         </div>
-                        <div class = 'detail' style="display: inline-block;">{{item.ckg_mtrl_cn}}</div>
-                    </div>
+                        
+                        <span class = 'detail' style="display: inline-block;">{{item.ckg_mtrl_cn}}</span>
+                    </span>
                 </div>  
             </div>
             {% endfor %} 
         </div>
     </div> 
 </form>
+
+<div id="zlog" class="modal">
+    
+    <form class="modal-content" action="/ref/searchRecipe/" method="post">
+        <span onclick="closezlog();" class="close">&times;</span>
+        {% csrf_token %}
+        <div class ='inphoto'></div>
+        <h1>ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ</h1>
+        <h1>ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ</h1>
+        <h1>ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ</h1>
+        <h1>ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ</h1>
+        <h1>ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ</h1>
+       
+    </form>
+</div>
+
+<script>
+    var zlog = document.getElementById('zlog');
+    function openzlog() {
+        zlog.style.display = 'block';
+    }
+    function  closezlog(){
+        zlog.style.display = 'none';
+    }
+    window.onclick = function (event) {
+        if (event.target==zlog) {
+            zlog.style.display='none';
+        }
+    }
+</script>
 
 {% endblock %}
 
