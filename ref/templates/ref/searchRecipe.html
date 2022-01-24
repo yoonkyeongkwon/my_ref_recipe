@@ -6,6 +6,21 @@
     <link rel="stylesheet" type="text/css" href="{% static 'community.css' %}">
 
     <script>
+
+        const button = document.querySelector("#dog")
+        const url = 'https://dog.ceo/api/breeds/image/random'
+        const getDogImages = function() {
+            axios.get(url).then(
+              (response) => {
+                const imgURL = response.data.message;
+                const dogImage = document.createElement("img")
+                dogImage.src = imgURL;
+                dogImage.style.height ="300px";
+                document.querySelector(".dogs").appendChild(dogImage);
+            })
+          }
+          button.addEventListener("click", getDogImages)
+        
     
     </script>
 
@@ -126,6 +141,9 @@
         }
 
     </style>
+
+    <button id="dog">강아지</button>
+    <div class="dogs"></div>
 
     <div class = "container">
         <div class ="row">
