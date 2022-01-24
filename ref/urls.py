@@ -8,8 +8,13 @@ urlpatterns = [
 
     path('main/', main_view.as_view(), name='main'),
     # path('material/', main_views.material, name='material'),
+
+
+
+
     path('main/', main_views.main, name='main'),
     path('main/searchRecipe/', main_views.searchRecipe, name='searchRecipe'),
     path('main/searchRecipe/moreNeed/', main_views.moreNeed, name='moreNeed'),
+
 
 ]

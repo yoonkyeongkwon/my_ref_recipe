@@ -4,6 +4,8 @@ from django.forms import IntegerField
 from account.models import Userinfo
 
 # Create your models here.
+
+# 레시피 테이블
 class Recipe(models.Model):
     # 1. 레시피일련번호(RCP_SNO)
     rcp_sno = models.IntegerField()
@@ -32,6 +34,7 @@ class Recipe(models.Model):
         app_label = 'ref'
         managed = False
 
+# 유저 냉장고 테이블
 class UserRef(models.Model):
     # 유저 닉네임
     username = models.ForeignKey(Userinfo, on_delete=models.CASCADE)
@@ -45,6 +48,7 @@ class UserRef(models.Model):
         app_label = 'ref'
         managed = False
 
+# 찜 테이블(체크 테이블)
 class UserCheck(models.Model):
     # 유저 닉네임
     username = models.ForeignKey(Userinfo, on_delete=models.CASCADE)
@@ -56,6 +60,7 @@ class UserCheck(models.Model):
         app_label = 'ref'
         managed = False
 
+# 요리 게시판 테이블
 class Board(models.Model):
     # 보드 아이디
     board_id = models.IntegerField()
@@ -70,3 +75,4 @@ class Board(models.Model):
         db_table = 'board'
         app_label = 'ref'
         managed = False
+
