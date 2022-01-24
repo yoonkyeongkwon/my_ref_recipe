@@ -29,10 +29,8 @@ class Recipe(models.Model):
     # 10. 요리시간명(CKG_TIME_NM)
     ckg_time_nm = models.TextField()
 
-
-
 # 유저 냉장고 테이블
-class UserRef(models.Model):
+class Mine(models.Model):
     # id
     id = models.IntegerField(primary_key=True)
     # 유저 닉네임
@@ -40,18 +38,14 @@ class UserRef(models.Model):
     # 보유한 재료
     ingredients = models.CharField(max_length=50)
     # 유통기한
-    expiry_date = models.DateField(null=True)
-    
-
+    expiry_date = models.DateField(null=True)    
 
 # 찜 테이블(체크 테이블)
-class UserCheck(models.Model):
+class Jim(models.Model):
     # 유저 닉네임
     username = models.ForeignKey(Userinfo, on_delete=models.CASCADE)
     # 찜한 게시판 아이디
     board_id = models.IntegerField()
-
-
 
 # 요리 게시판 테이블
 class Board(models.Model):
