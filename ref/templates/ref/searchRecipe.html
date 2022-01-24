@@ -11,7 +11,7 @@
             url :'/ref/main/searchRecipe/',
             method: 'post',
             params: {
-                user_check:document.getElementById('user_check')
+                user_check:document.getElementById(user_check)
             }
         });
         data.then(function (result){
@@ -181,9 +181,10 @@
 <div id="zlog" class="modal">
     
     <form class="modal-content" action="/ref/searchRecipe/" method="post">
-        <span onclick="closezlog();" class="close" style="position:relative;">&times;</span>
         {% csrf_token %}
-        <div class ='inphoto' ></div>
+        <div class ='inphoto'>
+            <span onclick="closezlog();" class="close">&times;</span>
+        </div>
         <h1>ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ</h1>
         <h1>ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ</h1>
         <h1>ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ</h1>
