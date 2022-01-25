@@ -155,8 +155,10 @@
                         <div class="row">
                             {% for video in videos %}
                             <div class="col-3" >
-                                <img src="{{video.thumbnail}}" class="img-thumbnail" width="100" height="100" alt="...">
-                                {{video.duration}}
+                                <a type="button" href="{{video.url}}">
+                                    <img src="{{video.thumbnail}}" class="img-thumbnail" width="100" height="100" alt="...">
+                                </a>
+                                {{video.title}} // {{video.duration}}분
                             </div>
                             {% endfor %}
                         </div>

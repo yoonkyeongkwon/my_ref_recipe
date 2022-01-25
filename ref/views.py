@@ -92,9 +92,9 @@ def searchRecipe(request):
     video_url = 'https://www.googleapis.com/youtube/v3/videos'
     search_params = {
         'part' : 'snippet',
-        'q' : 'getYoutube',
+        'q' : '이수근 레전드',
         'key' : settings.YOUTUBE_DATA_API_KEY,
-        'maxResults' : 6,
+        'maxResults' : 4,
         'type':'video'
     }
     video_ids = []
@@ -107,7 +107,7 @@ def searchRecipe(request):
         'key' : settings.YOUTUBE_DATA_API_KEY,
         'part' : 'snippet,contentDetails',
         'id' : ','.join(video_ids),
-        'maxResults' : 6,
+        'maxResults' : 4,
     }
     r = requests.get(video_url,params=video_params)
     results = (r.json()['items'])
@@ -116,7 +116,8 @@ def searchRecipe(request):
         video_data = {
             'title' : result['snippet']['title'],
             'id' : result['id'],
-            'duration' : (parse_duration(result['contentDetails']['duration']).total_seconds() // 60 ),
+            'url': 'https://www.youtube.com/watch?v={ result["id"]}',
+            'duration' : int(parse_duration(result['contentDetails']['duration']).total_seconds() // 60 ),
             'thumbnail' : result['snippet']['thumbnails']['high']['url'],
         }
 
