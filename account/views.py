@@ -63,7 +63,4 @@ def logout_custom(request):
     del request.session['name'] # 개별 삭제
     request.session.flush() # 전체 삭제
     return redirect('index')
-<<<<<<< HEAD
-=======
 
->>>>>>> d86508be9315de71f0ed0623ff67dc794b6f8353
