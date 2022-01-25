@@ -125,8 +125,10 @@
 
     </style>
 
-    <button id="dog">강아지</button>
-    <div class="dogs"></div>
+    <button id="like">하트</button>
+
+    {% comment %} <button id="dog">강아지</button>
+    <div class="dogs"></div> {% endcomment %}
 
     <div class = "container">
         <div class ="row">
@@ -310,19 +312,26 @@
 
 <script>
 
-    const button = document.querySelector("#dog")
-    const url = 'https://dog.ceo/api/breeds/image/random'
-    const getDogImages = function() {
-        axios.get(url).then(
+    const button = document.querySelector("#like")
+
+    {% comment %} const url = 'https://dog.ceo/api/breeds/image/random'
+     {% endcomment %}
+    const changeheart = function() {
+        axios.then(
           (response) => {
+
+            {% comment %}               
             const imgURL = response.data.message;
             const dogImage = document.createElement("img")
-            dogImage.src = imgURL;
+            {% endcomment %}
+            
+            {% comment %} dogImage.src = imgURL;
             dogImage.style.height ="300px";
-            document.querySelector(".dogs").appendChild(dogImage);
+            document.querySelector(".dogs").appendChild(dogImage); {% endcomment %}
+
         })
       }
-      button.addEventListener("click", getDogImages)
+      button.addEventListener("click", changeheart)
 
 </script>
 
