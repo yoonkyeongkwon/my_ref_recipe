@@ -87,10 +87,6 @@ def searchRecipe(request):
                                                     'board_info':board_info,})
     
 
-from django.views.generic import ListView as genlistview ,CreateView,DeleteView,DetailView,UpdateView
-from .forms import ViedoForm
-from .models import Video
-
 
 
 
