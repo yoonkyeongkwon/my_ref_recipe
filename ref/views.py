@@ -116,13 +116,13 @@ def searchRecipe(request):
         video_data = {
             'title' : result['snippet']['title'],
             'id' : result['id'],
-            'url': 'https://www.youtube.com/watch?v={ result["id"]}',
+            'url': f'https://www.youtube.com/watch?v={result["id"]}',
             'duration' : int(parse_duration(result['contentDetails']['duration']).total_seconds() // 60 ),
             'thumbnail' : result['snippet']['thumbnails']['high']['url'],
         }
+        print(result['id'],'###################################')
 
         videos.append(video_data)
-        print(videos)
 
         context ={
             'videos': videos,
