@@ -1,8 +1,11 @@
 from distutils.command.check import check
+from msilib.schema import ListView
+from socket import AI_PASSIVE
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import *
 from django.views import View
+
 
 # Create your views here.
 # def main(request):
@@ -79,25 +82,55 @@ def searchRecipe(request):
     board_info = Board.objects.all()
     recipe_list = Recipe.objects.all()[0:5]
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     return render(request,'ref/searchRecipe.html',{'recipe_list':recipe_list,
                                                     'user_check':user_check,
                                                     'board_info':board_info,})
+    
+
+from django.views.generic import ListView as genlistview ,CreateView,DeleteView,DetailView,UpdateView
+from .forms import ViedoForm
+from .models import Video
+
+class VideoListView(genlistview):
+    model = Video
+    # 페이지
+    
+
+
+
+class VideoCreateView(CreateView):
+    model = Video
+    form_class = ViedoForm
+    template_name = 'youtube.html'
+
+
+class VideoDetailView(DetailView):
+    model = Video
+
+class ViedoUpdateView(UpdateView):
+    model = Video
+    form_class = ViedoForm
+    template_name = 'youtube.html'
+
+class VideoDeleteView(DeleteView):
+    model = Video
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @csrf_exempt
 def moreNeed(request):

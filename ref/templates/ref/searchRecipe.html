@@ -40,6 +40,7 @@
                             <div class ="col-12" style="visibility:hidden;height:32px">a</div>
                             <div class ="col-6">
                                 <span class = 'photo' style="display: inline-block;">
+                                    <img class='photo' src="{% static '/image/sample.jpg'%}">
                                 </span>
                             </div>
                             <div class ="col-6">
@@ -187,6 +188,21 @@
 
 <script>
 
+</script>
+
+<script>
+    var tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var player;
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+            videoId: '{{ video.video_key }}'
+        });
+    }
 </script>
 
 {% comment %} 

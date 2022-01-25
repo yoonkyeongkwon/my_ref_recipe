@@ -58,5 +58,15 @@ class Board(models.Model):
     # contents
     board_contents = models.TextField()
 
+class Video(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    file = models.FileField()
+    photo = models.ImageField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+
 
 
