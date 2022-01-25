@@ -28,6 +28,11 @@ class Recipe(models.Model):
     ckg_mtrl_cn = models.TextField()
     # 10. 요리시간명(CKG_TIME_NM)
     ckg_time_nm = models.TextField()
+    # 11. 재료 수(MTRL_CNT)
+    mtrl_cnt = models.TextField()
+    # 10. 재료(MTRL)
+    mtrl = models.TextField()
+    
 
 # 유저 냉장고 테이블
 class Mine(models.Model):

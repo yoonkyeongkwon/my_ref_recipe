@@ -33,16 +33,14 @@ from django.views import View
 #         return render(request, 'ref/main.html', context={'text':'GET METHOD!!!'})
         
 class main_view(View):
-    def __init__(self) -> None:
-        super().__init__()
-        self.array = []
-        
+    array =[]        
     def get(self, request, *args, **kwargs):
+        star = Recipe.objects.order_by('-inq_cnt')[0:10]
         # recipe_list = Recipe.objects.all()[0]
         userref_list = Mine.objects.all()
         recipe_list = '00'
         request.session['recipe_list'] = recipe_list
-        return render(request,'ref/main.html',{'recipe_list':recipe_list,'userref_list':userref_list})
+        return render(request,'ref/main.html',{'recipe_list':recipe_list,'userref_list':userref_list, 'star':star})
     
     def post(self, request, *args, **kwargs):   
         recipe_list = request.session['recipe_list']
