@@ -4,13 +4,20 @@
 {% block content %}
 
 <style>
+    .myrecipe {
+        font-family: "SUIT-Medium";
+        position: relative;
+        font-size: 20px;
+        text-align: center;
+    }
+
     .container div {
-    width: 280px;
-    background-color: antiquewhite;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 1rem 0;
+        width: 280px;
+        background-color: antiquewhite;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 1rem 0;
     }
 
     .container img {
@@ -18,10 +25,22 @@
         border-radius: 1rem;
     }
 
+    .container img:hover {
+        cursor:pointer;
+    }
+
+
+
+    .container comment {
+        height: 100px;
+        border-radius: 1rem;
+        background-color: lightgray;
+    }
+
     .add {
         position:fixed;
-        bottom:0;
-        right:0;
+        bottom:20px;
+        right:55px;
         background-color: #36CCA6;
         width: 80px;
         height: 80px;
@@ -29,7 +48,8 @@
         color: white;
         border: none;
         border-radius: 75px;
-        text-align: center;  
+        text-align: center;
+        line-height: 75px;  
     }
 
 
@@ -37,18 +57,6 @@
         color: gray;
         cursor: pointer;
     } 
-    .container div {
-    width: 300px;
-    background-color: antiquewhite;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 1rem;
-    }
-    
-
-    }
-</style>
     
     a:link {text-decoration: none; color: white;}
     a:visited {text-decoration: none; color: white;}
@@ -57,7 +65,8 @@
 
 </style>
 
-<p>내 요리를 자랑해보세요!</p>
+<div class="myrecipe">
+<span style="size: 30px; font-color=#36CCA6; margin=20px;">내 요리를 자랑해보세요!</span>
 <div class="add">
     <a href="/community/community_insert/" onclick="openzlog();">
     +
@@ -65,47 +74,54 @@
 </div>
 
 <div class="container">
-    <div>
-        <img src="https://picsum.photos/200/300">
+        <div>
+            <img src="https://picsum.photos/200/300">
+            <div class="container comment"></div>
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/340">
+        </div> 
+        <div>
+            <img src="https://picsum.photos/200/280">
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/390">
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/200">
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/500">
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/100">
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/250">
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/320">
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/300">
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/300">
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/270"> 
+        </div> 
+        <div>
+            <img src="https://picsum.photos/200/330">
+        </div> 
     </div>
-    <div>
-        <img src="https://picsum.photos/200/340">
-    </div> 
-    <div>
-        <img src="https://picsum.photos/200/280">
-    </div>
-    <div>
-        <img src="https://picsum.photos/200/390">
-    </div>
-    <div>
-        <img src="https://picsum.photos/200/200">
-    </div>
-    <div>
-        <img src="https://picsum.photos/200/500">
-    </div>
-    <div>
-        <img src="https://picsum.photos/200/100">
-    </div>
-    <div>
-        <img src="https://picsum.photos/200/250">
-    </div>
-    <div>
-        <img src="https://picsum.photos/200/320">
-    </div>
-    <div>
-        <img src="https://picsum.photos/200/300">
-    </div>
-    <div>
-        <img src="https://picsum.photos/200/300">
-    </div>
-    <div>
-        <img src="https://picsum.photos/200/270"> 
-    </div> 
-    <div>
-        <img src="https://picsum.photos/200/330">
-    </div> 
 </div>
 
 <script src="{% static 'js/magicgrid.js' %}"></script>
+<script>
+    var imgs = document.querySelectorAll('img');
+    for (var i = 0; i < imgs.length; i++) {
+        imgs[i].addEventListener("click", console.log('yes'));
+    }
+</script>
 {% endblock %}
-
