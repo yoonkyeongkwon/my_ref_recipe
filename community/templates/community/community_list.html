@@ -25,6 +25,12 @@
         border-radius: 1rem;
     }
 
+    .container img:hover {
+        cursor:pointer;
+    }
+
+
+
     .container comment {
         height: 100px;
         border-radius: 1rem;
@@ -112,5 +118,11 @@
 </div>
 
 <script src="{% static 'js/magicgrid.js' %}"></script>
+<script>
+    var imgs = document.querySelectorAll('img');
+    for (var i = 0; i < imgs.length; i++) {
+        imgs[i].addEventListener("click", console.log('yes'));
+    }
+</script>
 {% endblock %}
 
