@@ -218,3 +218,6 @@ LOGGING = {
 # MEDIA
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+YOUTUBE_DATA_API_KEY = 'AIzaSyBnuowCUE4Lj-W9bEdSfpDP7fKcPN06UwE'

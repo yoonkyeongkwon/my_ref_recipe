@@ -1,8 +1,14 @@
 from distutils.command.check import check
+from msilib.schema import ListView
+from socket import AI_PASSIVE
 from django.http import HttpResponse
 from django.shortcuts import render
+from myref import settings
+
+from myref.settings import YOUTUBE_DATA_API_KEY
 from .models import *
 from django.views import View
+ 
 
 # Create your views here.
 # def main(request):
@@ -72,32 +78,64 @@ def main(request):
     return render(request,'ref/main.html',{'recipe_list':recipe_list,
                                             'userref_list':userref_list,})
 
+
+
+import requests
+from isodate import parse_duration
 @csrf_exempt
 def searchRecipe(request):
 
     user_check = request.POST.get('user_like') 
     board_info = Board.objects.all()
     recipe_list = Recipe.objects.all()[0:5]
+    search_url = 'https://www.googleapis.com/youtube/v3/search'
+    video_url = 'https://www.googleapis.com/youtube/v3/videos'
+    search_params = {
+        'part' : 'snippet',
+        'q' : '이수근 레전드',
+        'key' : settings.YOUTUBE_DATA_API_KEY,
+        'maxResults' : 4,
+        'type':'video'
+    }
+    video_ids = []
+    r = requests.get(search_url,params=search_params)
+    results = (r.json()['items'])
+    for result in results:
+        video_ids.append(result['id']['videoId'])
+    
+    video_params = {
+        'key' : settings.YOUTUBE_DATA_API_KEY,
+        'part' : 'snippet,contentDetails',
+        'id' : ','.join(video_ids),
+        'maxResults' : 4,
+    }
+    r = requests.get(video_url,params=video_params)
+    results = (r.json()['items'])
+    videos=[]
+    for result in results:
+        video_data = {
+            'title' : result['snippet']['title'],
+            'id' : result['id'],
+            'url': 'https://www.youtube.com/watch?v={ result["id"]}',
+            'duration' : int(parse_duration(result['contentDetails']['duration']).total_seconds() // 60 ),
+            'thumbnail' : result['snippet']['thumbnails']['high']['url'],
+        }
+
+        videos.append(video_data)
+        print(videos)
+
+        context ={
+            'videos': videos,
+            'recipe_list':recipe_list,
+            'user_check':user_check,
+            'board_info':board_info,
+        }
+
+    return render(request,'ref/searchRecipe.html',context)
     
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    return render(request,'ref/searchRecipe.html',{'recipe_list':recipe_list,
-                                                    'user_check':user_check,
-                                                    'board_info':board_info,})
 
 @csrf_exempt
 def moreNeed(request):
