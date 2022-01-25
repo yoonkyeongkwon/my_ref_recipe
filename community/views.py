@@ -34,3 +34,5 @@ def community_insert(request):
 def community_list(request):
      return render(request, 'community/community_list.html')
 
+def community_modify(request):
+     return render(request, 'community/community_list.html')
