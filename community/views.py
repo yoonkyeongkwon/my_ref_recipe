@@ -7,12 +7,12 @@ from django.http import HttpResponse
 from datetime import date
 from datetime import datetime
 import datetime
-
+from pytz import timezone
 
 def community_insert(request):
     
     if request.method == 'POST':
-         now = datetime.datetime.now()
+         now = datetime.datetime.now(timezone('Asia/Seoul'))
          print(request.POST)
          file=request.FILES['file']
          title = request.POST.get('title')
