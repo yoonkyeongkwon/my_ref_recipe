@@ -219,5 +219,6 @@ LOGGING = {
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
+# YOUTUBE KEY 
+# 키가 될때가 있고 안될 때가 있음 ;;
 YOUTUBE_DATA_API_KEY = 'AIzaSyBnuowCUE4Lj-W9bEdSfpDP7fKcPN06UwE'

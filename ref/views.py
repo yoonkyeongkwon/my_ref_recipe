@@ -92,13 +92,14 @@ def searchRecipe(request):
     video_url = 'https://www.googleapis.com/youtube/v3/videos'
     search_params = {
         'part' : 'snippet',
-        'q' : '이수근 레전드',
+        'q' : '검색',
         'key' : settings.YOUTUBE_DATA_API_KEY,
         'maxResults' : 4,
         'type':'video'
     }
     video_ids = []
     r = requests.get(search_url,params=search_params)
+
     results = (r.json()['items'])
     for result in results:
         video_ids.append(result['id']['videoId'])
