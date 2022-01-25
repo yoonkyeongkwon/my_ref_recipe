@@ -10,5 +10,7 @@ urlpatterns = [
     path('main/mypage/', main_views.myPage, name='mypage'),
     path('main/searchRecipe/', main_views.searchRecipe, name='searchRecipe'),
     path('main/searchRecipe/moreNeed/', main_views.moreNeed, name='moreNeed'),
+
+
 ]
 
