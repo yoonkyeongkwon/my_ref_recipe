@@ -32,13 +32,13 @@ ul{
 
 .site-name{
     margin:0;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'SUIT-Medium', sans-serif;
     font-size: 24px;
     color: #C2B4AB;
 }
 
 .nav-menu{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'SUIT-Medium', sans-serif;
     font-weight: 400;
     font-size: 16px;
 }
@@ -65,7 +65,7 @@ a:hover{
 }
 
 .korean-comment{
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'SUIT-Medium', sans-serif;
     font-weight: 500;
     font-size: 50px;
 }
@@ -106,7 +106,7 @@ a:hover{
 }
 
 .english-comment{
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'SUIT-Medium', sans-serif;
     font-weight: 100;
     font-size: 15px;
     font-style: italic;
@@ -118,7 +118,7 @@ a:hover{
 /*recent works*/
 
 .recent-menu{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'SUIT-Medium', sans-serif;
     font-size: 15px;
     font-weight: 700;
     color: #C2B4AB;
@@ -140,7 +140,7 @@ a:hover{
 }
 
 .contact{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'SUIT-Medium', sans-serif;
     font-size: 50px;
     font-weight: 700;
     color: black;
@@ -149,14 +149,14 @@ a:hover{
 }
 
 .links>a{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'SUIT-Medium', sans-serif;
     font-size: 30px;
     font-weight: 400;
     margin-left: 15px;
 }
 
 .footer>p{
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'SUIT-Medium', sans-serif;
     font-weight: 100;
     font-size: 15px;
     font-style: italic;
@@ -187,12 +187,12 @@ a:hover{
 
 .introduction>h2{
     margin: 0px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'SUIT-Medium', sans-serif;
     font-size: 35px;
 }
 
 .introduction>p{
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'SUIT-Medium', sans-serif;
     font-weight: 300;
     font-size: 16px;
 
@@ -200,7 +200,7 @@ a:hover{
 }
 
 #capability{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'SUIT-Medium', sans-serif;
     font-weight: 400;
     font-size: 20px;
     font-style: italic;
@@ -212,7 +212,7 @@ a:hover{
 /*value section*/
 
 .value-menu{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'SUIT-Medium', sans-serif;
     font-size: 35px;
     margin: 30px 100px;
 }
@@ -250,14 +250,14 @@ a:hover{
 
 
 .value-name{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'SUIT-Medium', sans-serif;
     font-weight: 700px;
     margin-top: 0px;
     margin-bottom: 10px;
 }
 
 .value-exp{
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'SUIT-Medium', sans-serif;
     font-weight: 300;
     font-size: 16px;
 
@@ -308,7 +308,7 @@ a[title="Flaticon"]:hover{
 }
 
 .article-name{
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'SUIT-Medium', sans-serif;
     font-size: 50px;
     margin-top: 0px;
     margin-bottom: 30px;
@@ -323,7 +323,7 @@ a[title="Flaticon"]:hover{
 
 
 .article-comment{
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'SUIT-Medium', sans-serif;
     font-size: 16px;
     font-weight: 100;
 }
@@ -335,7 +335,7 @@ a[title="Flaticon"]:hover{
     margin-right: 10px;
 
 
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'SUIT-Medium', sans-serif;
     font-size: 14px;
     background-color: transparent;
     border: none;
