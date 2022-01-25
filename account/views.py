@@ -16,6 +16,9 @@ def signup(request):
         form = UserForm()
     return render(request, 'account/signup.html', {'form': form})
 
+
+
+
 from .models import Userinfo
 from django.utils import timezone
 from django.http import HttpResponse

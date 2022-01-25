@@ -10,13 +10,13 @@ class Board(models.Model):
     contents = models.TextField()
 
     #게시글 조회수
-    views = models.IntegerField()
+    views = models.IntegerField(default = 0)
 
     #게시글 날짜
-    regdate = models.DateTimeField()
+    regdate = models.DateTimeField(auto_now=True)
 
     #게시글 좋아요 수
-    like = models.IntegerField()
+    like = models.IntegerField(default = 0)
 
     #게시글 작성자 이름
     write_id = models.CharField(max_length=45)
