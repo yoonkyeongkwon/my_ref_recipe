@@ -3,9 +3,12 @@ from msilib.schema import ListView
 from socket import AI_PASSIVE
 from django.http import HttpResponse
 from django.shortcuts import render
+from myref import settings
+
+from myref.settings import YOUTUBE_DATA_API_KEY
 from .models import *
 from django.views import View
-
+ 
 
 # Create your views here.
 # def main(request):
@@ -75,31 +78,42 @@ def main(request):
     return render(request,'ref/main.html',{'recipe_list':recipe_list,
                                             'userref_list':userref_list,})
 
+
+
+import requests
 @csrf_exempt
 def searchRecipe(request):
 
     user_check = request.POST.get('user_like') 
     board_info = Board.objects.all()
     recipe_list = Recipe.objects.all()[0:5]
+    search_url = 'https://www.googleapis.com/youtube/v3/search'
+    video_url = 'https://www.googleapis.com/youtube/v3/videos'
+    search_params = {
+        'part' : 'snippet',
+        'q' : 'getYoutube',
+        'key' : settings.YOUTUBE_DATA_API_KEY,
+        'maxResults' : 6,
+        'type':'video'
+    }
+    video_ids = []
+    r = requests.get(search_url,params=search_params)
+    results = (r.json()['items'])
+    for result in results:
+        video_ids.append(result['id']['videoId'])
     
+    video_params = {
+        'key' : settings.YOUTUBE_DATA_API_KEY,
+        'part' : 'snippet,contentDetails',
+        'id' : ','.join(video_ids)
+    }
+    r = requests.get(video_url,params=video_params)
+    print(r.text)
+
     return render(request,'ref/searchRecipe.html',{'recipe_list':recipe_list,
                                                     'user_check':user_check,
                                                     'board_info':board_info,})
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
