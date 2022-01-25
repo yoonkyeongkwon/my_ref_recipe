@@ -1,78 +1,111 @@
-<!DOCTYPE html>
 {% extends 'base.html' %}
 {% load static %}
-{% include 'community_insert.html'%}
+
 {% block content %}
 
-<html lang="en" >
-    <head>
-        <meta charset="UTF-8" name="viewport" content="width=device-width">
-        <title>Refrigerator</title>
-        {% comment %} <script type="text/javascript" src="http://127.0.0.1:8000/static/magicgrid.js%20fileram.pstparam.js"></script> {% endcomment %}
-        {% comment %} <script type="text/javascript" src="http://127.0.0.1:8000/static/magicgrid.js"></script> {% endcomment %}
-        <script type="text/javascript" src="{% static 'js/magicgrid.js' %}"></script>
-    </head>
+<style>
+    .container div {
+    width: 280px;
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem 0;
+    }
 
-    <style>
-        .container div {
-        width: 300px;
-        background-color: antiquewhite;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 1rem;
-        }
-        
-        
-        .container img {
+    .container img {
         width: 100%;
+        border-radius: 1rem;
+    }
 
-        }
-    </style>
+    .add {
+        position:fixed;
+        bottom:0;
+        right:0;
+        background-color: #36CCA6;
+        width: 80px;
+        height: 80px;
+        font-size: 60px;
+        color: white;
+        border: none;
+        border-radius: 75px;
+        text-align: center;  
+    }
+
+
+    .add:hover {
+        color: gray;
+        cursor: pointer;
+    } 
+    .container div {
+    width: 300px;
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    }
     
-    <body>
-        <div class="container">
-            <div>
-                <img src="https://picsum.photos/200/300">
-            </div>
-            <div>
-                <img src="https://picsum.photos/200/340">
-            </div>
-            <div>
-                <img src="https://picsum.photos/200/280">
-            </div>
-            <div>
-                <img src="https://picsum.photos/200/390">
-            </div>
-            <div>
-                <img src="https://picsum.photos/200/200">
-            </div>
-            <div>
-                <img src="https://picsum.photos/200/500">
-            </div>
-            <div>
-                <img src="https://picsum.photos/200/100">
-            </div>
-            <div>
-                <img src="https://picsum.photos/200/250">
-            </div>
-            <div>
-                <img src="https://picsum.photos/200/320">
-            </div>
-            <div>
-                <img src="https://picsum.photos/200/300">
-            </div>
-            <div>
-                <img src="https://picsum.photos/200/300">
-            </div>
-            <div>
-                <img src="https://picsum.photos/200/270">
-            </div>
-            <div>
-                <img src="https://picsum.photos/200/330">
-            </div>
-        </div>
 
-    </body>
-</html> 
+    }
+</style>
+    
+    a:link {text-decoration: none; color: white;}
+    a:visited {text-decoration: none; color: white;}
+    a:hover {text-decoration: none; color: lightgray;}
+
+
+</style>
+
+<p>내 요리를 자랑해보세요!</p>
+<div class="add">
+    <a href="/community/community_insert/" onclick="openzlog();">
+    +
+    </a>
+</div>
+
+<div class="container">
+    <div>
+        <img src="https://picsum.photos/200/300">
+    </div>
+    <div>
+        <img src="https://picsum.photos/200/340">
+    </div> 
+    <div>
+        <img src="https://picsum.photos/200/280">
+    </div>
+    <div>
+        <img src="https://picsum.photos/200/390">
+    </div>
+    <div>
+        <img src="https://picsum.photos/200/200">
+    </div>
+    <div>
+        <img src="https://picsum.photos/200/500">
+    </div>
+    <div>
+        <img src="https://picsum.photos/200/100">
+    </div>
+    <div>
+        <img src="https://picsum.photos/200/250">
+    </div>
+    <div>
+        <img src="https://picsum.photos/200/320">
+    </div>
+    <div>
+        <img src="https://picsum.photos/200/300">
+    </div>
+    <div>
+        <img src="https://picsum.photos/200/300">
+    </div>
+    <div>
+        <img src="https://picsum.photos/200/270"> 
+    </div> 
+    <div>
+        <img src="https://picsum.photos/200/330">
+    </div> 
+</div>
+
+<script src="{% static 'js/magicgrid.js' %}"></script>
 {% endblock %}
+

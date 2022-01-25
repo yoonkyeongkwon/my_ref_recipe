@@ -5,7 +5,7 @@ from django.views.generic import TemplateView
 app_name = 'community'
 urlpatterns = [
     path('community_insert/', views.community_insert),
-    path('community_list/', views.community_list),
-    path('list/', TemplateView.as_view(template_name='community/community_list.html'), name='community_list'),
+    # path('community_list/', views.community_list),
+    path('community_list/', TemplateView.as_view(template_name='community/community_list.html'), name='list'),
 
 ]
