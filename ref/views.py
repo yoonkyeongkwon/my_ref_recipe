@@ -88,49 +88,57 @@ def searchRecipe(request):
     user_check = request.POST.get('user_like') 
     board_info = Board.objects.all()
     recipe_list = Recipe.objects.all()[0:5]
-    search_url = 'https://www.googleapis.com/youtube/v3/search'
-    video_url = 'https://www.googleapis.com/youtube/v3/videos'
-    search_params = {
-        'part' : 'snippet',
-        'q' : '검색바꾼결과',
-        'key' : settings.YOUTUBE_DATA_API_KEY,
-        'maxResults' : 4,
-        'type':'video'
-    }
-    video_ids = []
-    r = requests.get(search_url,params=search_params)
-
-    results = (r.json()['items'])
-    for result in results:
-        video_ids.append(result['id']['videoId'])
     
-    video_params = {
-        'key' : settings.YOUTUBE_DATA_API_KEY,
-        'part' : 'snippet,contentDetails',
-        'id' : ','.join(video_ids),
-        'maxResults' : 4,
+    # search_url = 'https://www.googleapis.com/youtube/v3/search'
+    # video_url = 'https://www.googleapis.com/youtube/v3/videos'
+    # search_params = {
+    #     'part' : 'snippet',
+    #     'q' : '검색바꾼결과',
+    #     'key' : settings.YOUTUBE_DATA_API_KEY,
+    #     'maxResults' : 4,
+    #     'type':'video'
+    # }
+    # video_ids = []
+    # r = requests.get(search_url,params=search_params)
+
+    # results = (r.json()['items'])
+    # for result in results:
+    #     video_ids.append(result['id']['videoId'])
+    
+    # video_params = {
+    #     'key' : settings.YOUTUBE_DATA_API_KEY,
+    #     'part' : 'snippet,contentDetails',
+    #     'id' : ','.join(video_ids),
+    #     'maxResults' : 4,
+    # }
+    # r = requests.get(video_url,params=video_params)
+    # results = (r.json()['items'])
+    # videos=[]
+    # for result in results:
+    #     video_data = {
+    #         'title' : result['snippet']['title'],
+    #         'id' : result['id'],
+    #         'url': f'https://www.youtube.com/watch?v={result["id"]}',
+    #         'duration' : int(parse_duration(result['contentDetails']['duration']).total_seconds() // 60 ),
+    #         'thumbnail' : result['snippet']['thumbnails']['high']['url'],
+    #     }
+    #     print(result['id'],'###################################')
+
+    #     videos.append(video_data)
+
+    #     context ={
+    #         'videos': videos,
+    #         'recipe_list':recipe_list,
+    #         'user_check':user_check,
+    #         'board_info':board_info,
+    #     }
+
+    context ={
+        'recipe_list':recipe_list,
+        'user_check':user_check,
+        'board_info':board_info,
     }
-    r = requests.get(video_url,params=video_params)
-    results = (r.json()['items'])
-    videos=[]
-    for result in results:
-        video_data = {
-            'title' : result['snippet']['title'],
-            'id' : result['id'],
-            'url': f'https://www.youtube.com/watch?v={result["id"]}',
-            'duration' : int(parse_duration(result['contentDetails']['duration']).total_seconds() // 60 ),
-            'thumbnail' : result['snippet']['thumbnails']['high']['url'],
-        }
-        print(result['id'],'###################################')
-
-        videos.append(video_data)
-
-        context ={
-            'videos': videos,
-            'recipe_list':recipe_list,
-            'user_check':user_check,
-            'board_info':board_info,
-        }
+        
 
     return render(request,'ref/searchRecipe.html',context)
     
