@@ -1,6 +1,10 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from .forms import UserForm
+from datetime import datetime
+import json
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 def signup(request):
     if request.method == "POST":
@@ -17,8 +21,42 @@ def signup(request):
     return render(request, 'account/signup.html', {'form': form})
 
 
-'''
-개별구현 로그인
+def login(request):
+    context = {}
+    id = request.GET['id']
+
+    rs = Userinfo.objects.filter(id=id)
+
+    if(len(rs) > 0):
+        context['flag'] = '1'
+        context['result_msg'] = '아이디가 있습니다.'
+    else:
+        context['flag'] = '0'
+        context['result_msg'] = '사용 가능한 아이디 입니다.'
+
+    return JsonResponse(context, content_type="application/json") 
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#개별구현 로그인
 
 from .models import Userinfo
 from django.utils import timezone
@@ -64,4 +102,4 @@ def logout_custom(request):
     del request.session['name'] # 개별 삭제
     request.session.flush() # 전체 삭제
     return redirect('index')
-'''
+
