@@ -81,6 +81,7 @@ def main(request):
 
 
 import requests
+from isodate import parse_duration
 @csrf_exempt
 def searchRecipe(request):
 
@@ -105,14 +106,31 @@ def searchRecipe(request):
     video_params = {
         'key' : settings.YOUTUBE_DATA_API_KEY,
         'part' : 'snippet,contentDetails',
-        'id' : ','.join(video_ids)
+        'id' : ','.join(video_ids),
+        'maxResults' : 6,
     }
     r = requests.get(video_url,params=video_params)
-    print(r.text)
+    results = (r.json()['items'])
+    videos=[]
+    for result in results:
+        video_data = {
+            'title' : result['snippet']['title'],
+            'id' : result['id'],
+            'duration' : (parse_duration(result['contentDetails']['duration']).total_seconds() // 60 ),
+            'thumbnail' : result['snippet']['thumbnails']['high']['url'],
+        }
 
-    return render(request,'ref/searchRecipe.html',{'recipe_list':recipe_list,
-                                                    'user_check':user_check,
-                                                    'board_info':board_info,})
+        videos.append(video_data)
+        print(videos)
+
+        context ={
+            'videos': videos,
+            'recipe_list':recipe_list,
+            'user_check':user_check,
+            'board_info':board_info,
+        }
+
+    return render(request,'ref/searchRecipe.html',context)
     
 
 
