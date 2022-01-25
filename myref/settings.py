@@ -221,7 +221,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # YOUTUBE KEY 
 # 키가 될때도 있고 안될 때도 있음 ;;
-YOUTUBE_DATA_API_KEY = get_secret("YOUTUBE_KEY")
-# YOUTUBE_DATA_API_KEY = "AIzaSyBnuowCUE4Lj-W9bEdSfpDP7fKcPN06UwE"
-                        # AIzaSyBnuowCUE4Lj-W9bEdSfpDP7fKcPN06UwE
-                        # AIzaSyBnuowCUE4Lj-W9bEdSfpDP7fKcPN06UwE
+YOUTUBE_DATA_API_KEY = "AIzaSyBglkOgq9aNQYMjcXLOwO9egXF65hvfZtc"
+
+    #  윤경님 AIzaSyDea6MZYW8tn2-XG1eCMGVR5pU37Nwu3RU
+    #  성은님 AIzaSyBnuowCUE4Lj-W9bEdSfpDP7fKcPN06UwE
+    #  수현님 AIzaSyAemrCkM1rYLSz7ONAvRuNyj4hHKKn-2vs
+    #  수현님x2 AIzaSyBRLKb4KflEAXZeneZ2CTPrcU0f-dPFr1Y
+    #  상희님 AIzaSyDjgYAeoHt6WX4Bxh53gEhKcWS2apVlWCI
+    #  윤지님 AIzaSyBglkOgq9aNQYMjcXLOwO9egXF65hvfZtc
