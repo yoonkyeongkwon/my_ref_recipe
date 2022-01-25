@@ -12,11 +12,5 @@ urlpatterns = [
     path('main/searchRecipe/moreNeed/', main_views.moreNeed, name='moreNeed'),
 
 
-    path('', main_views.VideoListView.as_view(),name="video_list"),
-    path('<int:pk>/',main_views.VideoListView.as_view(),name="video_detail"),
-    path('<int:pk>/edit/',main_views.VideoListView.as_view(),name="video_edit"),
-    path('<int:pk>/delete',main_views.VideoListView.as_view(),name="video_delete"),
-    path('new/',main_views.VideoListView.as_view(),name="video_new"),
-
 ]
 

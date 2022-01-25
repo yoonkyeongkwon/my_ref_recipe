@@ -91,30 +91,6 @@ from django.views.generic import ListView as genlistview ,CreateView,DeleteView,
 from .forms import ViedoForm
 from .models import Video
 
-class VideoListView(genlistview):
-    model = Video
-    # 페이지
-    
-
-
-
-class VideoCreateView(CreateView):
-    model = Video
-    form_class = ViedoForm
-    template_name = 'youtube.html'
-
-
-class VideoDetailView(DetailView):
-    model = Video
-
-class ViedoUpdateView(UpdateView):
-    model = Video
-    form_class = ViedoForm
-    template_name = 'youtube.html'
-
-class VideoDeleteView(DeleteView):
-    model = Video
-
 
 
 
