@@ -16,10 +16,6 @@ def signup(request):
         form = UserForm()
     return render(request, 'account/signup.html', {'form': form})
 
-
-'''
-개별구현 로그인
-
 from .models import Userinfo
 from django.utils import timezone
 from django.http import HttpResponse
@@ -64,4 +60,3 @@ def logout_custom(request):
     del request.session['name'] # 개별 삭제
     request.session.flush() # 전체 삭제
     return redirect('index')
-'''

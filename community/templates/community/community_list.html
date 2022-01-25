@@ -11,7 +11,6 @@
         {% comment %} <script type="text/javascript" src="http://127.0.0.1:8000/static/magicgrid.js%20fileram.pstparam.js"></script> {% endcomment %}
         {% comment %} <script type="text/javascript" src="http://127.0.0.1:8000/static/magicgrid.js"></script> {% endcomment %}
         <script type="text/javascript" src="{% static 'js/magicgrid.js' %}"></script>
-    </head>
 
     <style>
         .container div {
@@ -26,16 +25,40 @@
         .container img {
         width: 100%;
         }
+
+        .add {
+            position: -webkit-sticky;
+            position: sticky;
+            background-color: #36CCA6;
+            width: 80px;
+            height: 80px;
+            font-size: 60px;
+            color: white;
+            border: none;
+            border-radius: 75px;
+            text-align: center;
+        }
+
+        .add:hover {
+            color: gray;
+            cursor: pointer;
+        } 
     </style>
+    </head>
     
     <body>
+        <div class="add">
+            <a href="/community/community_insert/" onclick="openzlog();">
+            + 
+            </a>
+        </div>
         <div class="container">
             <div>
                 <img src="https://picsum.photos/200/300">
             </div>
             <div>
                 <img src="https://picsum.photos/200/340">
-            </div>
+            </div> 
             <div>
                 <img src="https://picsum.photos/200/280">
             </div>
@@ -64,12 +87,14 @@
                 <img src="https://picsum.photos/200/300">
             </div>
             <div>
-                <img src="https://picsum.photos/200/270">
-            </div>
+                <img src="https://picsum.photos/200/270"> 
+            </div> 
             <div>
                 <img src="https://picsum.photos/200/330">
-            </div>
+            </div> 
         </div>
+    <script type="text/javascript">
+    </script>
 
     </body>
 </html> 
