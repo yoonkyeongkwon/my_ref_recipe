@@ -8,7 +8,7 @@ from account.models import Userinfo
 # 레시피 테이블
 class Recipe(models.Model):
     # 1. 레시피일련번호(RCP_SNO)
-    rcp_sno = models.IntegerField()
+    rcp_sno = models.IntegerField(default=0)
     ## 현재 나는 에러는 mysql id 문제
     # 2. **요리명(CKG_NM)**
     ckg_nm = models.TextField()
@@ -52,7 +52,7 @@ class Board(models.Model):
     # 보드 아이디
     board_id = models.IntegerField()
     # rcp_sno
-    rcp_sno = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    rcp_sno = models.ForeignKey(Recipe, on_delete=models.CASCADE,)
     # title
     board_title = models.CharField(max_length=50)
     # contents
