@@ -12,8 +12,7 @@ def community_insert(request):
     
     if request.method == 'POST':
          now = datetime.datetime.now(timezone('Asia/Seoul'))
-         print(now)
-         print(request.POST)
+
          file=request.FILES['file']
          title = request.POST.get('title')
          write_id = request.POST.get('write_id')
@@ -22,7 +21,7 @@ def community_insert(request):
          m.title=title
          m.write_id=write_id
          m.contents=contents
-
+   
          m.views=0
          m.like=0
          m.file=file
