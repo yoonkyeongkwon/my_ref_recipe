@@ -92,7 +92,7 @@ def searchRecipe(request):
     video_url = 'https://www.googleapis.com/youtube/v3/videos'
     search_params = {
         'part' : 'snippet',
-        'q' : '검색',
+        'q' : '검색바꾼결과',
         'key' : settings.YOUTUBE_DATA_API_KEY,
         'maxResults' : 4,
         'type':'video'
