@@ -8,6 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from django.contrib import auth
 from django.contrib.auth.models import User
+from ref.models import *
 
 
 # Create your views here.
@@ -33,17 +34,18 @@ def login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             auth.login(request, user)
-            return render(request,'ref/main.html')
+            star = Recipe.objects.order_by('-inq_cnt')[0:10]
+            return render(request,'ref/main.html', {'star':star} )
         else:
             return render(request, 'login.html', {'error': 'username or password is incorrect.'})
     else:
         return render(request, 'login.html')
 
-
 # 로그아웃
 def logout(request):
     auth.logout(request)
-    return render(request,'ref/main.html')
+    star = Recipe.objects.order_by('-inq_cnt')[0:10]
+    return render(request,'ref/main.html', {'star':star})
 
 # home
 def home(request):
