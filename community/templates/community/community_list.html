@@ -4,11 +4,27 @@
 {% block content %}
 
 <style>
+    .openBtn{
+        margin-left:30%;
+        position:relative;
+        bottom:20px;
+        right:55px;
+        background-color: #36CCA6;
+        width: 80px;
+        height: 80px;
+        font-size: 60px;
+        color: white;
+        border: none;
+        border-radius: 75px;
+        text-align: center;
+        line-height: 75px;  
+    }
     .myrecipe {
         font-family: "SUIT-Medium";
         position: relative;
         font-size: 20px;
         text-align: center;
+        
     }
 
     .container div {
@@ -47,7 +63,7 @@
     }
 
     .add {
-        position:fixed;
+        position:relative;
         bottom:20px;
         right:55px;
         background-color: #36CCA6;
@@ -105,7 +121,7 @@
       .modalBox {
         position: absolute;
         background-color: #fff;
-        width: 80rem;
+        width: 40rem;
         height: 60rem;
         padding: 15px;
         z-index: 5;
@@ -121,33 +137,26 @@
         display: none;
       }
       #chat_iframe{
-        width: 80rem;
-        height: 60rem;
+        width: 40rem;
+        height: 40rem;
       }
 </style>
-    
-
+<button class="openBtn">+</button>
+<div>
+<div class="modal hidden">
+<div class="bg"></div>
+<div class="modalBox">
+    <button class="closeBtn">✖</button>
+  <iframe src="/community/community_insert" id="chat_iframe" >대체 내용</iframe>  
+  
+</div>
+</div>
+</div>
 <div class="myrecipe">
 <span style="size: 35px; font-color=#36CCA6; margin-bottom=20px;">내 요리를 자랑해보세요!</span>
-
-]<div class="add">
-    {% comment %} <a href="/community/community_insert/" onclick="openzlog();">
-        +
-        </a>          {% endcomment %}
-<button class="openBtn">+</button>
-<div class="modal hidden">
-  <div class="bg"></div>
-  <div class="modalBox">
-    <iframe href="/community/community_insert" id="chat_iframe" >대체 내용</iframe>  
-    <button class="closeBtn">✖</button>
-  </div>
-</div>
-
-</div>
+      
 {% comment %} 회원일 때, 비회원일 때 구분할 것! 비회원일 때는 로그인이 필요합니다. 창 띄우기 {% endcomment %}
-    {% for a in boardlist %}
-        <h3>{{ a.contents }}</h3>
-    {% endfor %}
+
 <div class="container">
 
         <div>
