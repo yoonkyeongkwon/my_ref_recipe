@@ -13,28 +13,37 @@
 
     .container div {
         width: 280px;
-        background-color: antiquewhite;
+        background-color: #FAFAFA;
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 1rem 0;
+        border-radius: 1rem;
+        flex-direction: column;
     }
 
     .container img {
         width: 100%;
-        border-radius: 1rem;
+        border-radius: 1rem 1rem 0 0;
     }
 
-    .container img:hover {
+    .container:hover {
         cursor:pointer;
     }
 
-
-
-    .container comment {
+    .comment {
+        flex-direction:row;
         height: 100px;
-        border-radius: 1rem;
-        background-color: lightgray;
+        border-radius: 0 0 1rem 1rem;
+        justify-content:flex-start;
+        font-size: 15px;
+    }
+
+    .comment img {
+        display: inline-block;
+        height: 2.5rem;
+        width: 2.5rem;
+        border-radius: 10rem;
+        border: 1px solid black;
     }
 
     .add {
@@ -66,62 +75,84 @@
 </style>
 
 <div class="myrecipe">
-<span style="size: 30px; font-color=#36CCA6; margin=20px;">내 요리를 자랑해보세요!</span>
+<span style="size: 35px; font-color=#36CCA6; margin-bottom=20px;">내 요리를 자랑해보세요!</span>
 <div class="add">
     <a href="/community/community_insert/" onclick="openzlog();">
     +
     </a>
 </div>
-
+{% comment %} 회원일 때, 비회원일 때 구분할 것! 비회원일 때는 로그인이 필요합니다. 창 띄우기 {% endcomment %}
 <div class="container">
         <div>
-            <img src="https://picsum.photos/200/300">
-            <div class="container comment"></div>
+            {% comment %} <img src="https://picsum.photos/200/300"> {% endcomment %}
+            <img src="{% static '/image/sample.jpg' %}">
+            <div class="comment">
+                <img src="{% static 'image/profile.jpg' %}">
+                <span>우와 맛있겠다</span><br>
+                <img src="{% static 'image/profile.jpg' %}">
+                <span>우와 맛있겠다</span><br>
+            </div>
         </div>
         <div>
             <img src="https://picsum.photos/200/340">
+            <div class="comment"></div>
         </div> 
         <div>
             <img src="https://picsum.photos/200/280">
+            <div class="comment"></div>
         </div>
         <div>
             <img src="https://picsum.photos/200/390">
+            <div class="comment"></div>
         </div>
         <div>
             <img src="https://picsum.photos/200/200">
+            <div class="comment"></div>
         </div>
         <div>
             <img src="https://picsum.photos/200/500">
+            <div class="comment"></div>
         </div>
         <div>
             <img src="https://picsum.photos/200/100">
+            <div class="comment"></div>
         </div>
         <div>
             <img src="https://picsum.photos/200/250">
+            <div class="comment"></div>
         </div>
         <div>
             <img src="https://picsum.photos/200/320">
+            <div class="comment"></div>
         </div>
         <div>
             <img src="https://picsum.photos/200/300">
+            <div class="comment"></div>
         </div>
         <div>
             <img src="https://picsum.photos/200/300">
+            <div class="comment"></div>
         </div>
         <div>
             <img src="https://picsum.photos/200/270"> 
+            <div class="comment"></div>
         </div> 
         <div>
             <img src="https://picsum.photos/200/330">
+            <div class="comment"></div>
         </div> 
     </div>
 </div>
 
 <script src="{% static 'js/magicgrid.js' %}"></script>
 <script>
-    var imgs = document.querySelectorAll('img');
+    var imgs = document.querySelectorAll('.container img');
     for (var i = 0; i < imgs.length; i++) {
-        imgs[i].addEventListener("click", console.log('yes'));
+        imgs[i].addEventListener("click", lookup);
+    }
+
+    function lookup(e) {
+        // 컨테이너 내 이미지 입력했을 때 뜨는 상세페이지(사진, 글, 댓글)
     }
 </script>
 {% endblock %}
