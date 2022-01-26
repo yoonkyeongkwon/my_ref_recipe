@@ -10,4 +10,5 @@ urlpatterns = [
     path('community_list/', views.community_list.as_view()),
     path('community_modify/', views.community_modify),
     path('test/', views.test),
+    path('test2/', views.test2),
 ]

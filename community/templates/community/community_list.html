@@ -46,7 +46,7 @@
         cursor:pointer;
     }
 
-    .comment {
+    .container div.comment {
         flex-direction:row;
         height: 100px;
         border-radius: 0 0 1rem 1rem;
@@ -82,6 +82,7 @@
         color: gray;
         cursor: pointer;
     } 
+
     .container div {
     width: 300px;
     background-color: antiquewhite;
@@ -99,17 +100,6 @@
         margin-left: 1rem ;
     }
 
-    .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-    }
 
     .modal .bg {
         width: 100%;
@@ -129,10 +119,26 @@
         oveflow: hidden;
     }
 
-    .modalBox button {
-        display: block;
-        width: 2.5rem;
-        margin: 0 auto;
+    .modal_wrap {
+        display: none;
+        left: 0;
+        top:0;
+        width: 500px;
+        height: 500px;
+        position: fixed;
+        background: white;
+        z-index:2;
+    }
+
+    .modal_wrap img {
+        height: 100px;
+        background-color:gray;
+    }
+
+    .modal_wrap.content {
+        background-color: lightgray;
+        width: 450px;
+        height: 150px;
     }
 
     .hidden {
@@ -145,25 +151,43 @@
         height: 51rem;
     }
 </style>
-<button class="openBtn">+</button>
+
 <div>
-<div class="modal hidden">
-<div class="bg"></div>
-    <div class="modalBox">
-         <button class="closeBtn">✖</button>
-        <iframe src="/community/community_insert" id="chat_iframe" >대체 내용</iframe>  
+    <div class="bg"></div>
+    <div class="modal_wrap">
+        <button type='button' id="close">X</button>
+        <img class="modal_img" src="{% static '/image/sample.jpg' %}">
+        <div class="content">레시피정보</div>
+        <div class="comment"></div>
+        <button class="edit">수정</button>
+        <button class="delete">삭제</button>
     </div>
 </div>
-</div>    
+
+
+
+
 
 <div class="myrecipe">
 <span style="size: 35px; font-color=#36CCA6; margin-bottom=20px;">내 요리를 자랑해보세요!</span>
-
 </div>
+
+
 {% comment %} 회원일 때, 비회원일 때 구분할 것! 비회원일 때는 로그인이 필요합니다. 창 띄우기 {% endcomment %}
 <div class="container">
+        {%for data in data.all%}
         <div>
-            {% comment %} <img src="https://picsum.photos/200/300"> {% endcomment %}
+        {% comment %} <img src={{data.file}}> {% endcomment %}
+        <img src="{% static '/image/sample.jpg' %}">
+        <div class="comment">
+            {%for comm in comm.all%}
+            <img src="{% static 'image/profile.jpg' %}">
+            <span>{{comm.contents}}</span><br>
+            {% endfor %}
+        </div>  
+        </div>
+        {% endfor %}
+        <div>
             <img src="{% static '/image/sample.jpg' %}">
             <div class="comment">
                 <img src="{% static 'image/profile.jpg' %}">
@@ -172,71 +196,26 @@
                 <span>우와 맛있겠다</span><br>
             </div>
         </div>
-        <div>
-            <img src="https://picsum.photos/200/340">
-            <div class="comment"></div>
-        </div> 
-        <div>
-            <img src="https://picsum.photos/200/280">
-            <div class="comment"></div>
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/390">
-            <div class="comment"></div>
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/200">
-            <div class="comment"></div>
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/500">
-            <div class="comment"></div>
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/100">
-            <div class="comment"></div>
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/250">
-            <div class="comment"></div>
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/320">
-            <div class="comment"></div>
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/300">
-            <div class="comment"></div>
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/300">
-            <div class="comment"></div>
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/270"> 
-            <div class="comment"></div>
-        </div> 
-        <div>
-            <img src="https://picsum.photos/200/330">
-            <div class="comment"></div>
-        </div> 
-    </div>
+</div> 
 </div>
 
-</div>
 <script src="{% static 'js/magicgrid.js' %}"></script>
+
 <script>
-    const modal_open = () => {
-        document.querySelector(".modal").classList.remove("hidden");
+    function onclick() {
+        document.querySelector('.modal_wrap').style.display='block';
+        document.querySelector('.black_bg').style.display='block';
     }
-    
-    const modal_close = () => {
-        document.querySelector(".modal").classList.add("hidden");
+
+    function offclick() {
+        document.querySelector('.modal_wrap').style.display='none';
+        document.querySelector('.black_bg').style.display='none';
     }
+
     var imgs = document.querySelectorAll('.container img');
     for (var i = 0; i < imgs.length; i++) {
-        imgs[i].addEventListener("click", modal_open);
+        imgs[i].addEventListener("click", onclick);
     }
-
+    document.getElementById('close').addEventListener('click', offclick);
 </script>
 {% endblock %}

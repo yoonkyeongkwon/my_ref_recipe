@@ -1,0 +1,139 @@
+
+{% load static %}
+
+{% block content %}
+
+<style>
+    .container div {
+        width: 100px;
+        background-color: pink;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0 0 1rem 1rem;
+        flex-direction: column;
+    }
+
+    .container img {
+        width: 100px;
+        height:50px;
+        border-radius: 1rem 1rem 0 0;
+    }
+
+    .container:hover {
+        cursor:pointer;
+    }
+
+    .container div.comment {
+        height: 100px;
+        width: 100px;
+        background-color: yellow;
+    }
+
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: auto;
+    }
+
+    .modal-content {
+        background-color: pink;
+        background-color: antiquewhite;
+        margin: 15% auto;
+        padding: 20px;
+        border: none;
+        width: 30%;
+    }
+
+    .modal img {
+        top:0;
+        height: 50%;
+    }
+    .modal div {
+        border-top-left-radius: 1.5rem; border-top-right-radius: 1.5rem;
+        border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem;
+        position: absolute;
+        background-color: #fff;
+        width: 41rem;
+        height: 5rem;
+        padding: 15px;
+        z-index: 5;
+        oveflow: hidden;
+    }
+
+    .comment img {
+        display: inline-block;
+        height: 2.5rem;
+        width: 2.5rem;
+        border-radius: 10rem;
+        border: 1px solid black;
+    }
+
+    .modal_wrap {
+        display: none;
+        width: 500px;
+        height: 500px;
+        position: fixed;
+        top:50%;
+        left: 50%;
+        margin: -250px 0 0 -250px;
+        background: white;
+        z-index:2;
+    }
+</style>
+
+<div class="container">
+    <img src="{% static '/image/sample.jpg' %}">
+    <div class="comment"></div>
+</div>
+
+{% comment %} <div class="modal">
+    <img src="{% static '/image/sample.jpg' %}">
+    <div class="contents"></div>
+    <div class="comment"></div>
+    <button class="edit"></button>
+    <button class="delete"></button>
+</div> {% endcomment %}
+
+<button type='button' id='modal_btn'>모달</button>
+<div class="black_bg"></div>
+<div class="modal_wrap">
+    <div class="modal_close"><a href="#">close</a></div>
+    <div>
+        내용시발
+    </div>
+
+
+{% comment %}내 레시피 클릭했을 때 나오는 modal 상세페이지{% endcomment %}
+{% comment %} <div class=".modal detail">
+    <img src="">
+    <div class="comment"></div>
+    <button class="edit"></button>
+    <button class="delete">></button>
+</div> {% endcomment %}
+
+<script>
+    {%for data in data.all%}
+    <h1>{{data.contents}}</h1>
+    {% endfor %}
+    function onclick() {
+        document.querySelector('.modal_wrap').style.display='block';
+        document.querySelector('.black_bg').style.display='block';
+    }
+
+    function offclick() {
+        document.querySelector('.modal_wrap').style.display='none';
+        document.querySelector('.black_bg').style.display='none';
+    }
+    document.getElementById('modal_btn').addEventListener('click', onclick);
+    document.querySelector('.modal_close').addEventListener('click', offclick);
+
+    
+</script>
+{% endblock %}

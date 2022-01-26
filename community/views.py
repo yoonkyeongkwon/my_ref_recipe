@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Board
+from .models import Board, Comment
 from django.utils import timezone
 from django.shortcuts import redirect
 from django.views.generic import TemplateView
@@ -30,9 +30,8 @@ def community_insert(request):
 class community_list(TemplateView):
      template_name = "community/community_list.html"
      def get(self, request):
-          boardlist = Board.objects.all()
-          print(boardlist)
-          return render(request, self.template_name, {'data':boardlist})
+          comm = Comment.objects.all()
+          return render(request, self.template_name, {'comment':comm})
      # return render(request, TemplateView.as_view(template_name='/community/community_list.html'), {'board_list':board_list})
 
 
@@ -62,3 +61,8 @@ def delete(request, post_id):
 #테스트창 완료 후 삭제
 def test(request):
      return render(request, 'community/test.html')
+
+def test2(request):
+     return render(request, 'community/test2.html')
+
+
