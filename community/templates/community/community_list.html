@@ -100,7 +100,10 @@
         margin-left: 1rem ;
     }
 
-    .modal {
+
+
+
+      .modal {
         border-top-left-radius: 1.5rem; border-top-right-radius: 1.5rem;
         border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem;
         position: fixed;
@@ -112,43 +115,41 @@
         justify-content: center;
         align-items: center;
         overflow: hidden;
-    }
+      }
 
-    .modal .bg {
+      .modal .bg {
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.6);
-    }
+      }
 
-    .modalBox {
+      .modalBox {
         border-top-left-radius: 1.5rem; border-top-right-radius: 1.5rem;
-        border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem;
+        	border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem;
         position: absolute;
         background-color: #fff;
         width: 41rem;
-        height: 5rem;
+        height: 51rem;
         padding: 15px;
         z-index: 5;
-        oveflow: hidden;
-    }
+        overflow: hidden;
+      }
 
-    .modalBox button {
+      .modalBox button {
         display: block;
         width: 2.5rem;
         margin: 0 auto;
-    }
+      }
 
-    .hidden {
+      .hidden {
         display: none;
-    }
-    
-    #chat_iframe{
+      }
+      #chat_iframe{
         margin-left:0.32rem;
         width: 41rem;
         height: 51rem;
-    }
+      }
 </style>
-
 <button class="openBtn">+</button>
 <div>
 <div class="modal hidden">
@@ -158,12 +159,9 @@
         <iframe src="/community/community_insert" id="chat_iframe" >대체 내용</iframe>  
     </div>
 </div>
-</div>    
-
+</div>
 <div class="myrecipe">
 <span style="size: 35px; font-color=#36CCA6; margin-bottom=20px;">내 요리를 자랑해보세요!</span>
-</div>
-
       
 {% comment %} 회원일 때, 비회원일 때 구분할 것! 비회원일 때는 로그인이 필요합니다. 창 띄우기 {% endcomment %}
 
@@ -230,20 +228,15 @@
     </div>
 </div>
 
-</div>
 <script src="{% static 'js/magicgrid.js' %}"></script>
 <script>
-    const modal_open = () => {
-        document.querySelector(".modal").classList.remove("hidden");
-    }
-    
-    const modal_close = () => {
-        document.querySelector(".modal").classList.add("hidden");
-    }
     var imgs = document.querySelectorAll('.container img');
     for (var i = 0; i < imgs.length; i++) {
-        imgs[i].addEventListener("click", modal_open);
+        imgs[i].addEventListener("click", lookup);
     }
 
+    function lookup(e) {
+        // 컨테이너 내 이미지 입력했을 때 뜨는 상세페이지(사진, 글, 댓글)
+    }
 </script>
 {% endblock %}
