@@ -6,21 +6,48 @@ import json
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
+from django.contrib import auth
+from django.contrib.auth.models import User
+
+
+# Create your views here.
+# 회원가입
 def signup(request):
-    if request.method == "POST":
-        form = UserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('index')
+    if request.method == 'POST':
+        if request.POST['password1'] == request.POST['password2']:
+            user = User.objects.create_user(
+                                            username=request.POST['username'],
+                                            password=request.POST['password1'],
+                                            email=request.POST['email'],
+                                            last_name=request.POST['last_name'],)
+            auth.login(request, user)
+            return render(request, 'login.html')
+        return render(request, 'signup.html')
+    return render(request, 'signup.html')
+
+# 로그인
+def login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            return render(request,'ref/main.html')
+        else:
+            return render(request, 'login.html', {'error': 'username or password is incorrect.'})
     else:
-        form = UserForm()
-    return render(request, 'account/signup.html', {'form': form})
+        return render(request, 'login.html')
 
 
+# 로그아웃
+def logout(request):
+    auth.logout(request)
+    return render(request,'ref/main.html')
+
+# home
+def home(request):
+    return render(request, 'home.html')
 
 
 #개별구현 로그인
