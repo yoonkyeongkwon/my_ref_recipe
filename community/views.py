@@ -26,8 +26,13 @@ def community_insert(request):
     else:
         return render(request, 'community/community_insert.html',context={'text':'GET method!!!'})
 
+
+# 커뮤니티 글 리스트 보기
 def community_list(request):
-     return render(request, 'community/community_list.html')
+     board_list=Board.objects.all()
+     return render(request, 'community/community_list.html',{'board_list':board_list})
+
+
 
 
 # 커뮤니티 글 수정
@@ -55,4 +60,5 @@ def delete(request, post_id):
 
 #테스트창 완료 후 삭제
 def test(request):
-     return render(request, 'community/test.html')
+     board_list=Board.objects.all()
+     return render(request, 'community/test.html',{'board_list':board_list})
