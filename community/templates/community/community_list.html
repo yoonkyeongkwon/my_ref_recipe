@@ -4,6 +4,22 @@
 {% block content %}
 
 <style>
+    .openBtn{
+        margin-top:2.5rem;
+        margin-left:85%;
+        position:relative;
+        bottom:20px;
+        right:55px;
+        background-color: #36CCA6;
+        width: 80px;
+        height: 80px;
+        font-size: 60px;
+        color: white;
+        border: none;
+        border-radius: 75px;
+        text-align: center;
+        line-height: 75px;  
+    }
     .myrecipe {
         font-family: "SUIT-Medium";
         position: relative;
@@ -75,14 +91,12 @@
     border-radius: 1rem;
     }
     
-    
-
-
-    button {
-        background-color: #F9B514;
-        padding: 5px 10px;
-        border-radius: 4px;
-        cursor: pointer;
+    .closeBtn {
+        float: LEFT;
+        font-size: 1rem;
+        font-weight: bold;
+        color: gray;
+        margin-left: 1rem ;
     }
 
     .modal {
@@ -94,6 +108,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        overflow: hidden;
     }
 
     .modal .bg {
@@ -103,17 +118,20 @@
     }
 
     .modalBox {
+        border-top-left-radius: 1.5rem; border-top-right-radius: 1.5rem;
+        border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem;
         position: absolute;
         background-color: #fff;
-        width: 50rem;
-        height: 30rem;
+        width: 41rem;
+        height: 5rem;
         padding: 15px;
         z-index: 5;
+        oveflow: hidden;
     }
 
     .modalBox button {
         display: block;
-        width: 80px;
+        width: 2.5rem;
         margin: 0 auto;
     }
 
@@ -122,27 +140,24 @@
     }
     
     #chat_iframe{
-        width: 50rem;
-        height: 30rem;
+        margin-left:0.32rem;
+        width: 41rem;
+        height: 51rem;
     }
 </style>
-    
+<button class="openBtn">+</button>
+<div>
+<div class="modal hidden">
+<div class="bg"></div>
+    <div class="modalBox">
+         <button class="closeBtn">✖</button>
+        <iframe src="/community/community_insert" id="chat_iframe" >대체 내용</iframe>  
+    </div>
+</div>
+</div>    
 
 <div class="myrecipe">
 <span style="size: 35px; font-color=#36CCA6; margin-bottom=20px;">내 요리를 자랑해보세요!</span>
-
-]<div class="add">
-    {% comment %} <a href="/community/community_insert/" onclick="openzlog();">
-        +
-        </a>          {% endcomment %}
-<button class="openBtn">+</button>
-<div class="modal hidden">
-  <div class="bg"></div>
-  <div class="modalBox">
-    <iframe href="/community/community_insert/" id="chat_iframe" >대체 내용</iframe>  
-    <button class="closeBtn">✖</button>
-  </div>
-</div>
 
 </div>
 {% comment %} 회원일 때, 비회원일 때 구분할 것! 비회원일 때는 로그인이 필요합니다. 창 띄우기 {% endcomment %}
