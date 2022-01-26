@@ -50,7 +50,9 @@
         </div>
         {% else %}
         <div class="headerbtn" style = "margin : 1rem; visibility: hidden;">로그아웃</div>
-        <div class="headerbtn" style = "font-size : 2rem; width: 50rem;">끼룩끼룩씨의 냉장고</div>
+        <div class="headerbtn" style = "margin : 1rem; font-size : 15px; visibility: hidden;">안녕하세요 <span style ="color : #36CCA6">{{user.username}}</span> 님</div>
+        <div class="headerbtn" style = "font-size : 2rem; width: 40rem;">끼룩끼룩씨의 냉장고</div>
+        <div class="headerbtn" style = "margin : 1rem; font-size : 15px;">안녕하세요 <span style ="color : #36CCA6">{{user.username}}</span> 님</div>
         <div class="headerbtn" style = "margin : 1rem;">
             <a href="{% url 'account:logout' %}?next={{request.path}}">로그아웃</a>
         </div>
@@ -61,9 +63,20 @@
     <div style="margin : auto; text-align : center">
         <div class = "headerbtn">
             <a href="/ref/main" style = "margin : auto 3rem;">재료</a> 
-            <a href="/ref/main/searchRecipe" style="margin : auto 3rem;">레시피검색</a> 
+            <a href="/ref/main/searchRecipe" style="margin : auto 3rem;">레시피검색</a>
+            {% if not user.is_authenticated%} 
+            <a href="{% url 'account:login' %}?next={{request.path}}"style = "margin : auto 3rem;">요리커뮤니티</a>
+            {% else %}
             <a href="/community/community_list"  style="margin : auto 3rem;">요리커뮤니티</a> 
-            <a href="/ref/main/mypage" style = "margin : auto 3rem;" >마이페이지</a>
+            {% endif %}
+            
+            {% if not user.is_authenticated%} 
+            <a href="{% url 'account:login' %}?next={{request.path}}" style = "margin : auto 3rem;">마이페이지</a>
+            {% else %}
+            <a href="/ref/main/mypage" style = "margin : auto 3rem;">마이페이지</a>
+            {% endif %}
+            
+
         </div>
     </div>
 </div>

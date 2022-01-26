@@ -90,10 +90,15 @@
 <div style="text-align: center; margin-top : 2rem">
     <span class = "subtitle">🔥인기 레시피🔥</span>
 
-
 </div>
 
 {% include 'slider.html' %}
+
+{% if not user.is_authenticated%} 
+    <h1>안녕</h1>
+{%else%}
+    <h1>안녕ㄴ나</h1>
+{%endif%}
 
 
 {% endblock %}

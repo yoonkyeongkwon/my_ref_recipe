@@ -7,11 +7,9 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <div class="wrapper">
     <div style="text-align: center;">
         <h1>로그인</h1>
-
         <div class="col-8 text-right">
-            <span>또는 <a href="{% url 'account:signup' %}">계정을 만드세요.</a></span>
+            <span><a href="{% url 'account:signup' %}">회원가입</a></span>
         </div>
-        
         <form method="POST">
             {% csrf_token %}
             <br>
@@ -25,8 +23,10 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
             <br><br>
             <input type="submit" class="btn btn-info" value="Login">
         </form>
-        
-        {% if user.is_authenticated %}
+
+        <div style="color : red">{{error}}</div>
+
+        {% comment %} {% if user.is_authenticated %}
             <p>
                 <a class='nav-link' href="{% url 'account:logout' %}">
                     {{ user.username }} 님 반갑습니다. (로그아웃)
@@ -34,8 +34,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
             </p>
         {% else %}
             <p> Guest로 입장하셨습니다. 방문에 감사드립니다! 끼룩</p>
-        {% endif %}
-
+        {% endif %} {% endcomment %}
 
     </div>
 </div>

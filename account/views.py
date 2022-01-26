@@ -35,7 +35,8 @@ def login(request):
         if user is not None:
             auth.login(request, user)
             star = Recipe.objects.order_by('-inq_cnt')[0:10]
-            return render(request,'ref/main.html', {'star':star} )
+            request.session['username'] = username
+            return render(request,'ref/main.html', {'star':star})
         else:
             return render(request, 'login.html', {'error': 'username or password is incorrect.'})
     else:

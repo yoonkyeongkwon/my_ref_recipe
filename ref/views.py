@@ -4,7 +4,7 @@ from socket import AI_PASSIVE
 from django.http import HttpResponse
 from django.shortcuts import render
 from myref import settings
-
+from account.models import Userinfo
 from myref.settings import YOUTUBE_DATA_API_KEY
 from .models import *
 from django.views import View
@@ -32,7 +32,7 @@ from django.views import View
 #     else:
 #         return render(request, 'ref/main.html', context={'text':'GET METHOD!!!'})
         
-class main_view(View):
+class main_v(View):
     array =[]        
     def get(self, request, *args, **kwargs):
         star = Recipe.objects.order_by('-inq_cnt')[0:10]
@@ -53,13 +53,28 @@ class main_view(View):
         
         return render(request, 'ref/main.html', context={'temp' : temp ,'recipe_list': recipe_list, 'new_temp_output': new_temp})
 
+class myPage(View):
+    def get(self, request, *args, **kwargs):
+        # nickname = Userinfo.objects.get(username=self.user.username)
+        username= request.session['username']
+        uinfo = Userinfo.objects.get(name=username)
+        return render(request,'ref/mypage.html',{'uinfo':uinfo})
+    
+    # def post(self, request, *args, **kwargs):   
+    #     recipe_list = request.session['recipe_list']
+    #     self.array.append(request.POST.get('material_name'))
+    #     temp = self.array
+    #     new_temp = Mine()
+    #     new_temp.ingredients = temp
+    #     new_temp.save()
+    #     # new_temp_output = new_temp.objects.all()
+        
+    #     return render(request, 'ref/main.html', context={'temp' : temp ,'recipe_list': recipe_list, 'new_temp_output': new_temp})
 
-def myPage(request):
-    return render(request, 'ref/mypage.html', {})
 
 
-
-
+# def myPage(request):
+#     return render(request, 'ref/mypage.html', {})
 
 
         
