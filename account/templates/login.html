@@ -1,15 +1,24 @@
-<link rel="stylesheet"
-href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+{% extends 'base.html' %}
 {% block content %}
-
-
-
+{% load static%}
+<div style="text-align: right; font-family: GongGothicMedium;">
+    {% if user.is_authenticated %}
+    <p>
+        <a class='nav-link' href="{% url 'account:logout' %}">
+         {{ user.username }} 님 반갑습니다. (로그아웃)
+        </a>
+    </p>
+        {% else %}
+    <p> 현재는 게스트모드입니다! 끼룩!</p>
+    {% endif %}
+</div>
 
 <div class="wrapper">
-    <div style="text-align: center;">
+    <div style="text-align: center; font-family: GongGothicMedium;">
+        <br>
         <h1>로그인</h1>
-        <form method="POST">
+
+         <form method="POST">
             {% csrf_token %}
             <br>
             아이디
@@ -21,19 +30,11 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
             <input name="password" type="password">
             <br><br>
             <input type="submit" class="btn btn-info" value="Login">
+            <br>
+            <br>
         </form>
-        
-        {% if user.is_authenticated %}
-            <p>
-                <a class='nav-link' href="{% url 'account:logout' %}">
-                    {{ user.username }} 님 반갑습니다. (로그아웃)
-                </a>
-            </p>
-        {% else %}
-            <p> Guest로 입장하셨습니다. 방문에 감사드립니다! 끼룩</p>
-        {% endif %}
 
-
+        <a href="{% url 'account:signup' %}">계정이 없나요? 끼룩</a></span>
     </div>
 </div>
 {% endblock %}
