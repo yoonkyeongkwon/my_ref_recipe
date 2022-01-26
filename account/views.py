@@ -21,39 +21,6 @@ def signup(request):
     return render(request, 'account/signup.html', {'form': form})
 
 
-def login(request):
-    context = {}
-    id = request.GET['id']
-
-    rs = Userinfo.objects.filter(id=id)
-
-    if(len(rs) > 0):
-        context['flag'] = '1'
-        context['result_msg'] = '아이디가 있습니다.'
-    else:
-        context['flag'] = '0'
-        context['result_msg'] = '사용 가능한 아이디 입니다.'
-
-    return JsonResponse(context, content_type="application/json") 
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #개별구현 로그인
@@ -68,13 +35,14 @@ def signup_custom(request):
         password = request.POST.get('password')
         name = request.POST.get('name')
         email= request.POST.get('email')
+        last_name= request.POST.get('last_name')
 
         m = Userinfo(
-            id=id, password=password, name=name, email=email)
+            id=id, password=password, name=name, email=email, last_name=last_name)
         m.date_joined = timezone.now()
         m.save()
         return HttpResponse(
-            '가입 완료<br>%s %s %s' % (id, password, name, email))
+            '가입 완료<br>%s %s %s' % (id, password, name, email, last_name))
     else:
         return render(request, 'account/signup_custom.html')
 

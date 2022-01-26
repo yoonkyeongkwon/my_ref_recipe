@@ -11,13 +11,10 @@ class Userinfo(models.Model):
     name = models.CharField(db_column='username', max_length=150)
     # 이메일
     email = models.CharField(db_column='email', max_length=254)
-
-    access_latest = models.DateTimeField(db_column='access_latest', )
-    
+    # 성
+    last_name = models.CharField(db_column='last_name',max_length=150)
 
     '''
-    # 성
-    last_name = models.CharField(max_length=150)
     # 관리자
     is_staff = models.IntegerField()
     # 활성화
