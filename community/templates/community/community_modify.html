@@ -11,13 +11,12 @@
     <link rel="stylesheet" type="text/css" href="{% static 'community.css' %}">
 
 </head>
-<div class="item">
-    <a href="#" onclick="openzlog();" style="width:auto">글작성</a>
-</div>
+{% comment %} <div class="item">
+    <a href="#" onclick="openzlog();" style="width:auto">글 수정</a>
+</div> {% endcomment %}
 
 {% comment %} <div id="zlog" class="modal"> {% endcomment %}
-    <form class="modal-content" action="/community/community_insert/" method="post" enctype="multipart/form-data">
-    <!-- <form class="modal-content" action="/community/community_insert/" method="post" > -->
+    <form class="modal-content" action="/community/community_modify/" method="post" enctype="multipart/form-data">
         <span onclick="closezlog();" class="close">&times;</span>
         {% csrf_token %}
         <img src="{% static '/image/logo.png' %}" title="logo" class="com_logo" />

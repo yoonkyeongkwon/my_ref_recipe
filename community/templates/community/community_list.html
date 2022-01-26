@@ -66,20 +66,83 @@
         color: gray;
         cursor: pointer;
     } 
+    .container div {
+    width: 300px;
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    }
     
-    a:link {text-decoration: none; color: white;}
-    a:visited {text-decoration: none; color: white;}
-    a:hover {text-decoration: none; color: lightgray;}
+    
 
 
+    button {
+        background-color: #F9B514;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal .bg {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+      }
+
+      .modalBox {
+        position: absolute;
+        background-color: #fff;
+        width: 50rem;
+        height: 30rem;
+        padding: 15px;
+        z-index: 5;
+      }
+
+      .modalBox button {
+        display: block;
+        width: 80px;
+        margin: 0 auto;
+      }
+
+      .hidden {
+        display: none;
+      }
+      #chat_iframe{
+        width: 50rem;
+        height: 30rem;
+      }
 </style>
+    
 
 <div class="myrecipe">
 <span style="size: 35px; font-color=#36CCA6; margin-bottom=20px;">내 요리를 자랑해보세요!</span>
-<div class="add">
-    <a href="/community/community_insert/" onclick="openzlog();">
-    +
-    </a>
+
+]<div class="add">
+    {% comment %} <a href="/community/community_insert/" onclick="openzlog();">
+        +
+        </a>          {% endcomment %}
+<button class="openBtn">+</button>
+<div class="modal hidden">
+  <div class="bg"></div>
+  <div class="modalBox">
+    <iframe href="/community/community_insert/" id="chat_iframe" >대체 내용</iframe>  
+    <button class="closeBtn">✖</button>
+  </div>
+</div>
+
 </div>
 {% comment %} 회원일 때, 비회원일 때 구분할 것! 비회원일 때는 로그인이 필요합니다. 창 띄우기 {% endcomment %}
 <div class="container">
