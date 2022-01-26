@@ -83,23 +83,23 @@ def searchRecipe(request):
         username = request.session.get('default','guest')
 
     cnt=Mine.objects.all().count()
-    FT = Recipe.objects.filter(ckg_mtrl_cn__contains=Mine.objects.get(pk=1).ingredients)
+    FT = []
+    
+    for i in range(0,cnt):
+        FT += Recipe.objects.filter(ckg_mtrl_cn__contains=Mine.objects.get(pk=i+1).ingredients)
 
-    def filtering(num,FT):
-        FT = FT(ckg_mtrl_cn__contains=Mine.objects.get(pk=num).ingredients)
-        num -= 1
-        filtering(num,FT)  
-        if(num==0):
-            return FT
+    FT_set = set(FT)
+    FT = list(FT_set)
+    recipe_list = FT[0:10]
+
+    # def filtering(num,FT):
+    #     FT = FT(ckg_mtrl_cn__contains=Mine.objects.get(pk=num).ingredients)
+    #     num -= 1
+    #     filtering(num,FT)  
+    #     if(num==0):
+    #         return FT
         
-    filtering(cnt,FT)
-
-
-    recipe_list = Recipe.objects.all()[0:10]
-    
-    
-    
-
+    # filtering(cnt,FT)
 
 
 
@@ -136,7 +136,7 @@ def searchRecipe(request):
             'duration' : int(parse_duration(result['contentDetails']['duration']).total_seconds() // 60 ),
             'thumbnail' : result['snippet']['thumbnails']['high']['url'],
         }
-        print(result['id'],'###################################')
+        print(result['id'])
 
         videos.append(video_data)
 
