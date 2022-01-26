@@ -41,16 +41,6 @@
         box-shadow: 0 0 0 0 #fff, 0 0 0 3px #36CCA6;;
     }
 </style>
-
-<!-- 냉장고 재료 입력 칸 -->
-<!-- <div class = "testing" style="text-align: center; margin : 1rem">
-    <span>
-    {% for item in recipe_list%}
-    {{ item}}
-    {% endfor%}
-    님</span>의 냉장고
-</div> -->
-
 <br>
 <!-- 재료 이름, 유통기한 -->
 <div style="text-align: center;">
@@ -61,16 +51,20 @@
         {% csrf_token %}
         <input class = "testing" style= "width: 15rem; height: 2.5rem;" type="text" name ="material_name"/>
         <input class = "testing" style="width: 15rem; height: 2.5rem;" type="date" name="expire_date"/>
-        <button type="button" style= "width: 5rem; height: 2.5rem; margin-left : 2rem; margin-top:-0.6rem;
-         font-size: 18px;" class="btn" type="submit">입력</button>
+        {% comment %} <button type="button" style= "width: 5rem; height: 2.5rem; margin-left : 2rem; margin-top:-0.6rem;
+         font-size: 18px;" class="btn" type="submit">입력</button> {% endcomment %}
+        <input type="submit" class="btn btn-primary" value="POST">
     </form>
     <h1>
         {% if temp %}
             {% comment %} {% for new_temp in new_temp_output%} {% endcomment %}
             <h4>    
-                {{temp}}
+                감자 갑자기 왜이럼
+                {{new_temp.ingredients}}
             </h4>
             {% comment %} {% endfor %} {% endcomment %}
+        {% else %}
+            <h2>하이</h2>
         {% endif %}
     </h1>
     <br>

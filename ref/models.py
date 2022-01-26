@@ -40,7 +40,8 @@ class Mine(models.Model):
     # id
     id = models.IntegerField(primary_key=True)
     # 유저 닉네임
-    username = models.ForeignKey(Userinfo, on_delete=models.CASCADE ,db_column='username')
+    # username = models.ForeignKey(Userinfo, on_delete=models.CASCADE ,db_column='username')
+    username = models.CharField(max_length=100)
     # 보유한 재료
     ingredients = models.CharField(max_length=50)
     # 유통기한

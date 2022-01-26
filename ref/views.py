@@ -43,15 +43,18 @@ class main_v(View):
         return render(request,'ref/main.html',{'recipe_list':recipe_list,'userref_list':userref_list, 'star':star})
     
     def post(self, request, *args, **kwargs):   
-        recipe_list = request.session['recipe_list']
+        # recipe_list = request.session['recipe_list']
         self.array.append(request.POST.get('material_name'))
+        username= request.session['username']
         temp = self.array
         new_temp = Mine()
         new_temp.ingredients = temp
+        new_temp.username = username
+        new_temp.id = 1234
         new_temp.save()
         # new_temp_output = new_temp.objects.all()
         
-        return render(request, 'ref/main.html', context={'temp' : temp ,'recipe_list': recipe_list, 'new_temp_output': new_temp})
+        return render(request, 'ref/main.html', context={'temp' : temp, 'new_temp' : new_temp})
 
 class myPage(View):
     def get(self, request, *args, **kwargs):
