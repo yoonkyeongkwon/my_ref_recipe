@@ -82,21 +82,18 @@ def searchRecipe(request):
     else:
         username = request.session.get('default','guest')
 
-    
+    cnt=Mine.objects.all().count()
+    FT = Recipe.objects.filter(ckg_mtrl_cn__contains=Mine.objects.get(pk=1).ingredients)
 
-    ## 내 재료안에 있는 모든걸 레시피에 검색
-    cnt = count(Mine.objects.all)
-    myingre = ""
-
-    num = 0
-    for mine in Mine.objects.all():
-        myingre = str(Mine.ingredients)
-        while(num<cnt-1):
-
-            num += 1
+    def filtering(num,FT):
+        FT = FT(ckg_mtrl_cn__contains=Mine.objects.get(pk=num).ingredients)
+        num -= 1
+        filtering(num,FT)  
+        if(num==0):
+            return FT
         
-    #     myingre += str(mine.ingredients)+'|'
-    # myingre.split
+    filtering(cnt,FT)
+
 
     recipe_list = Recipe.objects.all()[0:10]
     
@@ -178,4 +175,3 @@ def moreNeed(request):
     else:
         
         return render(request,'ref/moreNeed.html',{})
-

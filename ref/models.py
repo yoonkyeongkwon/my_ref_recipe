@@ -8,7 +8,7 @@ from account.models import Userinfo
 # 레시피 테이블
 class Recipe(models.Model):
     # 1. 레시피일련번호(RCP_SNO)
-    rcp_sno = models.IntegerField(default=0)
+    rcp_sno = models.IntegerField(primary_key=True)
     ## 현재 나는 에러는 mysql id 문제
     # 2. **요리명(CKG_NM)**
     ckg_nm = models.TextField()
@@ -37,9 +37,9 @@ class Recipe(models.Model):
 # 유저 냉장고 테이블
 class Mine(models.Model):
     # id
-    id = models.IntegerField(primary_key=True)
+    seq = models.IntegerField(primary_key=True)
     # 유저 닉네임
-    username = models.ForeignKey(Userinfo, on_delete=models.CASCADE ,db_column='username')
+    id = models.CharField(max_length=100)
     # 보유한 재료
     ingredients = models.CharField(max_length=50)
     # 유통기한
@@ -48,7 +48,7 @@ class Mine(models.Model):
 # 찜 테이블(체크 테이블)
 class Jim(models.Model):
     # 유저 닉네임
-    username = models.ForeignKey(Userinfo, on_delete=models.CASCADE)
+    nickname = models.ForeignKey(Userinfo, on_delete=models.CASCADE,db_column='nickname')
     # 찜한 게시판 아이디
     board_id = models.IntegerField()
 
@@ -57,12 +57,11 @@ class Board(models.Model):
     # 보드 아이디
     board_id = models.IntegerField()
     # rcp_sno
-    rcp_sno = models.ForeignKey(Recipe, on_delete=models.CASCADE,)
+    rcp_sno = models.ForeignKey(Recipe, on_delete=models.CASCADE, db_column='rcp_sno')
     # title
     board_title = models.CharField(max_length=50)
     # contents
     board_contents = models.TextField()
-
 
 
 
