@@ -35,7 +35,7 @@
         	border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem;
 	background-color: #fefefe;
 	position: absolute;
-	top: 20%;
+	top: 13%;
 	left: 30%;
 	border: 1px solid #888;
 	max-width: 600px;
@@ -74,7 +74,7 @@
 
 	text-align: center;
 	width: 100%;
-	margin-top: 7rem;
+	margin-top: 2rem;
 }
 
 #btn_insert{
@@ -92,4 +92,10 @@
 	margin-top: 1rem;
 }
 
+.com_logo{
+	width:10rem; 
+	float : center; 
+	margin: 0rem 2rem;
+	margin-left: 13rem;
+}
 

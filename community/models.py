@@ -1,3 +1,4 @@
+from importlib.resources import contents
 from django.db import models
 from django.db.models.fields import CharField, IntegerField, FloatField, DateField
 
@@ -10,13 +11,13 @@ class Board(models.Model):
     contents = models.TextField()
 
     #게시글 조회수
-    views = models.IntegerField()
+    views = models.IntegerField(default = 0)
 
     #게시글 날짜
-    regdate = models.DateTimeField()
+    regdate = models.DateTimeField(auto_now=True)
 
     #게시글 좋아요 수
-    like = models.IntegerField()
+    like = models.IntegerField(default = 0)
 
     #게시글 작성자 이름
     write_id = models.CharField(max_length=45)
@@ -25,3 +26,19 @@ class Board(models.Model):
     post_like_id= models.CharField(max_length=45)
 
     file =models.ImageField(null=True)
+
+    #댓글창
+    comment_what = models.TextField(null=True)
+
+
+# 댓글
+class Comment(models.Model):
+    #댓글 작성자
+    author = models.ForeignKey(Board, on_delete=models.CASCADE)
+    
+    #댓글 내용
+    contents = models.TextField()
+
+    #작성날짜
+    createdTime = models.DateTimeField(auto_now=True)
+
