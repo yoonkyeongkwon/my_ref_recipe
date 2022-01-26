@@ -2,17 +2,12 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Board
 from django.utils import timezone
-from datetime import date
-from datetime import datetime
-import datetime
-from pytz import timezone
 from django.shortcuts import redirect
 
+#커뮤니티 글 쓰기
 def community_insert(request):
     
     if request.method == 'POST':
-         now = datetime.datetime.now(timezone('Asia/Seoul'))
-
          file=request.FILES['file']
          title = request.POST.get('title')
          write_id = request.POST.get('write_id')
@@ -34,5 +29,30 @@ def community_insert(request):
 def community_list(request):
      return render(request, 'community/community_list.html')
 
+
+# 커뮤니티 글 수정
 def community_modify(request):
-     return render(request, 'community/community_list.html')
+     post=Board.objects.get()
+     if request.method == 'POST':
+          file=request.FILES['file']
+          title = request.POST['title']
+          contents = request.POST['contents']
+          try:
+               post.image = request.FILES['image']
+          except:
+               post.image = None
+          post.save()
+          return redirect('community/community_list.html',{'post':post})
+     else:
+          post=Board()
+          return render(request,'community/community_modify.html',{'post':post})
+
+#커뮤니티 글 삭제
+def delete(request, post_id):
+  post = Board.objects.get(id=post_id)
+  post.delete()
+  return redirect('home')
+
+#테스트창 완료 후 삭제
+def test(request):
+     return render(request, 'community/test.html')

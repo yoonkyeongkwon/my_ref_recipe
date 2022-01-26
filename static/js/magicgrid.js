@@ -334,3 +334,17 @@ magicGrid.listen();
 jQuery(document).ready(function(){
   jQuery("#myModal").bmdIframe();
 });
+
+
+// 게시판 등록 모달창 
+const open = () => {
+    document.querySelector(".modal").classList.remove("hidden");
+  }
+
+  const close = () => {
+    document.querySelector(".modal").classList.add("hidden");
+  }
+
+  document.querySelector(".openBtn").addEventListener("click", open);
+  document.querySelector(".closeBtn").addEventListener("click", close);
+  document.querySelector(".bg").addEventListener("click", close);

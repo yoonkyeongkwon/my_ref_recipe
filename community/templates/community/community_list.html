@@ -46,16 +46,72 @@
     border-radius: 1rem;
     }
     
+    
 
-    }
+
+    button {
+        background-color: #F9B514;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal .bg {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+      }
+
+      .modalBox {
+        position: absolute;
+        background-color: #fff;
+        width: 50rem;
+        height: 30rem;
+        padding: 15px;
+        z-index: 5;
+      }
+
+      .modalBox button {
+        display: block;
+        width: 80px;
+        margin: 0 auto;
+      }
+
+      .hidden {
+        display: none;
+      }
+      #chat_iframe{
+        width: 50rem;
+        height: 30rem;
+      }
 </style>
     
 
 </style>
 <div class="add">
-    <a href="/community/community_insert/" onclick="openzlog();">
+    {% comment %} <a href="/community/community_insert/" onclick="openzlog();">
         +
-        </a>         
+        </a>          {% endcomment %}
+<button class="openBtn">+</button>
+<div class="modal hidden">
+  <div class="bg"></div>
+  <div class="modalBox">
+    <iframe href="/community/community_insert/" id="chat_iframe" >대체 내용</iframe>  
+    <button class="closeBtn">✖</button>
+  </div>
+</div>
+
 </div>
 
 <div class="container">

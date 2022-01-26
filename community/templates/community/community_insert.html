@@ -15,7 +15,7 @@
     <a href="#" onclick="openzlog();" style="width:auto">글작성</a>
 </div>
 
-<div id="zlog" class="modal">
+{% comment %} <div id="zlog" class="modal"> {% endcomment %}
     <form class="modal-content" action="/community/community_insert/" method="post" enctype="multipart/form-data">
     <!-- <form class="modal-content" action="/community/community_insert/" method="post" > -->
         <span onclick="closezlog();" class="close">&times;</span>
@@ -40,7 +40,7 @@
             <input type="hidden" name="write_id" value="id12345">
         </div>
     </form> 
-</div>
+{% comment %} </div> {% endcomment %}
 
 
 <script type="text/javascript">
