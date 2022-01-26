@@ -84,14 +84,42 @@ def searchRecipe(request):
 
     cnt=Mine.objects.all().count()
     FT = []
-    
+    array = []
+    # 어레이는 레시피데이터 배열 처리
     for i in range(0,cnt):
-        FT += Recipe.objects.filter(ckg_mtrl_cn__contains=Mine.objects.get(pk=i+1).ingredients)
+        FT = Recipe.objects.filter(ckg_mtrl_cn__contains=Mine.objects.get(pk=i+1,id='admin').ingredients).values('ckg_mtrl_cn')
+        leng = Recipe.objects.filter(ckg_mtrl_cn__contains=Mine.objects.get(pk=i+1,id='admin').ingredients).values('ckg_mtrl_cn').count()
+        ST = ""
+        for j in range(0,leng):
+            ST += str(FT.values('ckg_mtrl_cn')[j]['ckg_mtrl_cn'])+"/"
+            array += [FT.values('ckg_mtrl_cn')[j]['ckg_mtrl_cn']]
 
-    FT_set = set(FT)
-    FT = list(FT_set)
-    recipe_list = FT[0:10]    
+    array = set(array)
+    array = list(array)
+    array.sort()
+    
+    ## mo는 내 냉장고 재료
+    print(array,'@@@@@@@@@@@@@@@@@@@@@@')
+    newarray = []
+    for i in range(0,cnt):
+        mo = Mine.objects.get(pk=i+1,id='admin').ingredients
+        for s in array:
+            if s.__contains__(mo):
+                print(s)
+        print(s,'&&&&&&&&&&&&&&&&&&&&&')
+        print(mo,'$$$$$$$$$$$$$$$$$$')
+
+
+    print(ST,'#########################')
+    
+
+
+    recipe_list = ST[0:10]    
+
+    recipe_list = Recipe.objects.all()[0:5]
     query = str(recipe_list[0].ckg_nm)
+
+    # 
 
     # def filtering(num,FT):
     #     FT = FT(ckg_mtrl_cn__contains=Mine.objects.get(pk=num).ingredients)
@@ -156,20 +184,3 @@ def searchRecipe(request):
 
     return render(request,'ref/searchRecipe.html',context)
 
-
-
-@csrf_exempt
-def moreNeed(request):
-    if request.method == 'POST':
-
-
-
-
-
-
-
-        return 
-
-    else:
-        
-        return render(request,'ref/moreNeed.html',{})
