@@ -4,8 +4,11 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 {% block content %}
 <div class="wrapper" style="text-align: center;">
     <h1>회원가입</h1>
-    <form method="POST">
+    <form method="post" class="post-form">
+
         {% csrf_token %}
+        {% include "form_error.html" %}
+
         아이디 <br>
         <input name="username" type="text">
         <br>
@@ -21,7 +24,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         별명 <br>
         <input name="last_name" type="last_name">
         <br><br>
-        <input type="submit" class="btn btn-primary" value="Sign Up">
+        <input type="submit" class="btn btn-info" value="Sign Up">
     </form>
 </div>
 {% endblock %}
