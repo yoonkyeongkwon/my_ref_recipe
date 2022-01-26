@@ -1,6 +1,10 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from .forms import UserForm
+from datetime import datetime
+import json
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 def signup(request):
     if request.method == "POST":
@@ -19,6 +23,8 @@ def signup(request):
 
 
 
+#개별구현 로그인
+
 from .models import Userinfo
 from django.utils import timezone
 from django.http import HttpResponse
@@ -29,13 +35,14 @@ def signup_custom(request):
         password = request.POST.get('password')
         name = request.POST.get('name')
         email= request.POST.get('email')
+        last_name= request.POST.get('last_name')
 
         m = Userinfo(
-            id=id, password=password, name=name, email=email)
+            id=id, password=password, name=name, email=email, last_name=last_name)
         m.date_joined = timezone.now()
         m.save()
         return HttpResponse(
-            '가입 완료<br>%s %s %s' % (id, password, name, email))
+            '가입 완료<br>%s %s %s' % (id, password, name, email, last_name))
     else:
         return render(request, 'account/signup_custom.html')
 

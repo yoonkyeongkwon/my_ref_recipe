@@ -22,5 +22,7 @@ urlpatterns = [
     path('login/custom/', views.login_custom, name='login_custom'),
 
 
+    path('login/test/', auth_views.LoginView.as_view(
+            template_name='account/login_test.html'), name='login_test'),
 
 ]
