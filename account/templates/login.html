@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static%}
+<img src="{% static '/image/login1.jpg' %}">
+
 <div style="text-align: right; font-family: GongGothicMedium;">
     {% if user.is_authenticated %}
     <p>
