@@ -25,6 +25,7 @@
         position: relative;
         font-size: 20px;
         text-align: center;
+        
     }
 
     .container div {
@@ -63,7 +64,7 @@
     }
 
     .add {
-        position:fixed;
+        position:relative;
         bottom:20px;
         right:55px;
         background-color: #36CCA6;
@@ -100,6 +101,8 @@
     }
 
     .modal {
+        border-top-left-radius: 1.5rem; border-top-right-radius: 1.5rem;
+        border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem;
         position: fixed;
         top: 0;
         left: 0;
@@ -145,6 +148,7 @@
         height: 51rem;
     }
 </style>
+
 <button class="openBtn">+</button>
 <div>
 <div class="modal hidden">
@@ -158,10 +162,13 @@
 
 <div class="myrecipe">
 <span style="size: 35px; font-color=#36CCA6; margin-bottom=20px;">내 요리를 자랑해보세요!</span>
-
 </div>
+
+      
 {% comment %} 회원일 때, 비회원일 때 구분할 것! 비회원일 때는 로그인이 필요합니다. 창 띄우기 {% endcomment %}
+
 <div class="container">
+
         <div>
             {% comment %} <img src="https://picsum.photos/200/300"> {% endcomment %}
             <img src="{% static '/image/sample.jpg' %}">
