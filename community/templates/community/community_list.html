@@ -105,8 +105,8 @@
       .modalBox {
         position: absolute;
         background-color: #fff;
-        width: 50rem;
-        height: 30rem;
+        width: 80rem;
+        height: 60rem;
         padding: 15px;
         z-index: 5;
       }
@@ -121,8 +121,8 @@
         display: none;
       }
       #chat_iframe{
-        width: 50rem;
-        height: 30rem;
+        width: 80rem;
+        height: 60rem;
       }
 </style>
     
@@ -138,14 +138,18 @@
 <div class="modal hidden">
   <div class="bg"></div>
   <div class="modalBox">
-    <iframe href="/community/community_insert/" id="chat_iframe" >대체 내용</iframe>  
+    <iframe href="/community/community_insert" id="chat_iframe" >대체 내용</iframe>  
     <button class="closeBtn">✖</button>
   </div>
 </div>
 
 </div>
 {% comment %} 회원일 때, 비회원일 때 구분할 것! 비회원일 때는 로그인이 필요합니다. 창 띄우기 {% endcomment %}
+    {% for a in boardlist %}
+        <h3>{{ a.contents }}</h3>
+    {% endfor %}
 <div class="container">
+
         <div>
             {% comment %} <img src="https://picsum.photos/200/300"> {% endcomment %}
             <img src="{% static '/image/sample.jpg' %}">

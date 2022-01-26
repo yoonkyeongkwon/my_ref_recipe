@@ -3,20 +3,21 @@ from django.http import HttpResponse
 from .models import Board
 from django.utils import timezone
 from django.shortcuts import redirect
-
+from django.urls import path
+from . import views
+from django.views.generic import TemplateView
+import datetime
+from django.utils import timezone
 #커뮤니티 글 쓰기
 def community_insert(request):
     
     if request.method == 'POST':
          file=request.FILES['file']
-         title = request.POST.get('title')
          write_id = request.POST.get('write_id')
          contents = request.POST.get('contents')
          m = Board()
-         m.title=title
          m.write_id=write_id
          m.contents=contents
-   
          m.views=0
          m.like=0
          m.file=file
@@ -28,16 +29,19 @@ def community_insert(request):
 
 
 # 커뮤니티 글 리스트 보기
-def community_list(request):
-     board_list=Board.objects.all()
-     return render(request, 'community/community_list.html',{'board_list':board_list})
-
+class community_list(TemplateView):
+     template_name = "community/community_list.html"
+     def get(self, request):
+          boardlist = Board.objects.all()
+          print(boardlist)
+          context={'boardlist':boardlist}
+          return render(request, self.template_name,context)
 
 
 
 # 커뮤니티 글 수정
-def community_modify(request):
-     post=Board.objects.get()
+def community_modify(request,post_id):
+     post=Board.objects.get(id=post_id)
      if request.method == 'POST':
           file=request.FILES['file']
           title = request.POST['title']
@@ -56,7 +60,7 @@ def community_modify(request):
 def delete(request, post_id):
   post = Board.objects.get(id=post_id)
   post.delete()
-  return redirect('home')
+  return redirect('community_list')
 
 #테스트창 완료 후 삭제
 def test(request):
