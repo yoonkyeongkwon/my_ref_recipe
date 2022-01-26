@@ -90,7 +90,8 @@ def searchRecipe(request):
 
     FT_set = set(FT)
     FT = list(FT_set)
-    recipe_list = FT[0:10]
+    recipe_list = FT[0:10]    
+    query = str(recipe_list[0].ckg_nm)
 
     # def filtering(num,FT):
     #     FT = FT(ckg_mtrl_cn__contains=Mine.objects.get(pk=num).ingredients)
@@ -102,12 +103,11 @@ def searchRecipe(request):
     # filtering(cnt,FT)
 
 
-
     search_url = 'https://www.googleapis.com/youtube/v3/search'
     video_url = 'https://www.googleapis.com/youtube/v3/videos'
     search_params = {
         'part' : 'snippet',
-        'q' : '검색바꾼결과',
+        'q' : query,
         'key' : settings.YOUTUBE_DATA_API_KEY,
         'maxResults' : 4,
         'type':'video'
