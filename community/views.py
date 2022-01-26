@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import Board
 from django.utils import timezone
 from django.shortcuts import redirect
+from django.views.generic import TemplateView
 
 #커뮤니티 글 쓰기
 def community_insert(request):
@@ -26,8 +27,13 @@ def community_insert(request):
     else:
         return render(request, 'community/community_insert.html',context={'text':'GET method!!!'})
 
-def community_list(request):
-     return render(request, 'community/community_list.html')
+class community_list(TemplateView):
+     template_name = "community/community_list.html"
+     def get(self, request):
+          boardlist = Board.objects.all()
+          print(boardlist)
+          return render(request, self.template_name, {'data':boardlist})
+     # return render(request, TemplateView.as_view(template_name='/community/community_list.html'), {'board_list':board_list})
 
 
 # 커뮤니티 글 수정

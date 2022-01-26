@@ -14,7 +14,7 @@ class Board(models.Model):
     views = models.IntegerField(default = 0)
 
     #게시글 날짜
-    regdate = models.DateTimeField(auto_now=True)
+    regdate = models.DateField(auto_now_add=True)
 
     #게시글 좋아요 수
     like = models.IntegerField(default = 0)
@@ -22,23 +22,29 @@ class Board(models.Model):
     #게시글 작성자 이름
     write_id = models.CharField(max_length=45)
 
-    #게시글 좋아요한 사람의 아이디
-    post_like_id= models.CharField(max_length=45)
-
     file =models.ImageField(null=True)
 
-    #댓글창
-    comment_what = models.TextField(null=True)
-
+    class Meta:
+        managed=False
+        db_table = "community_board"
+        app_label = "community_board"
 
 # 댓글
 class Comment(models.Model):
+    com_id = models.IntegerField(primary_key=True)
+
     #댓글 작성자
-    author = models.ForeignKey(Board, on_delete=models.CASCADE)
+    author = models.CharField(max_length=45)
     
     #댓글 내용
     contents = models.TextField()
 
     #작성날짜
-    createdTime = models.DateTimeField(auto_now=True)
+    createdTime = models.DateTimeField(auto_now_add=True)
 
+    id = models.ForeignKey(Board, on_delete = models.CASCADE)
+
+    class Meta:
+        managed=False
+        db_table = "comment"
+        app_label = "comment"
