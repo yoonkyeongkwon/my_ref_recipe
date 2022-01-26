@@ -9,20 +9,33 @@
         font-size: 20px;
     }
 </style>
-
-<div class="myprofile" style="text-align: center;">
-
-    <img src ="{% static 'image/profile.jpg' %}" alt="" style="height:8rem; width : 8rem; border-radius : 10rem; 
-                border: 5px solid #36CCA6;"><br>
-    <span style="margin: 1rem 1rem;">
-        안녕하세요, oo님
-    </span>
-    <div>
-        <p>아이디</p>
-        <p>닉네임</p>
-        <p>이메일</p>
+<br>
+<div class = "myprofile">
+    <div class="card mb-3" style="width : 40rem ;margin: auto; text-align : center;">
+    <div class="row g-0">
+        <div class="col-md-4"style ="text-align : center; border: 5px solid #36CCA6; ">
+            <img src="{% static 'image/profile.jpg' %}" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+        <div class="card-body" style ="margin : 2rem">
+            <div>
+                <h3 class="card-title" style="display:inline-block;">아이디</h3>
+                <h3 style="display:inline-block; margin-left : 1.5rem; margin-right : 10rem" >뭐잉</h3>
+            </div>
+            <div>
+                <h3 class="card-title" style="display:inline-block;">닉네임</h3>
+                <h3 style="display:inline-block; margin-left : 1.5rem; margin-right : 10rem" >뭐잉</h3>
+            </div>
+            <div>
+                <h3 class="card-title" style="display:inline-block;">이메일</h3>
+                <h3 style="display:inline-block; margin-left : 1.5rem; margin-right : 10rem" >뭐잉</h3>
+            </div>
+        </div>
+        </div>
+    </div>
     </div>
 </div>
+<br>
 
 <hr>
 <div style="margin:2rem 0rem; text-align:center;"></div>

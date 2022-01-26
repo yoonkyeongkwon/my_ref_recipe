@@ -1,8 +1,14 @@
 from distutils.command.check import check
+from msilib.schema import ListView
+from socket import AI_PASSIVE
 from django.http import HttpResponse
 from django.shortcuts import render
+from myref import settings
+
+from myref.settings import YOUTUBE_DATA_API_KEY
 from .models import *
 from django.views import View
+ 
 
 # Create your views here.
 # def main(request):
@@ -27,16 +33,14 @@ from django.views import View
 #         return render(request, 'ref/main.html', context={'text':'GET METHOD!!!'})
         
 class main_view(View):
-    def __init__(self) -> None:
-        super().__init__()
-        self.array = []
-        
+    array =[]        
     def get(self, request, *args, **kwargs):
+        star = Recipe.objects.order_by('-inq_cnt')[0:10]
         # recipe_list = Recipe.objects.all()[0]
         userref_list = Mine.objects.all()
         recipe_list = '00'
         request.session['recipe_list'] = recipe_list
-        return render(request,'ref/main.html',{'recipe_list':recipe_list,'userref_list':userref_list})
+        return render(request,'ref/main.html',{'recipe_list':recipe_list,'userref_list':userref_list, 'star':star})
     
     def post(self, request, *args, **kwargs):   
         recipe_list = request.session['recipe_list']
@@ -61,43 +65,103 @@ def myPage(request):
         
 from .models import *
 from django.views.decorators.csrf import csrf_exempt
-
-# Create your views here.
-@csrf_exempt
-def main(request):
-
-    recipe_list = Recipe.objects.order_by('rcp_sno')[0:5]
-    userref_list = Mine.objects.all()
-
-    return render(request,'ref/main.html',{'recipe_list':recipe_list,
-                                            'userref_list':userref_list,})
+import requests
+from isodate import parse_duration
+from account.models import Userinfo
+from itertools import *
 
 @csrf_exempt
 def searchRecipe(request):
 
     user_check = request.POST.get('user_like') 
     board_info = Board.objects.all()
-    recipe_list = Recipe.objects.all()[0:5]
+    
+    username = ""
+    if 'username' in request.session:
+        username = request.session.get('username')
+    else:
+        username = request.session.get('default','guest')
+
+    
+
+    ## 내 재료안에 있는 모든걸 레시피에 검색
+    cnt = count(Mine.objects.all)
+    myingre = ""
+
+    num = 0
+    for mine in Mine.objects.all():
+        myingre = str(Mine.ingredients)
+        while(num<cnt-1):
+
+            num += 1
+        
+    #     myingre += str(mine.ingredients)+'|'
+    # myingre.split
+
+    recipe_list = Recipe.objects.all()[0:10]
+    
+    
     
 
 
 
 
+    search_url = 'https://www.googleapis.com/youtube/v3/search'
+    video_url = 'https://www.googleapis.com/youtube/v3/videos'
+    search_params = {
+        'part' : 'snippet',
+        'q' : '검색바꾼결과',
+        'key' : settings.YOUTUBE_DATA_API_KEY,
+        'maxResults' : 4,
+        'type':'video'
+    }
+    video_ids = []
+    r = requests.get(search_url,params=search_params)
+
+    results = (r.json()['items'])
+    for result in results:
+        video_ids.append(result['id']['videoId'])
+    
+    video_params = {
+        'key' : settings.YOUTUBE_DATA_API_KEY,
+        'part' : 'snippet,contentDetails',
+        'id' : ','.join(video_ids),
+        'maxResults' : 4,
+    }
+    r = requests.get(video_url,params=video_params)
+    results = (r.json()['items'])
+    videos=[]
+    for result in results:
+        video_data = {
+            'title' : result['snippet']['title'],
+            'id' : result['id'],
+            'url': f'https://www.youtube.com/watch?v={result["id"]}',
+            'duration' : int(parse_duration(result['contentDetails']['duration']).total_seconds() // 60 ),
+            'thumbnail' : result['snippet']['thumbnails']['high']['url'],
+        }
+        print(result['id'],'###################################')
+
+        videos.append(video_data)
+
+        context ={
+            'videos': videos,
+            'recipe_list':recipe_list,
+            'user_check':user_check,
+            'board_info':board_info,
+        }
+
+    # context ={
+    #     'recipe_list':recipe_list,
+    #     'user_check':user_check,
+    #     'board_info':board_info,
+    # }
+        
+
+    return render(request,'ref/searchRecipe.html',context)
+    
 
 
 
-
-
-
-
-
-
-
-
-
-    return render(request,'ref/searchRecipe.html',{'recipe_list':recipe_list,
-                                                    'user_check':user_check,
-                                                    'board_info':board_info,})
 
 @csrf_exempt
 def moreNeed(request):

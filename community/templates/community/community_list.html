@@ -4,24 +4,52 @@
 {% block content %}
 
 <style>
+    .myrecipe {
+        font-family: "SUIT-Medium";
+        position: relative;
+        font-size: 20px;
+        text-align: center;
+    }
+
     .container div {
-    width: 280px;
-    background-color: antiquewhite;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 1rem 0;
+        width: 280px;
+        background-color: #FAFAFA;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 1rem;
+        flex-direction: column;
     }
 
     .container img {
         width: 100%;
-        border-radius: 1rem;
+        border-radius: 1rem 1rem 0 0;
+    }
+
+    .container:hover {
+        cursor:pointer;
+    }
+
+    .comment {
+        flex-direction:row;
+        height: 100px;
+        border-radius: 0 0 1rem 1rem;
+        justify-content:flex-start;
+        font-size: 15px;
+    }
+
+    .comment img {
+        display: inline-block;
+        height: 2.5rem;
+        width: 2.5rem;
+        border-radius: 10rem;
+        border: 1px solid black;
     }
 
     .add {
         position:fixed;
-        bottom:0;
-        right:0;
+        bottom:20px;
+        right:55px;
         background-color: #36CCA6;
         width: 80px;
         height: 80px;
@@ -29,7 +57,8 @@
         color: white;
         border: none;
         border-radius: 75px;
-        text-align: center;  
+        text-align: center;
+        line-height: 75px;  
     }
 
 
@@ -98,8 +127,10 @@
 </style>
     
 
-</style>
-<div class="add">
+<div class="myrecipe">
+<span style="size: 35px; font-color=#36CCA6; margin-bottom=20px;">내 요리를 자랑해보세요!</span>
+
+]<div class="add">
     {% comment %} <a href="/community/community_insert/" onclick="openzlog();">
         +
         </a>          {% endcomment %}
@@ -113,49 +144,78 @@
 </div>
 
 </div>
-
+{% comment %} 회원일 때, 비회원일 때 구분할 것! 비회원일 때는 로그인이 필요합니다. 창 띄우기 {% endcomment %}
 <div class="container">
-    <div>
-        <img src="https://picsum.photos/200/300">
+        <div>
+            {% comment %} <img src="https://picsum.photos/200/300"> {% endcomment %}
+            <img src="{% static '/image/sample.jpg' %}">
+            <div class="comment">
+                <img src="{% static 'image/profile.jpg' %}">
+                <span>우와 맛있겠다</span><br>
+                <img src="{% static 'image/profile.jpg' %}">
+                <span>우와 맛있겠다</span><br>
+            </div>
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/340">
+            <div class="comment"></div>
+        </div> 
+        <div>
+            <img src="https://picsum.photos/200/280">
+            <div class="comment"></div>
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/390">
+            <div class="comment"></div>
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/200">
+            <div class="comment"></div>
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/500">
+            <div class="comment"></div>
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/100">
+            <div class="comment"></div>
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/250">
+            <div class="comment"></div>
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/320">
+            <div class="comment"></div>
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/300">
+            <div class="comment"></div>
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/300">
+            <div class="comment"></div>
+        </div>
+        <div>
+            <img src="https://picsum.photos/200/270"> 
+            <div class="comment"></div>
+        </div> 
+        <div>
+            <img src="https://picsum.photos/200/330">
+            <div class="comment"></div>
+        </div> 
     </div>
-    <div>
-        <img src="https://picsum.photos/200/340">
-    </div> 
-    <div>
-        <img src="https://picsum.photos/200/280">
-    </div>
-    <div>
-        <img src="https://picsum.photos/200/390">
-    </div>
-    <div>
-        <img src="https://picsum.photos/200/200">
-    </div>
-    <div>
-        <img src="https://picsum.photos/200/500">
-    </div>
-    <div>
-        <img src="https://picsum.photos/200/100">
-    </div>
-    <div>
-        <img src="https://picsum.photos/200/250">
-    </div>
-    <div>
-        <img src="https://picsum.photos/200/320">
-    </div>
-    <div>
-        <img src="https://picsum.photos/200/300">
-    </div>
-    <div>
-        <img src="https://picsum.photos/200/300">
-    </div>
-    <div>
-        <img src="https://picsum.photos/200/270"> 
-    </div> 
-    <div>
-        <img src="https://picsum.photos/200/330">
-    </div> 
 </div>
 
 <script src="{% static 'js/magicgrid.js' %}"></script>
-{% endblock %}
+<script>
+    var imgs = document.querySelectorAll('.container img');
+    for (var i = 0; i < imgs.length; i++) {
+        imgs[i].addEventListener("click", lookup);
+    }
 
+    function lookup(e) {
+        // 컨테이너 내 이미지 입력했을 때 뜨는 상세페이지(사진, 글, 댓글)
+    }
+</script>
+{% endblock %}

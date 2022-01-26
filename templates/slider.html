@@ -1,10 +1,22 @@
 {% load static %} 
+<style>
+    .cook_name{
+        text-align : center;
+        margin-top : 1rem;
+        font-size: 20px;
+        font-family: "SUIT-Medium";
+    }
+</style>
+
 <body>
     <div class="myslide" style="width: 80rem; margin :auto">
-        <div class="items"><img src="{% static 'image/128671.jpg' %}" alt=""></div>
-        <div class="items"><img src="{% static 'image/128671.jpg' %}" alt=""></div>
-        <div class="items"><img src="{% static 'image/128671.jpg' %}" alt=""></div>
-        <div class="items"><img src="{% static 'image/128671.jpg' %}" alt=""></div>
-        <div class="items"><img src="{% static 'image/128671.jpg' %}" alt=""></div>  
+    {% for item in star%}
+    <div class="items" style="text-align : center;">
+        <a href = '#' style="text-decoration-line : none;">
+            <img src="/static/image/rep_img/{{item.rcp_sno}}.jpg/" alt="" style="border-radius : 2rem">
+            <div class="cook_name">{{item.ckg_nm}}</div>
+        </a>
+    </div>
+    {% endfor%}
     </div>
 </body>
