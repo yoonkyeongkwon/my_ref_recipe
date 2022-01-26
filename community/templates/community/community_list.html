@@ -5,7 +5,8 @@
 
 <style>
     .openBtn{
-        margin-left:30%;
+        margin-top:2.5rem;
+        margin-left:85%;
         position:relative;
         bottom:20px;
         right:55px;
@@ -91,17 +92,20 @@
     border-radius: 1rem;
     }
     
-    
+    .closeBtn {
+        float: LEFT;
+        font-size: 1rem;
+        font-weight: bold;
+        color: gray;
+        margin-left: 1rem ;
+    }
 
 
-    button {
-        background-color: #F9B514;
-        padding: 5px 10px;
-        border-radius: 4px;
-        cursor: pointer;
-      }
+
 
       .modal {
+        border-top-left-radius: 1.5rem; border-top-right-radius: 1.5rem;
+        border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem;
         position: fixed;
         top: 0;
         left: 0;
@@ -110,6 +114,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        overflow: hidden;
       }
 
       .modal .bg {
@@ -119,17 +124,20 @@
       }
 
       .modalBox {
+        border-top-left-radius: 1.5rem; border-top-right-radius: 1.5rem;
+        	border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem;
         position: absolute;
         background-color: #fff;
-        width: 40rem;
-        height: 60rem;
+        width: 41rem;
+        height: 51rem;
         padding: 15px;
         z-index: 5;
+        overflow: hidden;
       }
 
       .modalBox button {
         display: block;
-        width: 80px;
+        width: 2.5rem;
         margin: 0 auto;
       }
 
@@ -137,19 +145,19 @@
         display: none;
       }
       #chat_iframe{
-        width: 40rem;
-        height: 40rem;
+        margin-left:0.32rem;
+        width: 41rem;
+        height: 51rem;
       }
 </style>
 <button class="openBtn">+</button>
 <div>
 <div class="modal hidden">
 <div class="bg"></div>
-<div class="modalBox">
-    <button class="closeBtn">✖</button>
-  <iframe src="/community/community_insert" id="chat_iframe" >대체 내용</iframe>  
-  
-</div>
+    <div class="modalBox">
+         <button class="closeBtn">✖</button>
+        <iframe src="/community/community_insert" id="chat_iframe" >대체 내용</iframe>  
+    </div>
 </div>
 </div>
 <div class="myrecipe">
