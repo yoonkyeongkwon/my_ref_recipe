@@ -141,7 +141,7 @@ def searchRecipe(request):
         videos.append(video_data)
 
         context ={
-            'videos': videos,
+            'videos':videos,
             'recipe_list':recipe_list,
             'user_check':user_check,
             'board_info':board_info,
@@ -155,8 +155,6 @@ def searchRecipe(request):
         
 
     return render(request,'ref/searchRecipe.html',context)
-    
-
 
 
 
