@@ -39,7 +39,7 @@ class main_view(View):
         # recipe_list = Recipe.objects.all()[0]
         userref_list = Mine.objects.all()
         recipe_list = '00'
-        request.session['recipe_list'] = recipe_list
+        # # request.session['recipe_list'] = star
         return render(request,'ref/main.html',{'recipe_list':recipe_list,'userref_list':userref_list, 'star':star})
     
     def post(self, request, *args, **kwargs):   

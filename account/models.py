@@ -4,17 +4,17 @@ from django.db import models
 class Userinfo(models.Model):
     
     # 유저 id
-    id = models.IntegerField(primary_key=True)
+    id = models.IntegerField(db_column='id', primary_key=True)
     # 비밀번호
-    password = models.CharField(max_length=128)
+    password = models.CharField(db_column='password', max_length=128)
     # 이름
-    name = models.CharField(max_length=150)
+    name = models.CharField(db_column='username', max_length=150)
     # 이메일
-    email = models.CharField(max_length=254)
+    email = models.CharField(db_column='email', max_length=254)
+    # 성
+    last_name = models.CharField(db_column='last_name',max_length=150)
 
     '''
-    # 성
-    last_name = models.CharField(max_length=150)
     # 관리자
     is_staff = models.IntegerField()
     # 활성화

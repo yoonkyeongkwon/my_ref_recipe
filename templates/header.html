@@ -1,4 +1,35 @@
 {% load static%}
+<style>
+    .headerbtn{
+        font-size : 20px; 
+        display: inline-block; 
+        width: auto;
+        color : #4e5052;
+        font-family: "GongGothicMedium";
+        }
+    .headerbtn a {
+        display: inline-block;
+    }
+    .headerbtn a:link {
+        text-decoration: none;
+        color: #3f464d;
+    }
+    .headerbtn a:visited {
+        text-decoration: none;
+        color: #3f464d;
+    }
+    .headerbtn a:active {
+        text-decoration: none;
+        color: #3f464d;
+    }
+    .headerbtn a:hover {
+        text-decoration: none;
+        color: #36CCA6;
+        cursor: pointer;
+    }    
+</style>
+
+
 <div class="main_header">
     <div>
         <a href="/ref/main">
@@ -6,19 +37,33 @@
         </a>    
         <br>
     </div>
-    <div style="font-family: GongGothicMedium;">
-        <a href="/ref/main/mypage">
-            <img src="{% static '/image/user.png' %}" title="회원 계정 이미지" style="display: inline-block; width:40px; float : right; margin: 0rem 2rem;"/>
-        </a>
-        <div style = "font-size : 2rem; display: inline-block; width: 500px;">끼룩끼룩씨의 냉장고</div>
-        <img src="{% static '/image/user.png' %}" title="회원 계정 이미지" style="visibility: hidden; width:40px; float : left; margin: 0rem 2rem;"/>
+    <div>
+        {% if not user.is_authenticated%}
+        <div class="headerbtn" style = "margin : 1rem; visibility: hidden;">로그인</div>
+        <div class="headerbtn" style = "margin : 1rem; visibility: hidden;">회원가입</div>
+        <div class="headerbtn" style = "font-size : 2rem; width: 50rem;">끼룩끼룩씨의 냉장고</div>
+        <div class = "headerbtn" style = "margin : 1rem;" >
+            <a href="{% url 'account:login' %}?next={{request.path}}">로그인</a>
+        </div>
+        <div class = "headerbtn" style = "margin : 1rem;" >
+            <a href="{% url 'account:signup' %}?next={{request.path}}">회원가입</a>
+        </div>
+        {% else %}
+        <div class="headerbtn" style = "margin : 1rem; visibility: hidden;">로그아웃</div>
+        <div class="headerbtn" style = "font-size : 2rem; width: 50rem;">끼룩끼룩씨의 냉장고</div>
+        <div class="headerbtn" style = "margin : 1rem;">
+            <a href="{% url 'account:logout' %}?next={{request.path}}">로그아웃</a>
+        </div>
+        {% endif %}
     </div>
     </div>
     <hr>
-    <div style = "text-align: center; font-family: GongGothicMedium; font-size : 1.5rem;">
-        <a href="/ref/main" class="main_header_menu">재료</a> 
-        <a href="/ref/main/searchRecipe" class="main_header_menu">레시피검색</a> 
-        <a href="/community/community_list" class="main_header_menu">요리커뮤니티</a> 
-        <a href="/ref/main/mypage" class="main_header_menu">마이페이지</a>
+    <div style="margin : auto; text-align : center">
+        <div class = "headerbtn">
+            <a href="/ref/main" style = "margin : auto 3rem;">재료</a> 
+            <a href="/ref/main/searchRecipe" style="margin : auto 3rem;">레시피검색</a> 
+            <a href="/community/community_list"  style="margin : auto 3rem;">요리커뮤니티</a> 
+            <a href="/ref/main/mypage" style = "margin : auto 3rem;" >마이페이지</a>
+        </div>
     </div>
 </div>

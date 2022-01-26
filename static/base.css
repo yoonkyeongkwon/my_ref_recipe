@@ -1,11 +1,3 @@
-.main_footer_logo{
-    font-size : .6rem;
-}
-
-.main_footer_btn{
-    font-size : .9rem;
-}
-
 .main_footer{
     text-align: center; 
     margin-top: 2rem;
@@ -16,8 +8,4 @@
     margin: .8rem 0;
 }
 
-.main_header_menu{
-    margin: 0rem 2rem; 
-    text-decoration-line : none;
-    color: black; 
-}
+
