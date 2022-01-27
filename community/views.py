@@ -83,6 +83,10 @@ def community_modify(request,post_id):
           return render(request,'community/community_modify.html',{'post':post})
 
 #커뮤니티 글 삭제
+def delete(request, post_id):
+     post = Board.objects.get(id=post_id)
+     post.delete()
+     return redirect('home')
 def community_delete(request, post_id):
   post = Board.objects.get(id=post_id)
   post.delete()
