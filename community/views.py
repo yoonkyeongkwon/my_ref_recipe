@@ -1,6 +1,8 @@
 from compileall import compile_dir
+from distutils.command.upload import upload
 from hmac import compare_digest
 from importlib.resources import contents
+from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Board
@@ -19,6 +21,13 @@ from django.http import FileResponse
 from django.core.files.storage import FileSystemStorage
 from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
+
+#
+import urllib
+import os
+from django.http import HttpResponse, Http404
+import mimetypes
+
 
 #커뮤니티 글 쓰기
 def community_insert(request):
@@ -93,17 +102,30 @@ def test(request):
      board_list=Board.objects.all()
      return render(request, 'community/test.html',{'board_list':board_list})
 
+
 #파일 다운로드
 class FileDownloadView(SingleObjectMixin, View):
     queryset = Board.objects.all()
 
     def get(self, request, document_id):
-        object = self.get_object(document_id)
-        
+        object = self.get_object(id=document_id)
+
         file_path = object.attached.path
         file_type = object.content_type  # django file object에 content type 속성이 없어서 따로 저장한 필드
         fs = FileSystemStorage(file_path)
         response = FileResponse(fs.open(file_path, 'rb'), content_type=file_type)
-        response['Content-Disposition'] = f'attachment; filename={object.get_filename()}'
+        response['Content-Disposition'] = f'attachment; filename={object.file()}'
         
         return response
+
+def downloads(request):
+     id = request.GET.get('id')
+     print(id,22222222222)
+     uploadFile = Board.objects.get(id=id)
+     print(uploadFile,3333333333333)
+     filepath = str(settings.BASE_DIR) + ('/media/%s' % uploadFile.file.name)
+     filename = os.path.basename(filepath)
+     with open(filepath, 'rb') as f:
+          response = HttpResponse(f, content_type='application/octet-stream')
+          response['Content-Disposition'] = 'attachment; filename=%s' % filename
+          return response
