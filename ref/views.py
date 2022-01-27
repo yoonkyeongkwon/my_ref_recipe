@@ -1,6 +1,7 @@
 from distutils.command.check import check
 from msilib.schema import ListView
 from socket import AI_PASSIVE
+from typing import Dict
 from django.http import HttpResponse
 from django.shortcuts import render
 from myref import settings
@@ -82,39 +83,54 @@ def searchRecipe(request):
     else:
         username = request.session.get('default','guest')
 
-    cnt=Mine.objects.all().count()
-    FT = []
-    array = []
-    # 어레이는 레시피데이터 배열 처리
-    for i in range(0,cnt):
-        FT = Recipe.objects.filter(ckg_mtrl_cn__contains=Mine.objects.get(pk=i+1,id='admin').ingredients).values('ckg_mtrl_cn')
-        leng = Recipe.objects.filter(ckg_mtrl_cn__contains=Mine.objects.get(pk=i+1,id='admin').ingredients).values('ckg_mtrl_cn').count()
-        ST = ""
-        for j in range(0,leng):
-            ST += str(FT.values('ckg_mtrl_cn')[j]['ckg_mtrl_cn'])+"/"
-            array += [FT.values('ckg_mtrl_cn')[j]['ckg_mtrl_cn']]
 
-    array = set(array)
-    array = list(array)
-    array.sort()
-    
-    ## mo는 내 냉장고 재료
-    print(array,'@@@@@@@@@@@@@@@@@@@@@@')
-    newarray = []
-    for i in range(0,cnt):
-        mo = Mine.objects.get(pk=i+1,id='admin').ingredients
-        for s in array:
-            if s.__contains__(mo):
-                print(s)
-        print(s,'&&&&&&&&&&&&&&&&&&&&&')
-        print(mo,'$$$$$$$$$$$$$$$$$$')
+    cntr=Recipe.objects.all().count()
+    cntm=Mine.objects.all().count()
+    listscore = []
+    score = 0
+    listmtrl=[]
+    for i in range(0,cntm):
+        mtrl = Recipe.objects.filter(ckg_mtrl_cn__contains=Mine.objects.get(pk=i+1,id='admin').ingredients).values('mtrl')
+        mtrl_cnt = Recipe.objects.filter(ckg_mtrl_cn__contains=Mine.objects.get(pk=i+1,id='admin').ingredients).values('mtrl_cnt')
+        for j in (0,cntr):
+            reci = Recipe.objects.all().values('mtrl')
 
+    reci = dict(reci)
+    print(type(reci))
 
-    print(ST,'#########################')
     
 
 
-    recipe_list = ST[0:10]    
+    # # 어레이는 레시피데이터 배열 처리
+    # for i in range(0,cnt):
+    #     FT = Recipe.objects.filter(ckg_mtrl_cn__contains=Mine.objects.get(pk=i+1,id='admin').ingredients).values('ckg_mtrl_cn')
+    #     leng = Recipe.objects.filter(ckg_mtrl_cn__contains=Mine.objects.get(pk=i+1,id='admin').ingredients).values('ckg_mtrl_cn').count()
+    #     ST = ""
+    #     for j in range(0,leng):
+    #         ST += str(FT.values('ckg_mtrl_cn')[j]['ckg_mtrl_cn'])+"/"
+    #         array += [FT.values('ckg_mtrl_cn')[j]['ckg_mtrl_cn']]
+
+    # array = set(array)
+    # array = list(array)
+    # array.sort()
+    
+    # ## mo는 내 냉장고 재료
+    # print(array,'@@@@@@@@@@@@@@@@@@@@@@')
+    # newarray = []
+    # for i in range(0,cnt):
+    #     mo = Mine.objects.get(pk=i+1,id='admin').ingredients
+    #     for s in array:
+    #         if s.__contains__(mo):
+    #             print(s)
+    #     print(s,'&&&&&&&&&&&&&&&&&&&&&')
+    #     print(mo,'$$$$$$$$$$$$$$$$$$')
+
+
+    # print(ST,'#########################')
+    
+
+
+    # recipe_list = ST[0:10]    
 
     recipe_list = Recipe.objects.all()[0:5]
     query = str(recipe_list[0].ckg_nm)
