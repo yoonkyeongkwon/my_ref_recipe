@@ -2,6 +2,15 @@
 {% load static %}
 {% block content %}
 <style>
+    .card-colums{
+        margin: 0;
+        font-family : "SUIT-Medium";
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        text-align: left;
+    }
     .cards-box {
         display: flex;
         justify-content: space-between;
@@ -16,7 +25,7 @@
     <img class="card-img-top" src="/static/image/rep_img/{{query.rcp_sno}}.jpg/" alt="Card image cap" style="border-bottom: 1px solid #eee; height: 200px;">
     <div class="card-body">
         <ul class='card-body-ul'>
-            <li> 이름 : {{ query.ckg_nm }}</li>
+            <li> <span style="font-family : SUIT-Medium">이름 : {{ query.ckg_nm }}</span></li>
             <li> 재료 : {{ query.mtrl }}</li>
             <div class="btn-detail">
                 <li>
@@ -36,3 +45,4 @@
 </form> {% endcomment %}
 
 {% endblock %}
+

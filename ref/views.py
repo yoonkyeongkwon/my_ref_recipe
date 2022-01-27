@@ -89,7 +89,7 @@ def searchRecipe(request):
 
     
     arrays,keys_list = [],[]
-    for i in range(5):
+    for i in range(12):
         query = Recipe.objects.get(rcp_sno=result[i][0])   
         ckgnm = Recipe.objects.get(rcp_sno=result[i][0]).ckg_nm
         keys_list.append(query.rcp_sno)
@@ -202,7 +202,7 @@ class searchRecipeSSS(View):
 
         
         arrays,keys_list = [],[]
-        for i in range(5):
+        for i in range(12):
             query = Recipe.objects.get(rcp_sno=result[i][0])   
             ckgnm = Recipe.objects.get(rcp_sno=result[i][0]).ckg_nm
             keys_list.append(query.rcp_sno)
