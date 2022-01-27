@@ -25,7 +25,7 @@ class Board(models.Model):
     write_id = models.CharField(max_length=45)
 
     #파일 저장
-    file =models.ImageField(null=True)
+    file =models.ImageField(upload_to='images', null=True)
     class Meta:
         managed = False
         db_table = "community_board"
@@ -44,10 +44,10 @@ class Comment(models.Model):
      contents = models.TextField()
 
      #작성날짜
-     createdTime = models.DateTimeField(auto_now=True)
+     createdTime = models.DateField(auto_now=True)
     
      #게시글과의 외래키 
-     id=models.ForeignKey(Board,on_delete=models.CASCADE)
+     id=models.ForeignKey(Board,on_delete=models.CASCADE,db_column='id')
      class Meta:
         managed = False
         db_table = "comment"

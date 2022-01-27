@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 from django.views.generic import TemplateView
+from django.conf.urls.static import static
+from django.conf import settings
 
 app_name = 'community'
 urlpatterns = [
@@ -9,4 +11,4 @@ urlpatterns = [
     path('community_modify/', views.community_modify),
     path('test/', views.test),
     path('test2/', views.test2),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

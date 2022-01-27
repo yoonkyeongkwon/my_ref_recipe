@@ -1,6 +1,10 @@
+from compileall import compile_dir
+from hmac import compare_digest
+from importlib.resources import contents
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Board, Comment
+from .models import Board
+from .models import Comment
 from django.utils import timezone
 from django.shortcuts import redirect
 from django.views.generic import TemplateView
@@ -30,12 +34,16 @@ def community_insert(request):
 class community_list(TemplateView):
      template_name = "community/community_list.html"
      def get(self, request):
-          comm = Comment.objects.all()
+          comment = Comment.objects.all()
+          # comm.contents = contents
           community_list = Board.objects.all()
+          print(community_list)
+          list = {'comment':comment, 'board':community_list}
           return render(
                request, self.template_name, 
                {
-                    'comment':comm, 'board':community_list}
+                    'list':list
+               }
           )
      # return render(request, TemplateView.as_view(template_name='/community/community_list.html'), {'board_list':board_list})
 
