@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .cards-box {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 70px;
+        margin-top: 65px;
+        flex-wrap: wrap;
+        {#float: left;#}
+    }
+</style>
+{% csrf_token %}
+<div class="card-colums" id="all_posting">
+    <div id="card-box" class="cards-box">
+        {% for item in recipe_list%}
+        {% comment %} {{item.rcp_sno}},{{item.mtrl}},{{item.ckg_nm}},{{item.ckg_mtrl_cn}} {% endcomment %}
+            <div class="card" style="width: 17rem; margin-bottom:15px; margin-left: 10px;">
+                <img class="card-img-top" src="/static/image/rep_img/{{item.rcp_sno}}.jpg/" alt="Card image cap"
+                style="border-bottom: 1px solid #eee; height: 200px;">
+                <div class="card-body">
+                    <ul class='card-body-ul'>
+                        <li> 이름 : {{ item.ckg_nm }}</li>
+                        <li> 재료 : {{ item.mtrl }}</li>
+                    </ul>
+                    <div class="btn-detail" style = "text-align:center">
+                        {% comment %} <input type="submit" name ="next" value="next" method ="POST" > {% endcomment %}
+                        <form action = "/ref/main/searchRecipe/" method="POST">
+                            {% csrf_token %}
+                                <input type="hidden" name = "rcp_sno" value = {{item.rcp_sno}}>
+                                <input  value = "자세히" method = "POST" type="submit" name = "detailViews" style="margin-left: 100px; margin-bottom: 13px; height: 25px">
+                            {% csrf_token %}
+                        </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
