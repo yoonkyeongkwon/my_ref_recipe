@@ -16,8 +16,6 @@ from isodate import parse_duration
 from account.models import Userinfo
 from itertools import *
 
-
-
 class main_v(View):
     array = []       
     def get(self, request, *args, **kwargs):
@@ -54,94 +52,93 @@ class myPage(View):
 
 
 
-@csrf_exempt
-def searchRecipe(request):
-    from collections import defaultdict
-    # user_check = request.POST.get('user_like') 
-    # board_info = Board.objects.all()
-    username= request.session['username']
-    cntr=Recipe.objects.all().count()
-    cntm=Mine.objects.filter(id=username).count()
-    print(cntm)
- 
+# @csrf_exempt
+# def searchRecipe(request):
+#     from collections import defaultdict
+#     # user_check = request.POST.get('user_like') 
+#     # board_info = Board.objects.all()
+#     username= request.session['username']
+#     cntr=Recipe.objects.all().count()
+#     cntm=Mine.objects.filter(id=username).count()
+#     print(cntm)
 
-# user의 재료 목록 가져와 일치하는 레시피 정렬
-    dic = defaultdict(int)
-    for i in range(0,cntm):
-        filter_rcp= Recipe.objects.filter(ckg_mtrl_cn__contains=Mine.objects.filter(id=username)[i].ingredients).values('rcp_sno')
-        filter_mtrl= Recipe.objects.filter(ckg_mtrl_cn__contains=Mine.objects.filter(id=username)[i].ingredients).values('mtrl_cnt')
-        # print("여기",filter_mtrl[0]['mtrl_cnt'])
+# # user의 재료 목록 가져와 일치하는 레시피 정렬
+#     dic = defaultdict(int)
+#     for i in range(0,cntm):
+#         filter_rcp= Recipe.objects.filter(ckg_mtrl_cn__contains=Mine.objects.filter(id=username)[i].ingredients).values('rcp_sno')
+#         filter_mtrl= Recipe.objects.filter(ckg_mtrl_cn__contains=Mine.objects.filter(id=username)[i].ingredients).values('mtrl_cnt')
+#         # print("여기",filter_mtrl[0]['mtrl_cnt'])
         
-        for j in range(len(filter_rcp)):
+#         for j in range(len(filter_rcp)):
             
-            if dic[filter_rcp[j]['rcp_sno']]:
-                dic[filter_rcp[j]['rcp_sno']] +=1
-            else:
-                dic[filter_rcp[j]['rcp_sno']] = 1
+#             if dic[filter_rcp[j]['rcp_sno']]:
+#                 dic[filter_rcp[j]['rcp_sno']] +=1
+#             else:
+#                 dic[filter_rcp[j]['rcp_sno']] = 1
                             
-    arr1 =[]
-    for i,v in dic.items():
-        get_mtrl_cnt= Recipe.objects.get(rcp_sno=i)
-        arr1.append((i,v,get_mtrl_cnt.mtrl_cnt))
+#     arr1 =[]
+#     for i,v in dic.items():
+#         get_mtrl_cnt= Recipe.objects.get(rcp_sno=i)
+#         arr1.append((i,v,get_mtrl_cnt.mtrl_cnt))
         
-    import operator
-    result = sorted(arr1, key= lambda x : (-x[1], x[2]))
+#     import operator
+#     result = sorted(arr1, key= lambda x : (-x[1], x[2]))
 
     
-    arrays,keys_list = [],[]
-    for i in range(12):
-        query = Recipe.objects.get(rcp_sno=result[i][0])   
-        ckgnm = Recipe.objects.get(rcp_sno=result[i][0]).ckg_nm
-        keys_list.append(query.rcp_sno)
-        arrays.append(query)
+#     arrays,keys_list = [],[]
+#     for i in range(12):
+#         query = Recipe.objects.get(rcp_sno=result[i][0])   
+#         ckgnm = Recipe.objects.get(rcp_sno=result[i][0]).ckg_nm
+#         keys_list.append(query.rcp_sno)
+#         arrays.append(query)
   
 
-    search_url = 'https://www.googleapis.com/youtube/v3/search'
-    video_url = 'https://www.googleapis.com/youtube/v3/videos'
-    search_params = {
-        'part' : 'snippet',
-        'q' : ckgnm,
-        'key' : settings.YOUTUBE_DATA_API_KEY,
-        'maxResults' : 4,
-        'type':'video'
-    }
-    video_ids = []
-    r = requests.get(search_url,params=search_params)
+#     search_url = 'https://www.googleapis.com/youtube/v3/search'
+#     video_url = 'https://www.googleapis.com/youtube/v3/videos'
+#     search_params = {
+#         'part' : 'snippet',
+#         'q' : ckgnm,
+#         'key' : settings.YOUTUBE_DATA_API_KEY,
+#         'maxResults' : 4,
+#         'type':'video'
+#     }
+#     video_ids = []
+#     r = requests.get(search_url,params=search_params)
 
-    results = (r.json()['items'])
-    for result in results:
-        video_ids.append(result['id']['videoId'])
+#     results = (r.json()['items'])
+#     for result in results:
+#         video_ids.append(result['id']['videoId'])
     
-    video_params = {
-        'key' : settings.YOUTUBE_DATA_API_KEY,
-        'part' : 'snippet,contentDetails',
-        'id' : ','.join(video_ids),
-        'maxResults' : 4,
-    }
-    r = requests.get(video_url,params=video_params)
-    results = (r.json()['items'])
-    videos=[]
-    for result in results:
-        video_data = {
-            'title' : result['snippet']['title'],
-            'id' : result['id'],
-            'url': f'https://www.youtube.com/watch?v={result["id"]}',
-            'duration' : int(parse_duration(result['contentDetails']['duration']).total_seconds() // 60 ),
-            'thumbnail' : result['snippet']['thumbnails']['high']['url'],
-        }
-        # print(result['id'])
+#     video_params = {
+#         'key' : settings.YOUTUBE_DATA_API_KEY,
+#         'part' : 'snippet,contentDetails',
+#         'id' : ','.join(video_ids),
+#         'maxResults' : 4,
+#     }
+#     r = requests.get(video_url,params=video_params)
+#     results = (r.json()['items'])
+#     videos=[]
+#     for result in results:
+#         video_data = {
+#             'title' : result['snippet']['title'],
+#             'id' : result['id'],
+#             'url': f'https://www.youtube.com/watch?v={result["id"]}',
+#             'duration' : int(parse_duration(result['contentDetails']['duration']).total_seconds() // 60 ),
+#             'thumbnail' : result['snippet']['thumbnails']['high']['url'],
+#         }
+#         # print(result['id'])
 
-        videos.append(video_data)
+#         videos.append(video_data)
 
-    context ={
-        'videos':videos,
-        'recipe_list':arrays,
-    }
-    print("레시피 가져왔어요!")
-    request.session["recipe_list"] = keys_list
-    return render(request,'ref/recipe.html',context)
+#     context ={
+#         'videos':videos,
+#         'recipe_list':arrays,
+#     }
+#     print("레시피 가져왔어요!")
+#     request.session["recipe_list"] = keys_list
+#     return render(request,'ref/recipe.html',context)
 
-    # return render(request,'ref/recipedetail.html',context)
+#     # return render(request,'ref/recipedetail.html',context)
 
 
         
@@ -155,16 +152,6 @@ class searchRecipeDetail(View):
         print("배열 가져왓습니다.", array)
         return render(request,'ref/recipedetail.html')
     
-    # 보이는 화면에서 처리할때 결과 나오는것.
-    # def post(self,request, *args, **kwargs):
-        # print("레시피 디테일에서 POST으로 받았다.")
-        # if request.POST.get("bf",0) =="이전으로":
-        #     return HttpResponseRedirect(reverse('ref:searchRecipe'))
-            
-        # if request.POST.get("nxt",0) =="홈으로":
-        #     return render(request,'ref/main.html')
-    
-    
     
 class searchRecipeSSS(View):
     # 처음 보이는 화면
@@ -175,8 +162,8 @@ class searchRecipeSSS(View):
         username= request.session['username']
         cntr=Recipe.objects.all().count()
         cntm=Mine.objects.filter(id=username).count()
-        print(cntm)
-    
+        if cntm == 0:
+            return render(request,'ref/main.html')
 
     # user의 재료 목록 가져와 일치하는 레시피 정렬
         dic = defaultdict(int)

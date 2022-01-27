@@ -20,8 +20,10 @@ def signup(request):
                                             username=request.POST['username'],
                                             password=request.POST['password1'],
                                             email=request.POST['email'],
-                                            last_name=request.POST['last_name'],)
+                                            last_name=request.POST['last_name'],
+                                            )
             auth.login(request, user)
+            request.session['username'] = user.username
             return render(request, 'login.html')
         return render(request, 'signup.html')
     return render(request, 'signup.html')

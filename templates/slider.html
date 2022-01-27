@@ -32,9 +32,17 @@
     <div class="myslide" style="width: 80rem; margin :auto">
     {% for item in star%}
     <div class="items" style="text-align : center;">
-        <a class = "cook_name" href = '#' style="text-decoration-line : none;">
+        {% comment %} <a class = "cook_name" href = '#' style="text-decoration-line : none;">
             <img src="/static/image/rep_img/{{item.rcp_sno}}.jpg/" alt="" style="border-radius : 2rem">
-        </a>
+        </a> {% endcomment %}
+
+        <form class = "cook_name" action = "/ref/main/searchRecipe/" method="POST" style="text-decoration-line : none;">
+            {% csrf_token %}
+            <input type="hidden" name = "rcp_sno" value = {{item.rcp_sno}}>
+            <input src="/static/image/rep_img/{{item.rcp_sno}}.jpg/" alt="" style="border-radius : 2rem; width : 350px; height : 220px;" method = "POST" type="image" name = "detailViews">
+            {% csrf_token %}
+        </form>
+
         <a class = "cook_name" href = '#' style="text-decoration-line : none;">
             {{item.ckg_nm}}
         </a>
@@ -42,3 +50,4 @@
     {% endfor%}
     </div>
 </body>
+
