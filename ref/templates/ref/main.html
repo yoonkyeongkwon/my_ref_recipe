@@ -55,18 +55,6 @@
          font-size: 18px;" class="btn" type="submit">입력</button> {% endcomment %}
         <input type="submit" class="btn btn-primary" value="POST">
     </form>
-    <h1>
-        {% if temp %}
-            {% comment %} {% for new_temp in new_temp_output%} {% endcomment %}
-            <h4>    
-                감자 갑자기 왜이럼
-                {{new_temp.ingredients}}
-            </h4>
-            {% comment %} {% endfor %} {% endcomment %}
-        {% else %}
-            <h2>하이</h2>
-        {% endif %}
-    </h1>
     <br>
 </div>
 
@@ -74,7 +62,17 @@
     <!--  현재 재료 목록 -->
     <div style="text-align: center; margin-top : 1rem">
         <span class = "subtitle">🍽현재 재료 목록🍽</span>
-        <div style="height: 15rem; background-color: #36CCA6; border-radius : 2rem; margin: auto; width : 45rem;"></div>
+        <div style="height: 15rem; background-color: #36CCA6; border-radius : 2rem; margin: auto; width : 45rem;">
+        {% if temp %}
+            {% for gg in temp%}
+            <li>
+                <div style="height: 2rem; background-color: white; border-radius : 2rem; width : 6rem;">
+                    <a>{{gg}}</a>
+                </div>
+            </li>
+            {% endfor %}
+        {% endif %}
+        </div>
         <div style="margin: 2rem;"></div><button type="button" class="btn">레시피 검색</button></div>
     </div>
 </div>
@@ -87,13 +85,6 @@
 </div>
 
 {% include 'slider.html' %}
-
-{% if not user.is_authenticated%} 
-    <h1>안녕</h1>
-{%else%}
-    <h1>안녕ㄴ나</h1>
-{%endif%}
-
 
 {% endblock %}
 
