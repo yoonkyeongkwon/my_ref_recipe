@@ -5,9 +5,20 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Board
 from .models import Comment
+from contextlib import redirect_stderr
+from django.shortcuts import render
+from django.http import HttpResponse, request
+from django.views import View
+from .models import Board,Comment
 from django.utils import timezone
 from django.shortcuts import redirect
 from django.views.generic import TemplateView
+import datetime
+from django.views.generic.detail import SingleObjectMixin
+from django.http import FileResponse
+from django.core.files.storage import FileSystemStorage
+from django.views.generic.edit import FormView
+from django.urls import reverse_lazy
 
 #커뮤니티 글 쓰기
 def community_insert(request):
@@ -45,28 +56,26 @@ class community_list(TemplateView):
                     'list':list
                }
           )
-     # return render(request, TemplateView.as_view(template_name='/community/community_list.html'), {'board_list':board_list})
+
 
 
 # 커뮤니티 글 수정
-def community_modify(request):
-     post=Board.objects.get()
+def community_modify(request,post_id):
+     post=Board.objects.get(id=post_id)
+     print(post)
      if request.method == 'POST':
-          file=request.FILES['file']
-          title = request.POST['title']
           contents = request.POST['contents']
           try:
-               post.image = request.FILES['image']
+               post.file = request.FILES['file']
           except:
-               post.image = None
+               post.file = None
           post.save()
-          return redirect('community/community_list.html',{'post':post})
+          return redirect('/community/community_list')
      else:
-          post=Board()
           return render(request,'community/community_modify.html',{'post':post})
 
 #커뮤니티 글 삭제
-def delete(request, post_id):
+def community_delete(request, post_id):
   post = Board.objects.get(id=post_id)
   post.delete()
   return redirect('home')
@@ -79,6 +88,22 @@ def test2(request):
      return render(request, 'community/test2.html')
 
 
+#테스트창 완료 후 삭제
+def test(request):
+     board_list=Board.objects.all()
+     return render(request, 'community/test.html',{'board_list':board_list})
 
+#파일 다운로드
+class FileDownloadView(SingleObjectMixin, View):
+    queryset = Board.objects.all()
 
-
+    def get(self, request, document_id):
+        object = self.get_object(document_id)
+        
+        file_path = object.attached.path
+        file_type = object.content_type  # django file object에 content type 속성이 없어서 따로 저장한 필드
+        fs = FileSystemStorage(file_path)
+        response = FileResponse(fs.open(file_path, 'rb'), content_type=file_type)
+        response['Content-Disposition'] = f'attachment; filename={object.get_filename()}'
+        
+        return response
