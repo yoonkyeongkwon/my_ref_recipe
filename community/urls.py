@@ -10,9 +10,11 @@ app_name = 'community'
 urlpatterns = [
     path('community_insert/', views.community_insert),
     path('community_list/', views.community_list.as_view()),
-    path('test/<int:post_id>/community_modify/', views.community_modify,name="community_modify"),
-    path('test/<int:document_id>/', FileDownloadView.as_view(), name="download"),
+    path('detail/<int:post_id>/community_modify/', views.community_modify,name="community_modify"),
+    path('detail/<int:document_id>/', FileDownloadView.as_view(), name="download"),
     path('test/', views.test),
     path('test2/', views.test2),
     path('test/downloads/<int:id>/', views.downloads, name='downloads'),
+    path('detail/', views.detail, name='detail'),
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

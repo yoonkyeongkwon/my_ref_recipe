@@ -4,7 +4,7 @@ from hmac import compare_digest
 from importlib.resources import contents
 from django.conf import settings
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import Board
 from .models import Comment
 from contextlib import redirect_stderr
@@ -21,7 +21,7 @@ from django.http import FileResponse
 from django.core.files.storage import FileSystemStorage
 from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
-
+from django.shortcuts import get_object_or_404
 #
 import urllib
 import os
@@ -71,9 +71,10 @@ class community_list(TemplateView):
 # 커뮤니티 글 수정
 def community_modify(request,post_id):
      post=Board.objects.get(id=post_id)
-     print(post)
+     print(post,111111111111111111)
      if request.method == 'POST':
           contents = request.POST['contents']
+          print(post,222222222222222222)
           try:
                post.file = request.FILES['file']
           except:
@@ -129,3 +130,9 @@ def downloads(request):
           response = HttpResponse(f, content_type='application/octet-stream')
           response['Content-Disposition'] = 'attachment; filename=%s' % filename
           return response
+
+def detail(request):
+    if 'id' in request.GET:
+        item = get_object_or_404(Board, pk=request.GET.get('id'))
+        return render(request, 'community/detail.html', {'item': item})
+    return HttpResponseRedirect('/community/community_list/')

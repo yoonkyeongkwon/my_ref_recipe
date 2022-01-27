@@ -150,6 +150,8 @@
 
 <div class="container">
     {%for data in list.board%}
+     <a href="{% url 'community:detail' %}?id={{ data.id }}" class="card-link">
+
     <div>
         {% comment %} <img src=/media/{{data.file}} onerror='this.src="/static/image/profile.jpg"'> {% endcomment %}
         <img src="{{ data.file.url }}">
@@ -161,6 +163,7 @@
             {% endfor %}
         </div>
     </div>
+    </a>
     {% endfor %}
 </div>
 {% if user.is_authenticated %}
