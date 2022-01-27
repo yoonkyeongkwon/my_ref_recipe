@@ -132,7 +132,7 @@
         </div>
     </div> -->
 </div>
-
+{% if user.is_authenticated %}
 <div class="container mt-3">
     <h3>Modal Example</h3>
     <p>Click on the button to open the modal.</p>
@@ -167,6 +167,6 @@
       </div>
     </div>
   </div>
-
+{% endif %}
 <script src="{% static 'js/magicgrid.js' %}"></script>
 {% endblock %}

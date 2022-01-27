@@ -89,6 +89,7 @@ def login_custom(request):
         else:
             request.session['user_id'] = m.user_id
             request.session['user_name'] = m.user_name 
+            print(m.user_id)
         return redirect('account:login')
 
     else:

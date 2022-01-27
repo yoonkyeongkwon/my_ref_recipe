@@ -54,11 +54,25 @@
     <input type="submit" value="community_modify" id="">
 </form>
   <input type="submit" value='등록' class="comm_insert" id="btn_insert">
-  <a href="{% url 'community:community_modify' a.id %}">수정2222222222</a>
+  <a href="{% url 'community:community_modify' a.id %}">{{ user.username }}수정2222222222</a>
   <a href="/community/test/{{a.id}}/community_modify/">/수정</a>
   <a href="/community/test/{{a.id}}/community_delete/">/삭제</a>
   {% comment %} <img src="/media/{{a.file}}"> {% endcomment %}
 </div>
+
+
+<div>
+  <label>첨부 파일</label>
+  <div>{{ board_list.file }}</div>
+  <form action='{% url "community:download" document_id=board_list.id %}'>
+      <button type="submit">
+      다운로드
+      </button>
+  </form>
+</div>
+
+
+
 {% endfor %}
 
 <button class="openBtn">모달창 open</button>

@@ -17,7 +17,7 @@
         {% csrf_token %}
         <img src="{% static '/image/logo.png' %}" title="logo" class="com_logo" />
         <hr class="linebr2">
-        <div style="text-align: center;"><span id="comm_mainfont">내 레시피 자랑</span><br><br><div>
+        <div style="text-align: center;"><span id="comm_mainfont">{{ user.username }}{{ user.last_name }}내 레시피 자랑</span><br><br><div>
         <div>
             
             <div style="float: center;" class="container">
@@ -32,7 +32,7 @@
             <div style="float: right;">
                 <input type="submit" value='등록' class="comm_insert" id="btn_insert">
             </div>
-            <input type="hidden" name="write_id" value="id12345">
+            <input type="hidden" name="write_id" value="{{ user.last_name }}">
         </div>
     </form> 
 
