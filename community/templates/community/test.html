@@ -60,11 +60,23 @@
   {% comment %} <img src="/media/{{a.file}}"> {% endcomment %}
 </div>
 
+<form class="modal-content" action="/community/test/downloads/{{a.id}}/" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div>
+    <input type="hidden" name="id" value="{{ a.id }}">
+      <div style="float: right;">
+          <input type="submit" value='다운' class="comm_insert" id="btn_insert">
+      </div>
+  </div>
+</form> 
+
+
+
 
 <div>
   <label>첨부 파일</label>
-  <div>{{ board_list.file }}</div>
-  <form action='{% url "community:download" document_id=board_list.id %}'>
+  <div>{{ a.file }}</div>
+  <form action='{% url "community:download" document_id=a.id %}'>
       <button type="submit">
       다운로드
       </button>
