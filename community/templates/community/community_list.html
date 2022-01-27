@@ -2,14 +2,17 @@
 {% load static %}
 
 {% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
 
 <style>
-    .openBtn{
-        margin-top:2.5rem;
-        margin-left:85%;
-        position:relative;
-        bottom:20px;
-        right:55px;
+    .openBtn {
+        margin-top: 2.5rem;
+        margin-left: 85%;
+        position: relative;
+        bottom: 20px;
+        right: 55px;
         background-color: #36CCA6;
         width: 80px;
         height: 80px;
@@ -18,20 +21,20 @@
         border: none;
         border-radius: 75px;
         text-align: center;
-        line-height: 75px;  
+        line-height: 75px;
     }
+
     .myrecipe {
         font-family: "SUIT-Medium";
         position: relative;
-        font-size: 20px;
+        font-size: 25px;
         text-align: center;
-        
     }
 
     .container div {
         width: 280px;
         background-color: #FAFAFA;
-        display: flex;
+        display: relative;
         justify-content: center;
         align-items: center;
         border-radius: 1rem;
@@ -44,19 +47,24 @@
     }
 
     .container:hover {
-        cursor:pointer;
+        cursor: pointer;
     }
 
     .comment {
-        flex-direction:row;
-        height: 100px;
+        padding: 1rem;
+        height: 80px;
         border-radius: 0 0 1rem 1rem;
-        justify-content:flex-start;
+        font-size: 15px;
+        text-align: left;
+        overflow: auto;
+    }
+
+    .comment span {
+        font-family: "SUIT-Medium";
         font-size: 15px;
     }
 
-    .comment img {
-        display: inline-block;
+    .comment_input {
         height: 2.5rem;
         width: 2.5rem;
         border-radius: 10rem;
@@ -64,9 +72,9 @@
     }
 
     .add {
-        position:relative;
-        bottom:20px;
-        right:55px;
+        position: fixed;
+        bottom: 20px;
+        right: 55px;
         background-color: #36CCA6;
         width: 80px;
         height: 80px;
@@ -75,175 +83,146 @@
         border: none;
         border-radius: 75px;
         text-align: center;
-        line-height: 75px;  
+        line-height: 75px;
     }
 
 
     .add:hover {
         color: gray;
         cursor: pointer;
-    } 
-    .container div {
-    width: 300px;
-    background-color: antiquewhite;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 1rem;
-    }
-    
-    .closeBtn {
-        float: LEFT;
-        font-size: 1rem;
-        font-weight: bold;
-        color: gray;
-        margin-left: 1rem ;
     }
 
-    .modal {
-        border-top-left-radius: 1.5rem; border-top-right-radius: 1.5rem;
-        border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-    }
-
-    .modal .bg {
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.6);
-    }
-
-    .modalBox {
-        border-top-left-radius: 1.5rem; border-top-right-radius: 1.5rem;
-        border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem;
-        position: absolute;
-        background-color: #fff;
-        width: 41rem;
-        height: 5rem;
-        padding: 15px;
-        z-index: 5;
-        oveflow: hidden;
-    }
-
-    .modalBox button {
-        display: block;
-        width: 2.5rem;
-        margin: 0 auto;
-    }
-
-    .hidden {
-        display: none;
-    }
-    
-    #chat_iframe{
-        margin-left:0.32rem;
+    #chat_iframe {
+        margin-left: 0.32rem;
         width: 41rem;
         height: 51rem;
     }
+
+    .detail-modal {
+        display:none;
+        /* 기본 안보이도록 */
+        position: fixed;
+        /* 포지션 픽스 */
+        left: 25%;
+        top: 0;
+        width: 50%;
+        /* 가로길이 */
+        height: 90%;
+        /* 세로높이 */
+        overflow: auto;
+        /* 필요하면 스크롤 가능 
+        background-color: rgba(0, 0, 0, 0);*/
+        background-color: lightgray;
+    }   
+    .detail-img {
+            height: 50%;
+        }
+    .detail-content {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        width: 100%;
+        height: 50%;
+        pointer-events: auto;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: none;
+        border-radius: 0.3rem;
+        outline: 0;
+    }
+
 </style>
 
-<button class="openBtn">+</button>
-<div>
-<div class="modal hidden">
-<div class="bg"></div>
-    <div class="modalBox">
-         <button class="closeBtn">✖</button>
-        <iframe src="/community/community_insert" id="chat_iframe" >대체 내용</iframe>  
-    </div>
-</div>
-</div>    
+
+
+
 
 <div class="myrecipe">
-<span style="size: 35px; font-color=#36CCA6; margin-bottom=20px;">내 요리를 자랑해보세요!</span>
+    <span style="size: 35px; color:#36CCA6; margin-bottom:20px;">내 요리를 자랑해보세요!</span>
 </div>
 
-      
-{% comment %} 회원일 때, 비회원일 때 구분할 것! 비회원일 때는 로그인이 필요합니다. 창 띄우기 {% endcomment %}
 
 <div class="container">
+    {%for data in list.board%}
+    <div>
+        {% comment %} <img src=/media/{{data.file}} onerror='this.src="/static/image/profile.jpg"'> {% endcomment %}
+        <img src="{{ data.file.url }}">
+        <div class="comment">
+            {%for comm in list.comment%}
+            {% comment %} 조건문우째넣노..{%if comm.id == data.id %} {% endcomment %}
+            <span style="font-weight: bold;">{{comm.author}}</span>
+            <span>{{comm.contents}}</span><br>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
 
-        <div>
-            {% comment %} <img src="https://picsum.photos/200/300"> {% endcomment %}
-            <img src="{% static '/image/sample.jpg' %}">
-            <div class="comment">
-                <img src="{% static 'image/profile.jpg' %}">
-                <span>우와 맛있겠다</span><br>
-                <img src="{% static 'image/profile.jpg' %}">
-                <span>우와 맛있겠다</span><br>
-            </div>
+<div class="container mt-3">
+    <h3>Modal Example</h3>
+    <p>Click on the button to open the modal.</p>
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+        Open modal
+    </button>
+</div>
+
+
+<!-- The Modal -->
+<div class="detail-modal" id="detail_modal">
+    <div class="detail-dialog">
+        <div class="detail-content">
+
+    <!-- Modal Header -->
+    <div class="modal-header">
+        <img src="{%static 'image/logo.png'%}">
+        {% comment %} <h4 class="modal-title">Modal Heading</h4> {% endcomment %}
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
-        <div>
-            <img src="https://picsum.photos/200/340">
-            <div class="comment"></div>
-        </div> 
-        <div>
-            <img src="https://picsum.photos/200/280">
-            <div class="comment"></div>
+
+        <!-- Modal body -->
+        <div class="detail-content">
+
         </div>
-        <div>
-            <img src="https://picsum.photos/200/390">
-            <div class="comment"></div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+        <button type="button" class="edit" data-bs-dismiss="modal">수정</button>
+        <button type="button" class="delete" data-bs-dismiss="modal">삭제</button>
         </div>
-        <div>
-            <img src="https://picsum.photos/200/200">
-            <div class="comment"></div>
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/500">
-            <div class="comment"></div>
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/100">
-            <div class="comment"></div>
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/250">
-            <div class="comment"></div>
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/320">
-            <div class="comment"></div>
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/300">
-            <div class="comment"></div>
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/300">
-            <div class="comment"></div>
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/270"> 
-            <div class="comment"></div>
-        </div> 
-        <div>
-            <img src="https://picsum.photos/200/330">
-            <div class="comment"></div>
-        </div> 
+
+    </div>
     </div>
 </div>
 
-</div>
 <script src="{% static 'js/magicgrid.js' %}"></script>
 <script>
-    const modal_open = () => {
-        document.querySelector(".modal").classList.remove("hidden");
+    var modal_detail = document.getElementById('detail-modal');
+    var imgs = document.querySelectorAll('.container img');
+    for (var i = 0; i < imgs.length; i++) {
+        imgs[i].addEventListener("click", open())
     }
-    
-    const modal_close = () => {
-        document.querySelector(".modal").classList.add("hidden");
+
+    function open() {
+        modal_detail.style.display = 'block';
+    }
+    function close() {
+        modal_detail.style.display = 'none';
+    }
+
+
+</script>
+
+{% comment %} <script>
+    function detail_open() {
+        document.getElementById('modal').style.display='block';
     }
     var imgs = document.querySelectorAll('.container img');
     for (var i = 0; i < imgs.length; i++) {
-        imgs[i].addEventListener("click", modal_open);
+        imgs[i].addEventListener("click", detail_open())
     }
+</script>     {% endcomment %}
 
-</script>
 {% endblock %}

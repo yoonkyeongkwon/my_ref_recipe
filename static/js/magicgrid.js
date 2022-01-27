@@ -294,57 +294,43 @@ magicGrid.listen();
 /* 리스트 -> 등록 모달창  */
 
 (function($) {
-    
-    $.fn.bmdIframe = function( options ) {
+
+    $.fn.bmdIframe = function(options) {
         var self = this;
         var settings = $.extend({
             classBtn: '.bmd-modalButton',
             defaultW: 640,
             defaultH: 360
-        }, options );
-      
+        }, options);
+
         $(settings.classBtn).on('click', function(e) {
-          var allowFullscreen = $(this).attr('data-bmdVideoFullscreen') || false;
-          
-          var dataVideo = {
-            'src': $(this).attr('data-bmdSrc'),
-            'height': $(this).attr('data-bmdHeight') || settings.defaultH,
-            'width': $(this).attr('data-bmdWidth') || settings.defaultW
-          };
-          
-          if ( allowFullscreen ) dataVideo.allowfullscreen = "";
-          
-          // stampiamo i nostri dati nell'iframe
-          $(self).find("iframe").attr(dataVideo);
+            var allowFullscreen = $(this).attr('data-bmdVideoFullscreen') || false;
+
+            var dataVideo = {
+                'src': $(this).attr('data-bmdSrc'),
+                'height': $(this).attr('data-bmdHeight') || settings.defaultH,
+                'width': $(this).attr('data-bmdWidth') || settings.defaultW
+            };
+
+            if (allowFullscreen) dataVideo.allowfullscreen = "";
+
+            // stampiamo i nostri dati nell'iframe
+            $(self).find("iframe").attr(dataVideo);
         });
-      
+
         // se si chiude la modale resettiamo i dati dell'iframe per impedire ad un video di continuare a riprodursi anche quando la modale è chiusa
-        this.on('hidden.bs.modal', function(){
-          $(this).find('iframe').html("").attr("src", "");
+        this.on('hidden.bs.modal', function() {
+            $(this).find('iframe').html("").attr("src", "");
         });
-      
+
         return this;
     };
-  
+
 })(jQuery);
 
 
 
 
-jQuery(document).ready(function(){
-  jQuery("#myModal").bmdIframe();
+jQuery(document).ready(function() {
+    jQuery("#myModal").bmdIframe();
 });
-
-
-// 게시판 등록 모달창 
-const open = () => {
-    document.querySelector(".modal").classList.remove("hidden");
-  }
-
-  const close = () => {
-    document.querySelector(".modal").classList.add("hidden");
-  }
-
-  document.querySelector(".openBtn").addEventListener("click", open);
-  document.querySelector(".closeBtn").addEventListener("click", close);
-  document.querySelector(".bg").addEventListener("click", close);

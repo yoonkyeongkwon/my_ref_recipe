@@ -1,146 +1,148 @@
-/* 커뮤니티 글작성 */
-* {
-	box-sizing: border-box;
-}
-
-/* 텍스트상자 */
-.text_input {
-	width: 80%;
-	padding: 0.5rem;
-	display: inline-block;
-	border: none;
-	background: #f1f1f1;
-}
-
-/* 배경화면(글 쓰는 곳 바깥) */
-.modal {
-	display: none;
-	/* 기본 안보이도록 */
-	position: fixed;
-	/* 포지션 픽스 */
-	left: 0;
-	top: 0;
-	width: 100%;
-	/* 가로길이 */
-	height: 100%;
-	/* 세로높이 */
-	overflow: auto;
-	/* 필요하면 스크롤 가능 */
-	background-color: rgba(0, 0, 0, 0);
-}
-
-/* 글작성 창 */
-.modal-content {
-	border-top-left-radius: 1.5rem; border-top-right-radius: 1.5rem;
-        	border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem;
-	background-color: #fefefe;
-	position: absolute;
-	top: 1%;
-	left: 1%;
-	border: 1px solid #888;
-	max-width: 600px;
-	justify-content: center;
-
-}
-
-
-/* 종료버튼 (x) */
-.close {
-	float: LEFT;
-	font-size: 40px;
-	font-weight: bold;
-	color: gray;
-	margin-left: 1rem ;
-}
-
-.close:hover,
-.close:focus {
-	cursor: pointer;
-}
-
-.comm_insert{
-	margin-left: 3rem ;
-	margin-bottom:1rem;
-	margin-right: 3rem ;
-}
-#comm_mainfont{
-	margin-left: 3rem ;
-	margin-right: 3rem ;
-	font-size: 1.5rem;
-}
-
-
-.linebr2 {
-
-	text-align: center;
-	width: 100%;
-	margin-top: 2rem;
-}
-
-#btn_insert{
-	background-color: #36CCA6;
-	border-top-left-radius: 1.5rem; border-top-right-radius: 1.5rem;
-        	border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem;
-	padding-right: 1rem;
-	padding-left: 1rem;
-		}
-.thumb{
-	width: 25em;
-	height: 15rem;
-	object-fit: contain;
-	margin-bottom: 1rem;
-	margin-top: 1rem;
-}
-
-.com_logo{
-	width:10rem; 
-	float : center; 
-	margin: 0rem 2rem;
-	margin-left: 13rem;
-	margin-top: 1.2rem;
-}
-
-/* 커뮤니티 리스트 -> 등록 모달창 */
-.page {
-	padding: 15px 0 0;
-  }
-  
-  .bmd-modalButton {
-	display: block;
-	margin: 15px auto;
-	padding: 5px 15px;
-  }
-  
-  .close-button {
-	overflow: hidden;
-  }
-  
-  .bmd-modalContent {
-	box-shadow: none;
-	background-color: transparent;
-	border: 0;
-  }
-	
-  .bmd-modalContent .close {
-	font-size: 30px;
-	line-height: 30px;
-	padding: 7px 4px 7px 13px;
-	text-shadow: none;
-	opacity: .7;
-	color:#fff;
-  }
-  
-  .bmd-modalContent .close span {
-	display: block;
-  }
-  
-  .bmd-modalContent .close:hover,
-  .bmd-modalContent .close:focus {
-	opacity: 1;
-	outline: none;
-  }
-  
-  .bmd-modalContent iframe {
-	display: block;
-	margin: 0 auto;
-  }
+    /* 커뮤니티 글작성 */
+    
+    * {
+        box-sizing: border-box;
+    }
+    /* 텍스트상자 */
+    
+    .text_input {
+        width: 80%;
+        padding: 0.5rem;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+    }
+    /* 배경화면(글 쓰는 곳 바깥) */
+    
+    .modal {
+        display: block;
+        /* 기본 안보이도록 */
+        position: fixed;
+        /* 포지션 픽스 */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* 가로길이 */
+        height: 100%;
+        /* 세로높이 */
+        overflow: auto;
+        /* 필요하면 스크롤 가능 */
+        background-color: rgba(0, 0, 0, 0);
+    }
+    /* 글작성 창 */
+    
+    .modal-content {
+        border-top-left-radius: 1.5rem;
+        border-top-right-radius: 1.5rem;
+        border-bottom-left-radius: 1.5rem;
+        border-bottom-right-radius: 1.5rem;
+        background-color: #fefefe;
+        position: absolute;
+        top: 1%;
+        left: 1%;
+        border: 1px solid #888;
+        max-width: 600px;
+        justify-content: center;
+    }
+    /* 종료버튼 (x) */
+    
+    .close {
+        float: LEFT;
+        font-size: 40px;
+        font-weight: bold;
+        color: gray;
+        margin-left: 1rem;
+    }
+    
+    .close:hover,
+    .close:focus {
+        cursor: pointer;
+    }
+    
+    .comm_insert {
+        margin-left: 3rem;
+        margin-bottom: 1rem;
+        margin-right: 3rem;
+    }
+    
+    #comm_mainfont {
+        margin-left: 3rem;
+        margin-right: 3rem;
+        font-size: 1.5rem;
+    }
+    
+    .linebr2 {
+        text-align: center;
+        width: 100%;
+        margin-top: 2rem;
+    }
+    
+    #btn_insert {
+        background-color: #36CCA6;
+        border-top-left-radius: 1.5rem;
+        border-top-right-radius: 1.5rem;
+        border-bottom-left-radius: 1.5rem;
+        border-bottom-right-radius: 1.5rem;
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
+    
+    .thumb {
+        width: 25em;
+        height: 15rem;
+        object-fit: contain;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
+    
+    .com_logo {
+        width: 10rem;
+        float: center;
+        margin: 0rem 2rem;
+        margin-left: 13rem;
+    }
+    /* 커뮤니티 리스트 -> 등록 모달창 */
+    
+    .page {
+        padding: 15px 0 0;
+    }
+    
+    .bmd-modalButton {
+        display: block;
+        margin: 15px auto;
+        padding: 5px 15px;
+    }
+    
+    .close-button {
+        overflow: hidden;
+    }
+    
+    .bmd-modalContent {
+        box-shadow: none;
+        background-color: transparent;
+        border: 0;
+    }
+    
+    .bmd-modalContent .close {
+        font-size: 30px;
+        line-height: 30px;
+        padding: 7px 4px 7px 13px;
+        text-shadow: none;
+        opacity: .7;
+        color: #fff;
+    }
+    
+    .bmd-modalContent .close span {
+        display: block;
+    }
+    
+    .bmd-modalContent .close:hover,
+    .bmd-modalContent .close:focus {
+        opacity: 1;
+        outline: none;
+    }
+    
+    .bmd-modalContent iframe {
+        display: block;
+        margin: 0 auto;
+    }
