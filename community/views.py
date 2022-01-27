@@ -31,7 +31,6 @@ import mimetypes
 
 #커뮤니티 글 쓰기
 def community_insert(request):
-    
     if request.method == 'POST':
          file=request.FILES['file']
          title = request.POST.get('title')
@@ -117,6 +116,8 @@ class FileDownloadView(SingleObjectMixin, View):
         response['Content-Disposition'] = f'attachment; filename={object.file()}'
         
         return response
+
+
 
 def downloads(request):
      id = request.GET.get('id')

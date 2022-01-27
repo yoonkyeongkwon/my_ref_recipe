@@ -49,7 +49,23 @@ class myPage(View):
         username= request.session['username']
         uinfo = Userinfo.objects.get(name=username)
         return render(request,'ref/mypage.html',{'uinfo':uinfo})
+    
+    def post(self, request, *args, **kwargs):
+        uuu = Userinfo.objects.get(name=request.session["username"])
+        return render(request,'ref/editMyinfo.html',{'uinfo':uuu})
 
+class myPageEditInfo(View):
+    def get(self, request, *args, **kwargs):
+        username= request.session['username']
+        uinfo = Userinfo.objects.get(name=username)
+        return render(request,'ref/editMyinfo.html',{'uinfo':uinfo})
+    
+    def post(self, request, *args, **kwargs):
+        uuu = Userinfo.objects.get(name=request.session["username"])
+        uuu.password = request.POST.get("PW", uuu.password)
+        uuu.last_name = request.POST.get("NICK")
+        uuu.email = request.POST.get("email")
+        return render(request,'ref/mypage.html',{'uinfo':uuu})
 
 
 # @csrf_exempt
