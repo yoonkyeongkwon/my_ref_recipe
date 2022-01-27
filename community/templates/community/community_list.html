@@ -132,14 +132,12 @@
         border-radius: 0.3rem;
         outline: 0;
     }
-<<<<<<< HEAD
     .container div {
         width: 300px;
         background-color: antiquewhite;
-=======
+    }
     .modal-header {
         display: -ms-flexbox;
->>>>>>> sanghee
         display: flex;
         width:498px;
         height:324px;
@@ -201,6 +199,8 @@
 >>>>>>> sanghee
 <div class="container">
     {%for data in list.board%}
+     <a href="{% url 'community:detail' %}?id={{ data.id }}" class="card-link">
+
     <div>
         {% comment %} <img src=/media/{{data.file}} onerror='this.src="/static/image/profile.jpg"'> {% endcomment %}
         <img src="{{ data.file.url }}">
@@ -219,7 +219,12 @@
 >>>>>>> sanghee
             {% endfor %}
         </div>
+<<<<<<< HEAD
     </div>            
+=======
+    </div>
+    </a>
+>>>>>>> comm
     {% endfor %}
 </div>
 <<<<<<< HEAD
