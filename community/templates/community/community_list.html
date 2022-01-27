@@ -98,121 +98,109 @@
         height: 51rem;
     }
 
-    .detail-modal {
+    .modal {
         display:none;
-        /* 기본 안보이도록 */
-        position: fixed;
-        /* 포지션 픽스 */
-        left: 25%;
-        top: 0;
-        width: 50%;
-        /* 가로길이 */
+    }
+
+    .modal-dialog {
+        position: relative;
+        width: 100%;
         height: 90%;
-        /* 세로높이 */
-        overflow: auto;
-        /* 필요하면 스크롤 가능 
-        background-color: rgba(0, 0, 0, 0);*/
-        background-color: lightgray;
-    }   
-    .detail-img {
-            height: 50%;
-        }
-    .detail-content {
+        margin: 0.5rem;
+        pointer-events: none;
+    }
+    .modal-content {
         position: relative;
         display: -ms-flexbox;
         display: flex;
         -ms-flex-direction: column;
         flex-direction: column;
-        width: 100%;
-        height: 50%;
+        width: 500px;
+        height: 650px;
         pointer-events: auto;
         background-color: #fff;
         background-clip: padding-box;
-        border: none;
+        border: 1px solid rgba(0,0,0,.2);
         border-radius: 0.3rem;
         outline: 0;
     }
+    .modal-header {
+        display: -ms-flexbox;
+        display: flex;
+        width:498px;
+        height:324px;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 1rem;
+        border-bottom: 1px solid #e9ecef;
+        border-top-left-radius: 0.3rem;
+        border-top-right-radius: 0.3rem;
+    }
+    .modal-header img {
+        position: absolute;
+        width: 498px;
+        height: 650px;
+        top:0;
+        left:0;
+        height: 50%;
+    }
+    .modal-body {
+        position: absolute;
+        width:498px;
+        height:100px;
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        padding: 1rem;
+        background-color: lightgray;
+        padding: 16px;
+    }
+    .modal-footer {
+        display: flex;
+        width:498px;
+        height:124px;
+        flex-wrap: wrap;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0.75rem;
+        border-top: 1px solid #dee2e6;
+        border-bottom-right-radius: calc(0.3rem - 1px);
+        border-bottom-left-radius: calc(0.3rem - 1px);
+    }
+}
+
 
 </style>
-
-
-
-
 
 <div class="myrecipe">
     <span style="size: 35px; color:#36CCA6; margin-bottom:20px;">내 요리를 자랑해보세요!</span>
 </div>
 
-
 <div class="container">
-    {%for data in list.board%}
+    {% for data in list.board %}
     <div>
         {% comment %} <img src=/media/{{data.file}} onerror='this.src="/static/image/profile.jpg"'> {% endcomment %}
         <img src="{{ data.file.url }}">
         <div class="comment">
-            {%for comm in list.comment%}
-            {% comment %} 조건문우째넣노..{%if comm.id == data.id %} {% endcomment %}
-            <span style="font-weight: bold;">{{comm.author}}</span>
-            <span>{{comm.contents}}</span><br>
+            {% for comm in list.comment %}
+                {% ifequal comm.id data.id %}
+                    <span style="font-weight: bold;">{{comm.author}}</span>
+                    <span>{{comm.contents}}</span><br>
+                {% endifequal %} 
             {% endfor %}
         </div>
-    </div>
+    </div>            
     {% endfor %}
-</div>
-
-<div class="container mt-3">
-    <h3>Modal Example</h3>
-    <p>Click on the button to open the modal.</p>
-
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-        Open modal
-    </button>
-</div>
-
-
-<!-- The Modal -->
-<div class="detail-modal" id="detail_modal">
-    <div class="detail-dialog">
-        <div class="detail-content">
-
-    <!-- Modal Header -->
-    <div class="modal-header">
-        <img src="{%static 'image/logo.png'%}">
-        {% comment %} <h4 class="modal-title">Modal Heading</h4> {% endcomment %}
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-
-        <!-- Modal body -->
-        <div class="detail-content">
-
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer">
-        <button type="button" class="edit" data-bs-dismiss="modal">수정</button>
-        <button type="button" class="delete" data-bs-dismiss="modal">삭제</button>
-        </div>
-
-    </div>
-    </div>
 </div>
 
 <script src="{% static 'js/magicgrid.js' %}"></script>
 <script>
-    var modal_detail = document.getElementById('detail-modal');
-    var imgs = document.querySelectorAll('.container img');
-    for (var i = 0; i < imgs.length; i++) {
-        imgs[i].addEventListener("click", open())
-    }
-
-    function open() {
-        modal_detail.style.display = 'block';
-    }
-    function close() {
-        modal_detail.style.display = 'none';
-    }
-
-
+    var imgs = document.querySelectorAll('.container div'); 
+    for(const con_img of imgs) {
+        con_img.addEventListener('click', console.log('clicked'));
+    }                  
 </script>
 
 {% comment %} <script>
@@ -223,6 +211,6 @@
     for (var i = 0; i < imgs.length; i++) {
         imgs[i].addEventListener("click", detail_open())
     }
-</script>     {% endcomment %}
+</script> {% endcomment %}
 
 {% endblock %}

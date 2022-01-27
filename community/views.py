@@ -67,9 +67,9 @@ def community_modify(request):
 
 #커뮤니티 글 삭제
 def delete(request, post_id):
-  post = Board.objects.get(id=post_id)
-  post.delete()
-  return redirect('home')
+     post = Board.objects.get(id=post_id)
+     post.delete()
+     return redirect('home')
 
 #테스트창 완료 후 삭제
 def test(request):
@@ -77,7 +77,6 @@ def test(request):
 
 def test2(request):
      return render(request, 'community/test2.html')
-
 
 
 
