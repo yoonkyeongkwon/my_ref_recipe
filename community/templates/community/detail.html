@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12" style="margin-top:20px;">
+            <h3>{{ item.contents }}</h3>
+            <p>{{ item.regdate }}</p>
+            <a href="/community/detail/{{item.id}}/community_modify/">/수정</a>
+            <a href="/community/detail/{{item.id}}/community_delete/">/삭제</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
