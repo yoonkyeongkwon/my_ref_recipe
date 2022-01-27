@@ -154,10 +154,18 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+#로그인 로그아웃 후 연결되는 주소
+LOGIN_REDIRECT_URL = '/ref/main/'
+LOGOUT_REDIRECT_URL = '/ref/main/'
 
-LOGIN_REDIRECT_URL = '/account/login/'
-LOGOUT_REDIRECT_URL = '/account/logout/'
-
+#세션관련 장고 고유기능
+#브라우저를 닫을 때 세션 종료
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+#쿠기가 저장되는 시간(세션시간?) = 1200초 (디폴트값 1209600초)
+SESSION_COOKIE_AGE = 1200
+#ture: Request 요청 시 마다 Session 정보를 저장하여 Age값을 초기화 시켜주어 Seesion 정보를 유지
+#해당 값이 False일 경우 쿠키 저장 시간이 만료되면 세션이 종료 됩니다.
+SESSION_SAVE_EVERY_REQUEST = True
 
 
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')

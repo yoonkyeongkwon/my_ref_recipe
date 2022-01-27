@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from django.forms import IntegerField
 # account 
@@ -8,7 +9,7 @@ from account.models import Userinfo
 # 레시피 테이블
 class Recipe(models.Model):
     # 1. 레시피일련번호(RCP_SNO)
-    rcp_sno = models.IntegerField(default=0)
+    rcp_sno = models.IntegerField(primary_key=True)
     ## 현재 나는 에러는 mysql id 문제
     # 2. **요리명(CKG_NM)**
     ckg_nm = models.TextField()
@@ -29,9 +30,9 @@ class Recipe(models.Model):
     # 10. 요리시간명(CKG_TIME_NM)
     ckg_time_nm = models.TextField()
     # 11. 재료 수(MTRL_CNT)
-    mtrl_cnt = models.TextField()
+    mtrl_cnt = models.TextField(default='')
     # 10. 재료(MTRL)
-    mtrl = models.TextField()
+    mtrl = models.TextField(default='')
     
 
 # 유저 냉장고 테이블

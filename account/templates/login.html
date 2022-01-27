@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet"
+href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+{% block content %}
+<div class="wrapper">
+    <div style="text-align: center;">
+        <h1>로그인</h1>
+
+        <div class="col-8 text-right">
+            <span>또는 <a href="{% url 'account:signup' %}">계정을 만드세요.</a></span>
+        </div>
+        
+        <form method="POST">
+            {% csrf_token %}
+            <br>
+            아이디
+            <br>
+            <input name="username" type="text">
+            <br><br>
+            비밀번호
+            <br>
+            <input name="password" type="password">
+            <br><br>
+            <input type="submit" class="btn btn-info" value="Login">
+        </form>
+        
+        {% if user.is_authenticated %}
+            <p>
+                <a class='nav-link' href="{% url 'account:logout' %}">
+                    {{ user.username }} 님 반갑습니다. (로그아웃)
+                </a>
+            </p>
+        {% else %}
+            <p> Guest로 입장하셨습니다. 방문에 감사드립니다! 끼룩</p>
+        {% endif %}
+
+
+    </div>
+</div>
+{% include 'slider.html' %}
+
+{% endblock %}

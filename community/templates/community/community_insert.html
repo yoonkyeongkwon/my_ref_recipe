@@ -11,21 +11,16 @@
     <link rel="stylesheet" type="text/css" href="{% static 'community.css' %}">
 
 </head>
-<div class="item">
-    <a href="#" onclick="openzlog();" style="width:auto">글작성</a>
-</div>
 
-{% comment %} <div id="zlog" class="modal"> {% endcomment %}
     <form class="modal-content" action="/community/community_insert/" method="post" enctype="multipart/form-data">
-    <!-- <form class="modal-content" action="/community/community_insert/" method="post" > -->
-        <span onclick="closezlog();" class="close">&times;</span>
+
         {% csrf_token %}
         <img src="{% static '/image/logo.png' %}" title="logo" class="com_logo" />
         <hr class="linebr2">
         <div style="text-align: center;"><span id="comm_mainfont">내 레시피 자랑</span><br><br><div>
         <div>
             
-            <div style="float: left;" class="container">
+            <div style="float: center;" class="container">
                 사진
                 <input type="file" name="file" class="hidden_input" id="imageSelector"  accept="image/jpeg, image/jpg, image/png" multiple required/>
                 <img class="thumb" required/>        
@@ -40,8 +35,6 @@
             <input type="hidden" name="write_id" value="id12345">
         </div>
     </form> 
-{% comment %} </div> {% endcomment %}
-
 
 <script type="text/javascript">
 

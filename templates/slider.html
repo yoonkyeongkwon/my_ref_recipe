@@ -6,15 +6,37 @@
         font-size: 20px;
         font-family: "SUIT-Medium";
     }
+    .cook_name a {
+        display: inline-block;
+    }
+    .cook_name a:link {
+        text-decoration: none;
+        color: #3f464d;
+    }
+    .cook_name a:visited {
+        text-decoration: none;
+        color: #3f464d;
+    }
+    .cook_name a:active {
+        text-decoration: none;
+        color: #3f464d;
+    }
+    .cook_name a:hover {
+        text-decoration: none;
+        color: #36CCA6;
+        cursor: pointer;
+    }   
 </style>
 
 <body>
     <div class="myslide" style="width: 80rem; margin :auto">
     {% for item in star%}
     <div class="items" style="text-align : center;">
-        <a href = '#' style="text-decoration-line : none;">
+        <a class = "cook_name" href = '#' style="text-decoration-line : none;">
             <img src="/static/image/rep_img/{{item.rcp_sno}}.jpg/" alt="" style="border-radius : 2rem">
-            <div class="cook_name">{{item.ckg_nm}}</div>
+        </a>
+        <a class = "cook_name" href = '#' style="text-decoration-line : none;">
+            {{item.ckg_nm}}
         </a>
     </div>
     {% endfor%}
