@@ -3,7 +3,7 @@
 {% block content %}
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="{% static 'community.css' %}">
+    {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'community.css' %}"> {% endcomment %}
     <link rel="stylesheet" type="text/css" href="{% static 'searchRecipe.css' %}">
 
     <div class="dogs"></div>
@@ -25,6 +25,7 @@
     <div class = "container">
         <div class ="row">
             {% for item in recipe_list%}
+            {{item.rcp_sno}},{{item.mtrl}},{{item.ckg_nm}},{{item.ckg_mtrl_cn}}
             <div class = "col-lg-6 col-md-6 col-sm-12">
                 <div class = 'box'>
                     <div class="container">
@@ -122,11 +123,10 @@
                                             </a>
                                             <hr>
                                         </div>
-                                        
                                         {% endfor %}
                                     </div>
+                                </div>
                             </div>
-                        </div>
                         </div>
                         <div class="row" style="height:100px">
                         </div>
@@ -193,6 +193,21 @@
 
 </script>
 
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+$( document ).ready( function() {
+$('a.test').click(function(){
+
+var id = $( this ).attr( 'id' );
+alert(id);
+
+});
+
+} );
+
+
+
+</script>
 
 {% endblock %}
 

@@ -1,4 +1,3 @@
-from email.policy import default
 from django.db import models
 from django.forms import IntegerField
 # account 
@@ -30,9 +29,9 @@ class Recipe(models.Model):
     # 10. 요리시간명(CKG_TIME_NM)
     ckg_time_nm = models.TextField()
     # 11. 재료 수(MTRL_CNT)
-    mtrl_cnt = models.TextField(default='')
+    mtrl_cnt = models.TextField()
     # 10. 재료(MTRL)
-    mtrl = models.TextField(default='')
+    mtrl = models.TextField()
     
 
 # 유저 냉장고 테이블
@@ -40,8 +39,7 @@ class Mine(models.Model):
     # id
     seq = models.IntegerField(primary_key=True)
     # 유저 닉네임
-    # username = models.ForeignKey(Userinfo, on_delete=models.CASCADE ,db_column='username')
-    username = models.CharField(max_length=100)
+    id = models.CharField(max_length=100)
     # 보유한 재료
     ingredients = models.CharField(max_length=50)
     # 유통기한

@@ -9,53 +9,34 @@ from account.models import Userinfo
 from myref.settings import YOUTUBE_DATA_API_KEY
 from .models import *
 from django.views import View
- 
 
-# Create your views here.
-# def main(request):
-#     if request.method == "GET":    
-#         recipe_list = Recipe.objects.order_by('rcp_sno')[0:1]
-#         userref_list = UserRef.objects.all()
-#         request.session['recipe_list'] = recipe_list
-#         return render(request,'ref/main.html',{'recipe_list':recipe_list,'userref_list':userref_list})
-    
-#     elif request.method == "POST":
-#         recipe_list = request.session['recipe_list']
-#         temp = request.POST.get('material_name')
-#         return render(request, 'ref/main.html', context={'recipe_list': recipe_list, 'text': temp})
-
-# def material(request):
-#     if request.method == "POST":
-#         temp = request.POST.get('material_name')
-#         new_temp = UserRef()
-#         new_temp
-#         return render(request, 'ref/main.html', context={'text': temp})
-#     else:
-#         return render(request, 'ref/main.html', context={'text':'GET METHOD!!!'})
-        
 class main_v(View):
     array = []       
     def get(self, request, *args, **kwargs):
         star = Recipe.objects.order_by('-inq_cnt')[0:10]
-        # recipe_list = Recipe.objects.all()[0]
+        recipe_list = Recipe.objects.all()
         userref_list = Mine.objects.all()
-        recipe_list = '00'
         # # request.session['recipe_list'] = star
         return render(request,'ref/main.html',{'recipe_list':recipe_list,'userref_list':userref_list, 'star':star})
     
     def post(self, request, *args, **kwargs):   
         # recipe_list = request.session['recipe_list']
-        self.array.append(request.POST.get('material_name'))
+        star = Recipe.objects.order_by('-inq_cnt')[0:10]
+        mn = request.POST.get('material_name')
+        ed = request.POST.get('expire_date')
+        array = self.array
         username= request.session['username']
-        temp = set(self.array)
+        temp = mn
         new_temp = Mine()
-        new_temp.ingredients = temp
-        new_temp.username = username
-        new_temp.id = 1234
-        new_temp.save()
-        # new_temp_output = new_temp.objects.all()
+        if mn not in array:
+            self.array.append(mn)
+            new_temp.ingredients = temp
+            if ed != "":
+                new_temp.expiry_date = ed
+            new_temp.id = username
+            new_temp.save()
         
-        return render(request, 'ref/main.html', context={'temp' : temp})
+        return render(request, 'ref/main.html', context={'array' : array, 'star':star})
 
 class myPage(View):
     def get(self, request, *args, **kwargs):
@@ -63,22 +44,6 @@ class myPage(View):
         username= request.session['username']
         uinfo = Userinfo.objects.get(name=username)
         return render(request,'ref/mypage.html',{'uinfo':uinfo})
-    
-    # def post(self, request, *args, **kwargs):   
-    #     recipe_list = request.session['recipe_list']
-    #     self.array.append(request.POST.get('material_name'))
-    #     temp = self.array
-    #     new_temp = Mine()
-    #     new_temp.ingredients = temp
-    #     new_temp.save()
-    #     # new_temp_output = new_temp.objects.all()
-        
-    #     return render(request, 'ref/main.html', context={'temp' : temp ,'recipe_list': recipe_list, 'new_temp_output': new_temp})
-
-
-
-# def myPage(request):
-#     return render(request, 'ref/mypage.html', {})
 
 
         
@@ -91,31 +56,44 @@ from itertools import *
 
 @csrf_exempt
 def searchRecipe(request):
-
+    from collections import defaultdict
     user_check = request.POST.get('user_like') 
     board_info = Board.objects.all()
-    
-    username = ""
-    if 'username' in request.session:
-        username = request.session.get('username')
-    else:
-        username = request.session.get('default','guest')
+    username= request.session['username']
+
+    # username = ""
+    # if 'username' in request.session:
+    #     username = request.session.get('username')
+    # else:
+    #     username = request.session.get('default','guest')
 
 
     cntr=Recipe.objects.all().count()
-    cntm=Mine.objects.all().count()
-    listscore = []
-    score = 0
-    listmtrl=[]
+    cntm=Mine.objects.filter(id=username).count()
+    print(cntm)
+ 
+
+# user의 재료 목록 가져와 일치하는 레시피 정렬
+    dic = defaultdict(int)
     for i in range(0,cntm):
-        mtrl = Recipe.objects.filter(ckg_mtrl_cn__contains=Mine.objects.get(pk=i+1,id='admin').ingredients).values('mtrl')
-        mtrl_cnt = Recipe.objects.filter(ckg_mtrl_cn__contains=Mine.objects.get(pk=i+1,id='admin').ingredients).values('mtrl_cnt')
-        for j in (0,cntr):
-            reci = Recipe.objects.all().values('mtrl')
-
-    reci = dict(reci)
-    print(type(reci))
-
+        filter_rcp= Recipe.objects.filter(ckg_mtrl_cn__contains=Mine.objects.filter(id=username)[i].ingredients).values('rcp_sno')
+        filter_mtrl= Recipe.objects.filter(ckg_mtrl_cn__contains=Mine.objects.filter(id=username)[i].ingredients).values('mtrl_cnt')
+        print("여기",filter_mtrl[0]['mtrl_cnt'])
+        
+        for j in range(len(filter_rcp)):
+            
+            if dic[filter_rcp[j]['rcp_sno']]:
+                dic[filter_rcp[j]['rcp_sno']] +=1
+            else:
+                dic[filter_rcp[j]['rcp_sno']] = 1
+                            
+    arr1 =[]
+    for i,v in dic.items():
+        get_mtrl_cnt= Recipe.objects.get(rcp_sno=i)
+        arr1.append((i,v,get_mtrl_cnt.mtrl_cnt))
+    import operator
+    result = sorted(arr1, key= lambda x : (-x[1], x[2]))
+    print(result[:5])    
     
 
 
@@ -144,14 +122,35 @@ def searchRecipe(request):
     #     print(mo,'$$$$$$$$$$$$$$$$$$')
 
 
+
     # print(ST,'#########################')
     
 
 
-    # recipe_list = ST[0:10]    
-
-    recipe_list = Recipe.objects.all()[0:5]
-    query = str(recipe_list[0].ckg_nm)
+    # recipe_list = ST[0:10]  
+    arrays = []  
+    print("어레이기존",len(arrays))
+    for i in range(5):
+        query = Recipe.objects.get(rcp_sno=result[i][0])   
+        ckgnm = Recipe.objects.get(rcp_sno=result[i][0]).ckg_nm   
+        arrays.append(query)
+    print("후",len(arrays))
+    
+    
+    
+    
+    # samgubsal = Recipe.objects.filter(rcp_sno=result[0][0])
+    # for i in range(4):
+    #     recipe_list = Recipe.objects.filter(rcp_sno=result[i][0])
+    #     samgubsal.union(recipe_list)
+        
+    #     print(samgubsal,'###############')
+    # print(samgubsal)
+    
+    # recipe_list = samgubsal
+    
+    # query = str(recipe_list[0].ckg_nm)
+    
 
     # 
 
@@ -169,7 +168,7 @@ def searchRecipe(request):
     video_url = 'https://www.googleapis.com/youtube/v3/videos'
     search_params = {
         'part' : 'snippet',
-        'q' : query,
+        'q' : ckgnm,
         'key' : settings.YOUTUBE_DATA_API_KEY,
         'maxResults' : 4,
         'type':'video'
@@ -204,9 +203,10 @@ def searchRecipe(request):
 
         context ={
             'videos':videos,
-            'recipe_list':recipe_list,
+            'recipe_list':arrays,
             'user_check':user_check,
             'board_info':board_info,
+            # 'arrays' :arrays,
         }
 
     # context ={

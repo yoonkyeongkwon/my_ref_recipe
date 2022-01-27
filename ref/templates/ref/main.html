@@ -40,6 +40,17 @@
         transition: all .1s ease;
         box-shadow: 0 0 0 0 #fff, 0 0 0 3px #36CCA6;;
     }
+    .test{
+        display: inline-block;
+
+    }
+    .test2{
+        height: 2rem; 
+        background-color: white; 
+        border-radius : 2rem;
+        padding : 0 10px 0 10px;
+    }
+
 </style>
 <br>
 <!-- 재료 이름, 유통기한 -->
@@ -63,20 +74,20 @@
     <div style="text-align: center; margin-top : 1rem">
         <span class = "subtitle">🍽현재 재료 목록🍽</span>
         <div style="height: 15rem; background-color: #36CCA6; border-radius : 2rem; margin: auto; width : 45rem;">
-        {% if temp %}
-            {% for gg in temp%}
-            <li>
-                <div style="height: 2rem; background-color: white; border-radius : 2rem; width : 6rem;">
-                    <a>{{gg}}</a>
-                </div>
-            </li>
-            {% endfor %}
-        {% endif %}
+            <div style="height : 15rem; padding : 2rem">
+            {% if array %}
+                {% for gg in array%}
+                <li class="test">
+                    <div class= "test2">
+                        <a>{{gg}}</a>
+                    </div>
+                </li>
+                {% endfor %}
+            {% endif %}
+            </div>
         </div>
-        <div style="margin: 2rem;"></div><button type="button" class="btn">레시피 검색</button></div>
-    </div>
+        <div style="margin: 2rem;"><button type="button" class="btn">레시피 검색</button></div>
 </div>
-<br>
 <hr>
 
 <div style="text-align: center; margin-top : 2rem">
