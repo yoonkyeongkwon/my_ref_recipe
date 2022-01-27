@@ -4,44 +4,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 {% block content %}
-<div class="wrapper">
-    <div style="text-align: center;">
-        <h1>로그인</h1>
-        <div class="col-8 text-right">
-            <span><a href="{% url 'account:signup' %}">회원가입</a></span>
-        </div>
-        <form method="POST">
-            {% csrf_token %}
-            <br>
-            아이디
-            <br>
-            <input name="username" type="text">
-            <br><br>
-            비밀번호
-            <br>
-            <input name="password" type="password">
-            <br><br>
-            <input type="submit" class="btn btn-info" value="Login">
-        </form>
-
-        <div style="color : red">{{error}}</div>
-
-        {% comment %} {% if user.is_authenticated %}
-            <p>
-                <a class='nav-link' href="{% url 'account:logout' %}">
-                    {{ user.username }} 님 반갑습니다. (로그아웃)
-                </a>
-            </p>
-        {% else %}
-            <p> Guest로 입장하셨습니다. 방문에 감사드립니다! 끼룩</p>
-        {% endif %} {% endcomment %}
-
-    </div>
-</div>
-{% include 'slider.html' %}
-
-{% endblock %}
-{% load static%}
 <style>
     .carousel-caption {
         position: relative;
@@ -54,7 +16,7 @@
         color: rgb(0, 0, 0);
         text-align: left;
         text-shadow: 0 1px 2px rgba(0,0,0,.6);
-}
+    }
 </style>
 
 <!DOCTYPE html>
@@ -69,24 +31,24 @@
                             <div style="text-align: center; font-family: GongGothicMedium;">
                                 {% if user.is_authenticated %}
                                     <p>
-                                        <a class='nav-link' href="{% url 'account:logout' %}">
-                                            <br>
+                                    <a class='nav-link' href="{% url 'account:logout' %}">
+                                        <br>
                                             &emsp; &emsp; &emsp; &emsp;  &emsp; &emsp; &emsp; &emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&emsp;&emsp;&emsp;{{ user.username }} 님 반갑습니다.
                                             &emsp; &emsp; &emsp; &emsp;  &emsp; &emsp; &emsp; &emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&emsp;&emsp;&emsp;로그아웃 하려면 눌러주세요.
                                         </a>
                                     </p>
-                                        {% else %}
-                                        <br>
+                                {% else %}
+                                    <br>
                                     <p> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 로그인을 해주세요 끼룩!</p>
                                     {% endif %}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="carousel-item" >
-                        <img src="{% static '/image/login6.jpg' %}" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <div style="text-align: center; font-family: GongGothicMedium;">
-                                {% if user.is_authenticated %}
+                        <div class="carousel-item" >
+                            <img src="{% static '/image/login6.jpg' %}" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div style="text-align: center; font-family: GongGothicMedium;">
+                                    {% if user.is_authenticated %}
                                     <p>
                                         <a class='nav-link' href="{% url 'account:logout' %}">
                                             <br>
@@ -94,25 +56,24 @@
                                             &emsp; &emsp; &emsp; &emsp;  &emsp; &emsp; &emsp; &emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&emsp;&emsp;&emsp;로그아웃 하려면 눌러주세요.
                                         </a>
                                     </p>
-                                        {% else %}
-                                        <br>
+                                    {% else %}
+                                    <br>
                                     <p> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 로그인을 해주세요 끼룩!</p>
-                                    
                                     {% endif %}
-                            </div>
+                                </div>
                         </div>
                     </div>
                 </div>
             </div>  
         </div>
 
-
+        
         <div class="col-3">           
             <div class="wrapper">
                 <div style="text-align: center; font-family: GongGothicMedium;">
                     <br><br><br><br>
                     <h1>로그인</h1>
-            
+                    
                     <form method="POST">
                         {% csrf_token %}
                         <br>
@@ -128,12 +89,13 @@
                         <br>
                         <br>
                     </form>
-            
+                    
                     <a href="{% url 'account:signup' %}">계정이 없나요? 끼룩</a></span>
                 </div>
             </div>        
         </div>
     </div>
+</div>
 {% endblock %}
 
-</div>
+{% include 'slider.html' %}

@@ -7,9 +7,12 @@ from django.urls import path
 from .views import FileDownloadView
 
 app_name = 'community'
+
 urlpatterns = [
     path('community_insert/', views.community_insert),
-    path('community_list/', views.community_list.as_view()),
+    path('community_list/', views.community_list.as_view()),  ## 여기 
+    path('test/<int:post_id>/community_modify/', views.community_modify,name="community_modify"),
+    path('test/<int:document_id>/', FileDownloadView.as_view(), name="download"),
     path('detail/<int:post_id>/community_modify/', views.community_modify,name="community_modify"),
     path('detail/<int:document_id>/', FileDownloadView.as_view(), name="download"),
     path('test/', views.test),

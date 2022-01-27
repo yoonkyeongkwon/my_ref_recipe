@@ -62,9 +62,7 @@
         {% csrf_token %}
         <input class = "testing" style= "width: 15rem; height: 2.5rem;" type="text" name ="material_name"/>
         <input class = "testing" style="width: 15rem; height: 2.5rem;" type="date" name="expire_date"/>
-        {% comment %} <button type="button" style= "width: 5rem; height: 2.5rem; margin-left : 2rem; margin-top:-0.6rem;
-         font-size: 18px;" class="btn" type="submit">입력</button> {% endcomment %}
-        <input type="submit" class="btn btn-primary" value="POST">
+        <input type="submit" class="btn" style= "width: 5rem; height: 2.5rem; margin-left : 2rem; margin-top:-0.6rem; font-size: 18px;" value="입력">
     </form>
     <br>
 </div>
@@ -86,7 +84,12 @@
             {% endif %}
             </div>
         </div>
-        <div style="margin: 2rem;"><button type="button" class="btn">레시피 검색</button></div>
+        <div style="margin: 2rem;">
+            <a href="/ref/main/searchRecipe" style="margin : auto 3rem;">
+                <button type="button" class="btn">레시피 검색</button>
+            </a>
+        </div>
+    </div>
 </div>
 <hr>
 

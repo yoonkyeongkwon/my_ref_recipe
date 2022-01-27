@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    .myprofile{
+        font-family: "SUIT-Medium";
+        position: relative;
+        font-size: 20px;
+    }
+</style>
+
+
+
+<br>
+<div class = "myprofile">
+    <div class="card mb-3" style="width : 50rem ;margin: auto; text-align : center;">
+    <div class="row g-0">
+        <div class="col-md-4"style ="text-align : center; border: 15px solid #36CCA6; object-fit: none";>
+            <div style="margin-top : 0rem"><br></div>    
+                <img src="{% static 'image/profile.jpg' %}" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+        <div class="card-body" style ="margin : 2rem; width : 40rem">
+            <form action ="/ref/main/mypageINFO/" method="POST">
+                {% csrf_token%}
+                <div>
+                    <h3 class="card-title" style="display:inline-block;">아이디2</h3>
+                    <h3 style="display:inline-block; margin-left : 1.5rem; margin-right : 10rem" >
+                        <input type = "text" style ="color : #36CCA6;display:inline-block;width:13rem;" value = {{user.username}} name = "ID" disabled>
+                    </h3>
+                </div>
+                <div>
+                    <h3 class="card-title" style="display:inline-block;">비밀번호</h3>
+                    <h3 style="display:inline-block; margin-left : 1.5rem; margin-right : 10rem" >
+                        <input type = "text" style ="color : #36CCA6;display:inline-block;width:13rem;"  name = "PW">
+                    </h3>
+                </div>
+                <div>
+                    <h3 class="card-title" style="display:inline-block;">닉네임</h3>
+                    <h3 style="display:inline-block; margin-left : 1.5rem; margin-right : 10rem" >
+                        <input type = "text" style ="color : #36CCA6;display:inline-block;width:13rem;" value = {{uinfo.last_name}} name = "NICK">
+                    </h3>
+                </div>
+                <div>
+                    <h3 class="card-title" style="display:inline-block;">이메일</h3>
+                    <h3 style="display:inline-block; margin-left : 1.5rem; margin-right : 10rem" >
+                        <input type = "text" style ="color : #36CCA6;display:inline-block;width:20rem;" value = {{uinfo.email}} name = "email">
+                    </h3>
+                </div>
+                <div style="margin-bottom:0rem;"><br></div>
+                <div>
+                    <input style="text-align:center;position:absolute;width:10rem;" method = "POST" type="submit" name="editfinish" value="수정완료">
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+<br>
+
+<hr>
+<div style="margin:2rem 0rem; text-align:center;"></div>
+
+<h2 style="font-family:SUIT-Medium ; font-size : 33px; margin : 0 10rem;"> 
+    ❤ 내가 찜한 레시피
+</h2>
+
+{% include 'slider.html' %}
+
+
+<hr>
+<div style="margin:2rem 0rem; text-align:center;"></div>
+
+<h2 style="font-family:SUIT-Medium ; font-size : 33px; margin : 0 10rem;"> 
+    ❤ 내 게시물
+</h2>
+
+{% include 'slider.html' %}
+
+
+{% endblock %}
