@@ -71,10 +71,9 @@ class community_list(TemplateView):
 # 커뮤니티 글 수정
 def community_modify(request,post_id):
      post=Board.objects.get(id=post_id)
-     print(post,111111111111111111)
+     print(post)
      if request.method == 'POST':
           contents = request.POST['contents']
-          print(post,222222222222222222)
           try:
                post.file = request.FILES['file']
           except:

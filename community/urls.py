@@ -16,5 +16,6 @@ urlpatterns = [
     path('test2/', views.test2),
     path('test/downloads/<int:id>/', views.downloads, name='downloads'),
     path('detail/', views.detail, name='detail'),
+    path('detail/<int:post_id>/community_delete/', views.community_delete,name="community_delete"),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
