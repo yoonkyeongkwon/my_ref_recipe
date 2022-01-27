@@ -1,6 +1,7 @@
 from distutils.command.check import check
 from msilib.schema import ListView
 from socket import AI_PASSIVE
+from typing import Dict
 from django.http import HttpResponse
 from django.shortcuts import render
 from myref import settings
@@ -100,35 +101,75 @@ def searchRecipe(request):
     else:
         username = request.session.get('default','guest')
 
+
+    cntr=Recipe.objects.all().count()
+    cntm=Mine.objects.all().count()
+    listscore = []
+    score = 0
+    listmtrl=[]
+    for i in range(0,cntm):
+        mtrl = Recipe.objects.filter(ckg_mtrl_cn__contains=Mine.objects.get(pk=i+1,id='admin').ingredients).values('mtrl')
+        mtrl_cnt = Recipe.objects.filter(ckg_mtrl_cn__contains=Mine.objects.get(pk=i+1,id='admin').ingredients).values('mtrl_cnt')
+        for j in (0,cntr):
+            reci = Recipe.objects.all().values('mtrl')
+
+    reci = dict(reci)
+    print(type(reci))
+
     
 
-    ## 내 재료안에 있는 모든걸 레시피에 검색
-    cnt = count(Mine.objects.all)
-    myingre = ""
 
-    num = 0
-    for mine in Mine.objects.all():
-        myingre = str(Mine.ingredients)
-        while(num<cnt-1):
+    # # 어레이는 레시피데이터 배열 처리
+    # for i in range(0,cnt):
+    #     FT = Recipe.objects.filter(ckg_mtrl_cn__contains=Mine.objects.get(pk=i+1,id='admin').ingredients).values('ckg_mtrl_cn')
+    #     leng = Recipe.objects.filter(ckg_mtrl_cn__contains=Mine.objects.get(pk=i+1,id='admin').ingredients).values('ckg_mtrl_cn').count()
+    #     ST = ""
+    #     for j in range(0,leng):
+    #         ST += str(FT.values('ckg_mtrl_cn')[j]['ckg_mtrl_cn'])+"/"
+    #         array += [FT.values('ckg_mtrl_cn')[j]['ckg_mtrl_cn']]
 
-            num += 1
+    # array = set(array)
+    # array = list(array)
+    # array.sort()
+    
+    # ## mo는 내 냉장고 재료
+    # print(array,'@@@@@@@@@@@@@@@@@@@@@@')
+    # newarray = []
+    # for i in range(0,cnt):
+    #     mo = Mine.objects.get(pk=i+1,id='admin').ingredients
+    #     for s in array:
+    #         if s.__contains__(mo):
+    #             print(s)
+    #     print(s,'&&&&&&&&&&&&&&&&&&&&&')
+    #     print(mo,'$$$$$$$$$$$$$$$$$$')
+
+
+    # print(ST,'#########################')
+    
+
+
+    # recipe_list = ST[0:10]    
+
+    recipe_list = Recipe.objects.all()[0:5]
+    query = str(recipe_list[0].ckg_nm)
+
+    # 
+
+    # def filtering(num,FT):
+    #     FT = FT(ckg_mtrl_cn__contains=Mine.objects.get(pk=num).ingredients)
+    #     num -= 1
+    #     filtering(num,FT)  
+    #     if(num==0):
+    #         return FT
         
-    #     myingre += str(mine.ingredients)+'|'
-    # myingre.split
-
-    recipe_list = Recipe.objects.all()[0:10]
-    
-    
-    
-
-
+    # filtering(cnt,FT)
 
 
     search_url = 'https://www.googleapis.com/youtube/v3/search'
     video_url = 'https://www.googleapis.com/youtube/v3/videos'
     search_params = {
         'part' : 'snippet',
-        'q' : '검색바꾼결과',
+        'q' : query,
         'key' : settings.YOUTUBE_DATA_API_KEY,
         'maxResults' : 4,
         'type':'video'
@@ -157,12 +198,12 @@ def searchRecipe(request):
             'duration' : int(parse_duration(result['contentDetails']['duration']).total_seconds() // 60 ),
             'thumbnail' : result['snippet']['thumbnails']['high']['url'],
         }
-        print(result['id'],'###################################')
+        print(result['id'])
 
         videos.append(video_data)
 
         context ={
-            'videos': videos,
+            'videos':videos,
             'recipe_list':recipe_list,
             'user_check':user_check,
             'board_info':board_info,
@@ -176,24 +217,4 @@ def searchRecipe(request):
         
 
     return render(request,'ref/searchRecipe.html',context)
-    
-
-
-
-
-@csrf_exempt
-def moreNeed(request):
-    if request.method == 'POST':
-
-
-
-
-
-
-
-        return 
-
-    else:
-        
-        return render(request,'ref/moreNeed.html',{})
 

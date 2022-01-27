@@ -38,7 +38,7 @@ class Recipe(models.Model):
 # 유저 냉장고 테이블
 class Mine(models.Model):
     # id
-    id = models.IntegerField(primary_key=True)
+    seq = models.IntegerField(primary_key=True)
     # 유저 닉네임
     # username = models.ForeignKey(Userinfo, on_delete=models.CASCADE ,db_column='username')
     username = models.CharField(max_length=100)
@@ -50,7 +50,7 @@ class Mine(models.Model):
 # 찜 테이블(체크 테이블)
 class Jim(models.Model):
     # 유저 닉네임
-    username = models.ForeignKey(Userinfo, on_delete=models.CASCADE)
+    nickname = models.ForeignKey(Userinfo, on_delete=models.CASCADE,db_column='nickname')
     # 찜한 게시판 아이디
     board_id = models.IntegerField()
 
@@ -59,12 +59,11 @@ class Board(models.Model):
     # 보드 아이디
     board_id = models.IntegerField()
     # rcp_sno
-    rcp_sno = models.ForeignKey(Recipe, on_delete=models.CASCADE,)
+    rcp_sno = models.ForeignKey(Recipe, on_delete=models.CASCADE, db_column='rcp_sno')
     # title
     board_title = models.CharField(max_length=50)
     # contents
     board_contents = models.TextField()
-
 
 
 

@@ -228,8 +228,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # YOUTUBE KEY 
-# 키가 될때도 있고 안될 때도 있음 ;;
-YOUTUBE_DATA_API_KEY = "AIzaSyBglkOgq9aNQYMjcXLOwO9egXF65hvfZtc"
+YOUTUBE_DATA_API_KEY = "AIzaSyDjgYAeoHt6WX4Bxh53gEhKcWS2apVlWCI"
 
     #  윤경님 AIzaSyDea6MZYW8tn2-XG1eCMGVR5pU37Nwu3RU
     #  성은님 AIzaSyBnuowCUE4Lj-W9bEdSfpDP7fKcPN06UwE
