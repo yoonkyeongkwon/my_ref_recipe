@@ -181,22 +181,13 @@
         border-bottom-right-radius: calc(0.3rem - 1px);
         border-bottom-left-radius: calc(0.3rem - 1px);
     }
-<<<<<<< HEAD
-=======
-}
 
-
->>>>>>> sanghee
 </style>
 
 <div class="myrecipe">
     <span style="size: 35px; color:#36CCA6; margin-bottom:20px;">내 요리를 자랑해보세요!</span>
 </div>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> sanghee
 <div class="container">
     {%for data in list.board%}
      <a href="{% url 'community:detail' %}?id={{ data.id }}" class="card-link">
@@ -205,29 +196,18 @@
         {% comment %} <img src=/media/{{data.file}} onerror='this.src="/static/image/profile.jpg"'> {% endcomment %}
         <img src="{{ data.file.url }}">
         <div class="comment">
-<<<<<<< HEAD
-            {%for comm in list.comment%}
-            {% comment %} 조건문우째넣노..{%if comm.id == data.id %} {% endcomment %}
-            <span style="font-weight: bold;">{{comm.author}}</span>
-            <span>{{comm.contents}}</span><br>
-=======
             {% for comm in list.comment %}
                 {% ifequal comm.id data.id %}
                     <span style="font-weight: bold;">{{comm.author}}</span>
                     <span>{{comm.contents}}</span><br>
                 {% endifequal %} 
->>>>>>> sanghee
             {% endfor %}
         </div>
-<<<<<<< HEAD
     </div>            
-=======
-    </div>
     </a>
->>>>>>> comm
     {% endfor %}
 </div>
-<<<<<<< HEAD
+
 {% if user.is_authenticated %}
 <div class="container mt-3">
     <h3>Modal Example</h3>
@@ -252,7 +232,7 @@
     function close() {
         modal_detail.style.display = 'none';
     }
-=======
+</script>
 
 <script src="{% static 'js/magicgrid.js' %}"></script>
 <script>
@@ -260,7 +240,6 @@
     for(const con_img of imgs) {
         con_img.addEventListener('click', console.log('clicked'));
     }                  
->>>>>>> sanghee
 </script>
 
 {% comment %} <script>
@@ -273,7 +252,7 @@
     }
 </script> {% endcomment %}
 
-<<<<<<< HEAD
+
 <div class="modal" id="myModal">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -299,6 +278,5 @@
   </div>
 {% endif %}
 <script src="{% static 'js/magicgrid.js' %}"></script>
-=======
->>>>>>> sanghee
+
 {% endblock %}
