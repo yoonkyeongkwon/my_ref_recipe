@@ -179,7 +179,7 @@
 </div>
 
 <div class="container">
-    {% for data in list.board %}
+    {%for data in list.board%}
     <div>
         {% comment %} <img src=/media/{{data.file}} onerror='this.src="/static/image/profile.jpg"'> {% endcomment %}
         <img src="{{ data.file.url }}">

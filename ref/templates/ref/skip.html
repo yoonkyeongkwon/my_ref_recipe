@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'community.css' %}"> {% endcomment %}
+    <link rel="stylesheet" type="text/css" href="{% static 'searchRecipe.css' %}">
+
+    <div class="dogs"></div>
+
+    <div class = "container">
+        <div class ="row">
+            <div class ="col-4">
+            </div>
+            <div class = "col-4">    
+                <div class = 'testing' style="display: inline-block;font-size:40px">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;검색 결과
+                </div>
+            </div>
+            <div class="col-4">
+            </div>
+        </div>
+    </div>
+
+    <div class = "container">
+        <div class ="row">
+            {% for item in recipe_list%}
+            {{item.rcp_sno}},{{item.mtrl}},{{item.ckg_nm}},{{item.ckg_mtrl_cn}}
+            <div class = "col-lg-6 col-md-6 col-sm-12">
+                <div class = 'box'>
+                    <div class="container">
+                        <div class ="row">
+                            <div class ="col-12" style="visibility:hidden;height:32px">a</div>
+                            <div class ="col-6">
+                                <span class = 'photo' style="display: inline-block;">
+                                    <img class='photo' onclick="openzlog();" src="../../../static/image/rep_img/{{item.rcp_sno}}.jpg">
+                                </span>
+                            </div>
+                            <div class ="col-6">
+                                <div class="item" style="inline-block">
+                                    <a href="#" id="{{item.rcp_sno}}" class="test" onclick="openzlog();" style="width:auto; font-size:25px" >{{item.ckg_nm}}</a>
+                                    <button class = "button" id = "like">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                           <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                                       </svg>
+                                    </button>
+                                    {% comment %} <button class = "button" id = "like">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                                    </svg>
+                                    </button> {% endcomment %}
+                                </div>
+                                <span class = 'detail' style="display: inline-block;">{{item.ckg_mtrl_cn}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+
+            <div id="zlog" class="modal">
+                <form class="modal-content" action="/ref/searchRecipe/" method="post">
+                    {% csrf_token %}
+                    <span onclick="closezlog();" class="close">&times;</span>
+                    <img src="../../../static/image/rep_img/{{item.rcp_sno}}.jpg">
+                    <div class="container">
+                        <div class ="row">
+                            <div class ="col-4">
+                            </div>
+                            <div class ="col-5">
+                                <span class ="font0">{{item.ckg_nm}}</span>
+                                <input type="hidden" name="query" value="{{item.ckg_nm}}">
+                            </div>
+                            <div class ="col-2">
+                            </div>
+                            <div class ="col-1">
+                                
+                            
+                            </div>
+                        </div>
+                        <div class="row" style="height:40px">
+                        </div>
+            
+                    </div>
+                    <div class="container">
+                        <div class ="row">
+                            <div class ="col-12">
+                                <span class = "font1">{{item.mtrl}}</span>
+                            </div>
+                        </div>
+                        <div class="row" style="height:40px">
+                        </div>
+            
+                    </div>
+                    <div class="container">
+                        <div class ="row">
+                            <div class ="col-2">
+                            </div>
+                            <div class ="col-10">
+                                <span class="font2"></span>
+                            </div>
+                        </div>
+                        <div class="row" style="height:40px">
+                        </div>
+            
+                    </div>
+                    <div class="container" style="background-color:#36CCA6;">
+                        <div class ="row">
+                            <div class ="col-2">
+                                <span class="font4" style="color:black;">참고영상 </span>
+                            </div>
+                            <div class ="col-10">
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class ="col">
+                                <div class="container">
+                                    <div class="row" >
+                                        {% for video in videos %}
+                                        <div class="col-6" >
+                                            <a type="button" href="{{video.url}}">
+                                                <img src="{{video.thumbnail}}" class="img-thumbnail" width="200" height="200" alt="...">
+                                            </a>
+                                            <hr>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height:100px">
+                        </div>
+                    </div>
+                   
+                </form>
+            </div>
+            {% endfor %} 
+        </div>
+    </div> 
+
+<script>
+    var zlog = document.getElementById('zlog');
+    function openzlog() {
+        {% comment %} const testzlog = document.querySelector("");
+        const idlog = testzlog.getAttribute("id");
+        alert(idlog) {% endcomment %}
+
+        zlog.style.display = 'block';
+    }
+    function  closezlog(){
+        zlog.style.display = 'none';
+    }
+    window.onclick = function (event) {
+        if (event.target==zlog) {
+            zlog.style.display='none';
+        }
+    }
+</script>
+
+
+<script>
+    var tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var player;
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+            videoId: '{{ video.video_key }}'
+        });
+    }
+</script>
+
+<script>
+
+    const button = document.querySelector("#like")
+    const url = 'https://dog.ceo/api/breeds/image/random'
+    const changeheart = function() {
+        axios.get(url).then(
+          (response) => {
+              
+            const imgURL = response.data.message;
+            const dogImage = document.createElement("img")            
+            dogImage.src = imgURL;
+            dogImage.style.height ="300px";
+            document.querySelector(".dogs").appendChild(dogImage);
+
+        })
+      }
+      button.addEventListener("click", changeheart)
+
+</script>
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+$( document ).ready( function() {
+$('a.test').click(function(){
+
+var id = $( this ).attr( 'id' );
+alert(id);
+
+});
+
+} );
+
+
+
+</script>
+
+{% endblock %}
+
+
+
+

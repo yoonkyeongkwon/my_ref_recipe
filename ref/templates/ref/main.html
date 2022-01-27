@@ -40,17 +40,18 @@
         transition: all .1s ease;
         box-shadow: 0 0 0 0 #fff, 0 0 0 3px #36CCA6;;
     }
+    .test{
+        display: inline-block;
+
+    }
+    .test2{
+        height: 2rem; 
+        background-color: white; 
+        border-radius : 2rem;
+        padding : 0 10px 0 10px;
+    }
+
 </style>
-
-<!-- 냉장고 재료 입력 칸 -->
-<!-- <div class = "testing" style="text-align: center; margin : 1rem">
-    <span>
-    {% for item in recipe_list%}
-    {{ item}}
-    {% endfor%}
-    님</span>의 냉장고
-</div> -->
-
 <br>
 <!-- 재료 이름, 유통기한 -->
 <div style="text-align: center;">
@@ -61,18 +62,10 @@
         {% csrf_token %}
         <input class = "testing" style= "width: 15rem; height: 2.5rem;" type="text" name ="material_name"/>
         <input class = "testing" style="width: 15rem; height: 2.5rem;" type="date" name="expire_date"/>
-        <button type="button" style= "width: 5rem; height: 2.5rem; margin-left : 2rem; margin-top:-0.6rem;
-         font-size: 18px;" class="btn" type="submit">입력</button>
+        {% comment %} <button type="button" style= "width: 5rem; height: 2.5rem; margin-left : 2rem; margin-top:-0.6rem;
+         font-size: 18px;" class="btn" type="submit">입력</button> {% endcomment %}
+        <input type="submit" class="btn btn-primary" value="POST">
     </form>
-    <h1>
-        {% if temp %}
-            {% comment %} {% for new_temp in new_temp_output%} {% endcomment %}
-            <h4>    
-                {{temp}}
-            </h4>
-            {% comment %} {% endfor %} {% endcomment %}
-        {% endif %}
-    </h1>
     <br>
 </div>
 
@@ -80,21 +73,29 @@
     <!--  현재 재료 목록 -->
     <div style="text-align: center; margin-top : 1rem">
         <span class = "subtitle">🍽현재 재료 목록🍽</span>
-        <div style="height: 15rem; background-color: #36CCA6; border-radius : 2rem; margin: auto; width : 45rem;"></div>
-        <div style="margin: 2rem;"></div><button type="button" class="btn">레시피 검색</button></div>
-    </div>
+        <div style="height: 15rem; background-color: #36CCA6; border-radius : 2rem; margin: auto; width : 45rem;">
+            <div style="height : 15rem; padding : 2rem">
+            {% if array %}
+                {% for gg in array%}
+                <li class="test">
+                    <div class= "test2">
+                        <a>{{gg}}</a>
+                    </div>
+                </li>
+                {% endfor %}
+            {% endif %}
+            </div>
+        </div>
+        <div style="margin: 2rem;"><button type="button" class="btn">레시피 검색</button></div>
 </div>
-<br>
 <hr>
 
 <div style="text-align: center; margin-top : 2rem">
     <span class = "subtitle">🔥인기 레시피🔥</span>
 
-
 </div>
 
 {% include 'slider.html' %}
-
 
 {% endblock %}
 

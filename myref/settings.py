@@ -205,22 +205,22 @@ CORS_ALLOW_HEADERS = (
 )
 
 # sql 로그 보기 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-        }
-    },
-    'loggers': {
-        'django.db.backends': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-        },
-    }
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'console': {
+#             'level': 'DEBUG',
+#             'class': 'logging.StreamHandler',
+#         }
+#     },
+#     'loggers': {
+#         'django.db.backends': {
+#             'handlers': ['console'],
+#             'level': 'DEBUG',
+#         },
+#     }
+# }
 
 
 # MEDIA
@@ -228,7 +228,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # YOUTUBE KEY 
-# 키가 될때도 있고 안될 때도 있음 ;;
 YOUTUBE_DATA_API_KEY = "AIzaSyBglkOgq9aNQYMjcXLOwO9egXF65hvfZtc"
 
     #  윤경님 AIzaSyDea6MZYW8tn2-XG1eCMGVR5pU37Nwu3RU

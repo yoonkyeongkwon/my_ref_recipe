@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .card-colums{
+        margin: 0;
+        font-family : "SUIT-Medium";
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        text-align: left;
+    }
+    .cards-box {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 70px;
+        margin-top: 65px;
+        flex-wrap: wrap;
+        {#float: left;#}
+    }
+</style>
+
+<div class="card" style="width: 17rem; margin-bottom:15px; margin-left: 10px;">
+    <img class="card-img-top" src="/static/image/rep_img/{{query.rcp_sno}}.jpg/" alt="Card image cap" style="border-bottom: 1px solid #eee; height: 200px;">
+    <div class="card-body">
+        <ul class='card-body-ul'>
+            <li> <span style="font-family : SUIT-Medium">이름 : {{ query.ckg_nm }}</span></li>
+            <li> 재료 : {{ query.mtrl }}</li>
+            <div class="btn-detail">
+                <li>
+                    <a href="https://www.10000recipe.com/recipe/{{query.rcp_sno}}" style="margin-left: 100px; margin-bottom: 13px; height: 25px">레시피 상세보기</a>
+                </li>
+            </div>
+        </ul>
+    </div>
+</div>
+<div style= "margin:3rem 0rem;"></div>
+{% comment %} <form action ="/ref/main/searchRecipe/" method="POST">
+    {% csrf_token %}
+    <div style = "text-align:center;">
+        <input style="display:inline-block" method="POST" type="submit" name ="bf" value="이전으로">
+        <input style="display:inline-block" method="POST" type="submit" name ="nxt" value="홈으로">
+    </div>
+</form> {% endcomment %}
+
+{% endblock %}
+
