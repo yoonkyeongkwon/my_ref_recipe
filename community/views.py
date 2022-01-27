@@ -28,6 +28,8 @@ import os
 from django.http import HttpResponse, Http404
 import mimetypes
 
+from account.models import *
+
 
 #커뮤니티 글 쓰기
 def community_insert(request):
@@ -49,6 +51,7 @@ def community_insert(request):
          return render(request, 'community/community_insert.html')
     else:
         return render(request, 'community/community_insert.html',context={'text':'GET method!!!'})
+   
 
 class community_list(TemplateView):
      template_name = "community/community_list.html"
@@ -64,7 +67,6 @@ class community_list(TemplateView):
                     'list':list
                }
           )
-
 
 
 # 커뮤니티 글 수정
@@ -122,7 +124,6 @@ class FileDownloadView(SingleObjectMixin, View):
         return response
 
 
-
 def downloads(request):
      id = request.GET.get('id')
      print(id,22222222222)
@@ -140,3 +141,4 @@ def detail(request):
         item = get_object_or_404(Board, pk=request.GET.get('id'))
         return render(request, 'community/detail.html', {'item': item})
     return HttpResponseRedirect('/community/community_list/')
+

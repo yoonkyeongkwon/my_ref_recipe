@@ -111,6 +111,8 @@
         /* 필요하면 스크롤 가능 
         background-color: rgba(0, 0, 0, 0);*/
         background-color: lightgray;
+        max-width: 550px;
+        max-height : 100%
     }   
     
     .detail-content {
@@ -140,7 +142,7 @@
         display: -ms-flexbox;
         display: flex;
         width:498px;
-        height:324px;
+        height:54px;
         -ms-flex-align: start;
         align-items: flex-start;
         -ms-flex-pack: justify;
@@ -253,8 +255,8 @@
 </script> {% endcomment %}
 
 
-<div class="modal" id="myModal">
-    <div class="modal-dialog">
+<div class="modal" id="myModal" style="height: 1000px;">
+    <div class="modal-dialog" style="max-width: 550px; max-height:300px">
       <div class="modal-content">
   
         <!-- Modal Header -->
@@ -265,7 +267,7 @@
   
         <!-- Modal body -->
         <div class="modal-body">
-          <iframe src="/community/community_insert/"></iframe>
+          <iframe src="/community/community_insert/" style="width: 500px;"></iframe>
         </div>
   
         <!-- Modal footer -->
