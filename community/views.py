@@ -88,7 +88,7 @@ def community_modify(request,post_id):
 def community_delete(request, post_id):
   post = Board.objects.get(id=post_id)
   post.delete()
-  return redirect('home')
+  return redirect('/community/community_list')
 
 #테스트창 완료 후 삭제
 def test(request):
