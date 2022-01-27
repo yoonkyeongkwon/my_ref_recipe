@@ -15,7 +15,7 @@
     /* 배경화면(글 쓰는 곳 바깥) */
     
     .modal {
-        display: none;
+        display: block;
         /* 기본 안보이도록 */
         position: fixed;
         /* 포지션 픽스 */
