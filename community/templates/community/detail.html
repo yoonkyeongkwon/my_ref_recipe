@@ -6,8 +6,19 @@
         <div class="col-sm-12" style="margin-top:20px;">
             <h3>{{ item.contents }}</h3>
             <p>{{ item.regdate }}</p>
-            <a href="/community/detail/{{item.id}}/community_modify/">/수정</a>
-            <a href="/community/detail/{{item.id}}/community_delete/">/삭제</a>
+            {% if user.last_name == item.write_id %}
+                 <a href="/community/detail/{{item.id}}/community_modify/">/수정</a>
+                 <a href="/community/detail/{{item.id}}/community_delete/">/삭제</a>
+            {% endif %}
+            <form class="modal-content" action="/community/detail/downloads/{{item.id}}/" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div>
+                  <input type="hidden" name="id" value="{{ item.id }}">
+                    <div style="float: right;">
+                        <input type="submit" value='다운' class="comm_insert" id="btn_insert">
+                    </div>
+                </div>
+              </form> 
         </div>
     </div>
 </div>

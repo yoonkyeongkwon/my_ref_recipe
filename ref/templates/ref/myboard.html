@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12" style="margin-top:20px;">
+            {% for item in board %}
+                {% if user.last_name == item.write_id %}
+                <a href="{% url 'community:detail' %}?id={{ item.id }}" class="card-link">
+                    <h3>{{ item.regdate }} / {{ item.contents }}</h3>
+                </a>
+                    {% comment %} <a href={% url %} {% endcomment %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

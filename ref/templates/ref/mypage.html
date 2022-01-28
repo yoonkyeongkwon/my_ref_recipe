@@ -8,9 +8,35 @@
         position: relative;
         font-size: 20px;
     }
+    .headerbtn{
+        font-size : 20px; 
+        display: inline-block; 
+        width: auto;
+        color : #4e5052;
+        font-family: "GongGothicMedium";
+        }
+    .headerbtn a {
+        display: inline-block;
+    }
+    .headerbtn a:link {
+        text-decoration: none;
+        color: #3f464d;
+    }
+    .headerbtn a:visited {
+        text-decoration: none;
+        color: #3f464d;
+    }
+    .headerbtn a:active {
+        text-decoration: none;
+        color: #3f464d;
+    }
+    .headerbtn a:hover {
+        text-decoration: none;
+        color: #36CCA6;
+        cursor: pointer;
+    } 
+
 </style>
-
-
 
 <br>
 <div class = "myprofile">
@@ -57,21 +83,9 @@
 <hr>
 <div style="margin:2rem 0rem; text-align:center;"></div>
 
-<h2 style="font-family:SUIT-Medium ; font-size : 33px; margin : 0 10rem;"> 
-    ❤ 내가 찜한 레시피
-</h2>
-
-{% include 'slider.html' %}
-
-
-<hr>
-<div style="margin:2rem 0rem; text-align:center;"></div>
-
-<h2 style="font-family:SUIT-Medium ; font-size : 33px; margin : 0 10rem;"> 
-    ❤ 내 게시물
-</h2>
-
-{% include 'slider.html' %}
+<div class = "headerbtn" style="margin : auto; text-align :center; width : 100%"> 
+    <a style="font-size: 20px;" href="{% url 'ref:myBoard' %}">❤ 내 게시물 ❤</a>
+</div>
 
 
 {% endblock %}

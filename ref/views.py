@@ -15,6 +15,7 @@ from isodate import parse_duration
 from account.models import Userinfo
 from itertools import *
 from django.shortcuts import get_object_or_404
+from community.models import Board
 
 class main_v(View):
     array = []
@@ -124,3 +125,8 @@ class searchRecipeSSS(View):
         rcp_sno1 = request.POST.get("rcp_sno",0)
         query = Recipe.objects.get(rcp_sno=rcp_sno1)
         return render(request,'ref/recipedetail.html', {"query": query})
+
+class myBoard(View):
+    def get(self, request, *args, **kwargs):
+        board=Board.objects.all()
+        return render(request,'ref/myboard.html',{'board':board})

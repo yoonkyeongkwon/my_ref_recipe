@@ -28,9 +28,6 @@ import os
 from django.http import HttpResponse, Http404
 import mimetypes
 
-from account.models import *
-
-
 #커뮤니티 글 쓰기
 def community_insert(request):
     if request.method == 'POST':
@@ -48,10 +45,9 @@ def community_insert(request):
          m.file=file
          m.save()
     
-         return render(request, 'community/community_insert.html')
+         return redirect('/community/community_list')
     else:
         return render(request, 'community/community_insert.html',context={'text':'GET method!!!'})
-   
 
 class community_list(TemplateView):
      template_name = "community/community_list.html"
@@ -68,13 +64,12 @@ class community_list(TemplateView):
                }
           )
 
-
 # 커뮤니티 글 수정
 def community_modify(request,post_id):
      post=Board.objects.get(id=post_id)
      print(post)
      if request.method == 'POST':
-          contents = request.POST['contents']
+          post.contents = request.POST['contents']
           try:
                post.file = request.FILES['file']
           except:
@@ -101,12 +96,10 @@ def test(request):
 def test2(request):
      return render(request, 'community/test2.html')
 
-
 #테스트창 완료 후 삭제
 def test(request):
      board_list=Board.objects.all()
      return render(request, 'community/test.html',{'board_list':board_list})
-
 
 #파일 다운로드
 class FileDownloadView(SingleObjectMixin, View):
@@ -124,8 +117,8 @@ class FileDownloadView(SingleObjectMixin, View):
         return response
 
 
-def downloads(request):
-     id = request.GET.get('id')
+def downloads(request,id):
+     #id = request.GET.get('id')
      print(id,22222222222)
      uploadFile = Board.objects.get(id=id)
      print(uploadFile,3333333333333)
@@ -141,4 +134,3 @@ def detail(request):
         item = get_object_or_404(Board, pk=request.GET.get('id'))
         return render(request, 'community/detail.html', {'item': item})
     return HttpResponseRedirect('/community/community_list/')
-
