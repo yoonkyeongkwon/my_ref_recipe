@@ -67,7 +67,7 @@
     <br>
 </div>
 
-<div  style="text-align: center;">
+<div style="text-align: center;">
     <!--  현재 재료 목록 -->
     <div style="text-align: center; margin-top : 1rem">
         <span class = "subtitle">🍽현재 재료 목록🍽</span>
@@ -77,7 +77,7 @@
                 {% for gg in array%}
                 <li class="test">
                     <div class= "test2">
-                        <a>{{gg}}</a>
+                        <a class="testing">{{gg}}</a>
                     </div>
                 </li>
                 {% endfor %}
@@ -85,9 +85,16 @@
             </div>
         </div>
         <div style="margin: 2rem;">
-            <a href="/ref/main/searchRecipe" style="margin : auto 3rem;">
+            {% if not user.is_authenticated%} 
+            <a href="{% url 'account:login' %}?next={{request.path}}"style = "margin : auto 3rem;">
                 <button type="button" class="btn">레시피 검색</button>
             </a>
+            {% else %}
+            <a href= "/ref/main/searchRecipe" style="margin : auto 3rem;">
+                <button type="button" class="btn">레시피 검색</button>
+            </a> 
+            {% endif %}
+
         </div>
     </div>
 </div>

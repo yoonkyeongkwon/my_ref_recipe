@@ -63,18 +63,25 @@
     <div style="margin : auto; text-align : center">
         <div class = "headerbtn">
             <a href="/ref/main" style = "margin : auto 3rem;">재료</a> 
-            <a href="/ref/main/searchRecipe" style="margin : auto 3rem;">레시피검색</a>
+
+            {% if not user.is_authenticated%} 
+            <a href="{% url 'account:login' %}?next={{request.path}}"style = "margin : auto 3rem;">레시피검색</a>
+            {% else %}
+            <a href= "/ref/main/searchRecipe" style="margin : auto 3rem;">레시피검색</a> 
+            {% endif %}
+            
             {% if not user.is_authenticated%} 
             <a href="{% url 'account:login' %}?next={{request.path}}"style = "margin : auto 3rem;">요리커뮤니티</a>
             {% else %}
             <a href="/community/community_list"  style="margin : auto 3rem;">요리커뮤니티</a> 
             {% endif %}
-            
+        
             {% if not user.is_authenticated%} 
             <a href="{% url 'account:login' %}?next={{request.path}}" style = "margin : auto 3rem;">마이페이지</a>
             {% else %}
             <a href="/ref/main/mypage" style = "margin : auto 3rem;">마이페이지</a>
             {% endif %}
+
         </div>
     </div>
 </div>

@@ -6,26 +6,7 @@
         font-size: 20px;
         font-family: "SUIT-Medium";
     }
-    .cook_name a {
-        display: inline-block;
-    }
-    .cook_name a:link {
-        text-decoration: none;
-        color: #3f464d;
-    }
-    .cook_name a:visited {
-        text-decoration: none;
-        color: #3f464d;
-    }
-    .cook_name a:active {
-        text-decoration: none;
-        color: #3f464d;
-    }
-    .cook_name a:hover {
-        text-decoration: none;
-        color: #36CCA6;
-        cursor: pointer;
-    }   
+   
 </style>
 
 <body>
@@ -43,9 +24,9 @@
             {% csrf_token %}
         </form>
 
-        <a class = "cook_name" href = '#' style="text-decoration-line : none;">
+        <div class = "cook_name" href = '#' style="text-decoration-line : none;">
             {{item.ckg_nm}}
-        </a>
+        </div>
     </div>
     {% endfor%}
     </div>

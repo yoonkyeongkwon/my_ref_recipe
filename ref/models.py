@@ -45,12 +45,6 @@ class Mine(models.Model):
     # 유통기한
     expiry_date = models.DateField(null=True)    
 
-# 찜 테이블(체크 테이블)
-class Jim(models.Model):
-    # 유저 닉네임
-    nickname = models.ForeignKey(Userinfo, on_delete=models.CASCADE,db_column='nickname')
-    # 찜한 게시판 아이디
-    board_id = models.IntegerField()
 
 # 요리 게시판 테이블
 class Board(models.Model):
